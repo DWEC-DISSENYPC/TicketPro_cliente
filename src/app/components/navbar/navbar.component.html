@@ -1,0 +1,71 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <a routerLink="/">
+        <img src="svg/logo_ticketpro_cabecera.svg" alt="TicketPro Logo" class="logo-img">
+      </a>
+    </div>
+
+    <ul class="nav-links">
+       <li>
+        <a routerLink="/eventos" routerLinkActive="active">Inicio</a>
+      </li>
+      <li>
+        <a routerLink="/caartelera" routerLinkActive="active">Cartelera</a>
+      </li>
+      <li>
+        <a routerLink="/conciertos" routerLinkActive="active">Conciertos</a>
+      </li>
+      <li><a routerLink="/teatro" routerLinkActive="active">Teatro</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a
+        *ngIf="authService.isLoggedIn()"
+        routerLink="/carrito"
+        class="nav-icon-btn"
+      >
+        <i class="bi bi-cart3"></i>
+        <span class="badge">0</span>
+      </a>
+
+      <div class="user-dropdown">
+        <button class="nav-icon-btn user-btn">
+          <i class="bi bi-person-circle"></i>
+          <span class="username-text" *ngIf="authService.isLoggedIn()">
+            {{ authService.getUsername() }}
+          </span>
+          <i class="bi bi-chevron-down arrow"></i>
+        </button>
+
+        <div class="dropdown-content">
+          <ng-container *ngIf="!authService.isLoggedIn()">
+            <a routerLink="/login"
+              ><i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión</a
+            >
+            <a routerLink="/register"
+              ><i class="bi bi-person-plus"></i> Crear Cuenta</a
+            >
+          </ng-container>
+
+          <ng-container *ngIf="authService.isLoggedIn()">
+            <a routerLink="/perfil"><i class="bi bi-person"></i> Ver Cuenta</a>
+            <a routerLink="/mis-compras"
+              ><i class="bi bi-ticket-perforated"></i> Mis Entradas</a
+            >
+            <hr />
+            <a (click)="onLogout()" class="logout-link" style="cursor: pointer">
+              <i class="bi bi-door-open"></i> Cerrar Sesión
+            </a>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-notification" [class.show]="showToast">
+  <i class="bi" [ngClass]="toastType === 'success' ? 'bi-check-circle-fill' : 'bi-info-circle-fill'"></i>
+  <span>{{ toastMessage }}</span>
+</div>
+
+</nav>

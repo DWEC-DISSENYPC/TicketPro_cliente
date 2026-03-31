@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+/******************************VARIABLES GLOBALES **********************************/
+
+:root {
+  /* Variables de Colores */
+  --color-principal: #4931d4;
+  --texto-oscuro: #000000;
+  --texto-claro: #ffffff;
+  --color-resaltado: #e99313;
+  --color-exito: #140c88;
+  --color-sombra: rgba(0, 0, 0, 0.3);
+  --color-negativo: #ffa43c;
+  --color-fondo-base: rgba(255, 255, 255, 0.1);
+  --fondo-claro: white;
+  --color-texto-tenue: #444;
+  --color-error: #d32f2f;
+
+  /* Variables de Fuente */
+  --fuente-titulos: 'Montserrat', sans-serif;
+  --fuente-cuerpo: 'Roboto', Arial, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+/********************************FIN VARIABLES GLOBALES***************************//* You can add global styles to this file, and also import other style files */
