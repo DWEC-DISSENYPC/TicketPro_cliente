@@ -7,6 +7,18 @@ import { LoginCredentials } from '../models/auth.model';
   providedIn: 'root',
 })
 export class AuthService {
+  updatePerfil(datos: any): Observable<any> {
+    const token = localStorage.getItem('token');
+
+    // Es importante que el nombre de los campos en 'datos' coincida
+    // exactamente con lo que espera tu UsuarioUpdateDTO en Java.
+    return this.http.put<any>(`${this.usuariosUrl}/perfil/update`, datos, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+  }
   // 1. URL base unificada para evitar errores de conexión y CORS
   private apiUrl = 'http://localhost:8080/api';
   private authUrl = `${this.apiUrl}/auth`;

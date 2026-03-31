@@ -1,0 +1,62 @@
+<app-hero
+  titulo="EDITAR PERFIL"
+  subtitulo="Actualiza tu información personal"
+  imagenFondo="png/hero-principal.png"
+  [altura]="'30vh'"
+>
+</app-hero>
+
+<div class="account-wrapper">
+  <div class="account-container">
+    <form [formGroup]="editForm" (ngSubmit)="guardarCambios()">
+
+      <div class="profile-grid">
+       <div class="info-card">
+  <h3>Datos Personales</h3>
+
+  <div class="form-group">
+    <label for="edit-nombre">Nombre</label>
+    <input type="text" id="edit-nombre" formControlName="nombre" class="form-control" placeholder="Ej: Jaime" />
+  </div>
+
+  <div class="form-group">
+    <label for="edit-apellidos">Apellidos</label>
+    <input type="text" id="edit-apellidos" formControlName="apellidos" class="form-control" placeholder="Ej: Sánchez" />
+  </div>
+
+  <div class="form-group">
+    <label for="edit-fecha">Fecha de Nacimiento</label>
+    <input type="date" id="edit-fecha" formControlName="fechaNacimiento" class="form-control" title="Selecciona tu fecha de nacimiento" />
+  </div>
+</div>
+
+<div class="info-card">
+  <h3>Ubicación y Pagos</h3>
+
+  <div class="form-group">
+    <label for="edit-direccion">Dirección (Calle)</label>
+    <input type="text" id="edit-direccion" formControlName="direccion" class="form-control" placeholder="Calle, número, piso..." />
+  </div>
+
+  <div class="form-group">
+    <label for="edit-metodo">Método de Pago Preferido</label>
+    <select id="edit-metodo" formControlName="metodoPagoPreferido" class="form-control" title="Selecciona un método de pago">
+      <option value="TARJETA">Tarjeta de Crédito/Débito</option>
+      <option value="PAYPAL">PayPal</option>
+      <option value="TRANSFERENCIA">Transferencia</option>
+    </select>
+  </div>
+</div>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn-primary" [disabled]="editForm.invalid">
+          Guardar Cambios
+        </button>
+        <button type="button" class="btn-outline" (click)="cancelar()">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,155 @@
+/* Contenedor principal que envuelve todo bajo el Hero */
+.account-wrapper {
+  display: flex;
+  justify-content: center;
+  /* Centra la tarjeta horizontalmente */
+  background-color: #f4f7f6;
+  /* Un gris muy suave de fondo */
+  padding: 3rem 1rem;
+  min-height: 70vh;
+}
+
+.account-container {
+  background-color: var(--fondo-claro);
+  padding: 3rem;
+  width: 100%;
+  max-width: 900px;
+  /* Ancho aceptable para escritorio */
+  border-radius: 15px;
+  box-shadow: 0 10px 30px var(--color-sombra);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Título superior */
+h2 {
+  text-align: center;
+  color: var(--color-principal);
+  font-family: var(--fuente-titulos);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Cabecera del perfil (Avatar + Username) */
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.profile-placeholder {
+  width: 80px;
+  height: 80px;
+  background-color: var(--color-principal);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.badge {
+  background-color: var(--color-resaltado);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+/* Grid de Cajas de Información */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* Responsivo */
+  gap: 1.5rem;
+}
+
+.info-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 1.5rem;
+  border-radius: 10px;
+  transition: box-shadow 0.3s;
+}
+
+.info-card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.info-card h3 {
+  font-family: var(--fuente-titulos);
+  color: var(--color-principal);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  border-bottom: 2px solid var(--color-fondo-base);
+  padding-bottom: 0.5rem;
+}
+
+/* Lista de datos alineada a la izquierda */
+.info-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-card li {
+  margin-bottom: 0.8rem;
+  color: var(--color-texto-tenue);
+  font-family: var(--fuente-cuerpo);
+  text-align: left;
+  /* Alineado a la izquierda */
+}
+
+.info-card strong {
+  color: var(--texto-oscuro);
+  display: inline-block;
+  width: 140px;
+  /* Alinea los valores */
+}
+
+/* Sección de acciones */
+.actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn-primary,
+.btn-outline {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: var(--fuente-titulos);
+}
+
+.btn-primary {
+  background-color: var(--color-principal);
+  color: white;
+  border: none;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid var(--color-principal);
+  color: var(--color-principal);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-resaltado);
+  transform: translateY(-2px);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-principal);
+  color: white;
+}

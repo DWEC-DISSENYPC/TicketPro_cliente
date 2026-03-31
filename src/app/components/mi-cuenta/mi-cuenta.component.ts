@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { HeroComponent } from "../hero/hero.component";
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-mi-cuenta',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HeroComponent, RouterModule],
   templateUrl: './mi-cuenta.component.html',
   styleUrl: './mi-cuenta.component.css',
 })
@@ -16,7 +18,15 @@ export class MiCuentaComponent implements OnInit {
   loading: boolean = false;
   mensaje: string = '';
 
-  constructor(private authService: AuthService) {}
+  @Input() titulo: string = '';
+  @Input() subtitulo: string = '';
+  @Input() imagenFondo: string = '';
+  @Input() altura: string = '90vh';
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     // Aquí llamarías a un método de tu servicio para obtener los datos del perfil
@@ -46,7 +56,7 @@ export class MiCuentaComponent implements OnInit {
   // 1. Función para navegar a la edición del perfil
   irAEditar() {
     console.log('Navegando a la edición del perfil...');
-    // Aquí podrías usar: this.router.navigate(['/mi-cuenta/editar']);
+    this.router.navigate(['/editar-perfil']);
   }
 
   abrirModalPassword() {
