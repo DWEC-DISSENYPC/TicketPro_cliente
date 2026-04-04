@@ -1,22 +1,38 @@
 /******************************VARIABLES GLOBALES **********************************/
 
 :root {
-  /* Variables de Colores */
-  --color-principal: #4931d4;
-  --texto-oscuro: #000000;
-  --texto-claro: #ffffff;
-  --color-resaltado: #e99313;
-  --color-exito: #140c88;
-  --color-sombra: rgba(0, 0, 0, 0.3);
-  --color-negativo: #ffa43c;
-  --color-fondo-base: rgba(255, 255, 255, 0.1);
-  --fondo-claro: white;
-  --color-texto-tenue: #444;
-  --color-error: #d32f2f;
+  /* --- Colores de Marca (Brand) --- */
+  --color-primary: #4931d4;
+  --color-primary-soft: rgba(73, 49, 212, 0.1);
+  --color-accent: #e99313;
+  --color-accent-hover: #d08210;
 
-  /* Variables de Fuente */
-  --fuente-titulos: 'Montserrat', sans-serif;
-  --fuente-cuerpo: 'Roboto', Arial, sans-serif;
+  /* --- Superficies y Fondos (Surfaces) --- */
+  --bg-main: #ffffff;
+  --bg-section: #f8f9fa;
+  --bg-glass: rgba(255, 255, 255, 0.1);
+  --border-color: rgba(0, 0, 0, 0.1);
+
+  /* --- Colores de Texto --- */
+  --text-main: #212121;
+  /* Casi negro, mejor para la vista */
+  --text-muted: #666666;
+  /* Para textos secundarios */
+  --text-on-primary: #ffffff;
+  /* Texto sobre fondos oscuros */
+
+  /* --- Estados (Status) --- */
+  --status-success: #140c88;
+  --status-error: #d32f2f;
+  --status-warning: #ffa43c;
+
+  /* --- Sombras y Efectos --- */
+  --shadow-main: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-strong: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+  /* --- Tipografía --- */
+  --font-family-title: 'Montserrat', sans-serif;
+  --font-family-body: 'Roboto', Arial, sans-serif;
 }
 
 * {

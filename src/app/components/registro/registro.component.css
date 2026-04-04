@@ -19,8 +19,8 @@
 
 h2 {
   text-align: center;
-  color: var(--texto-oscuro);
-  font-family: var(--fuente-titulos);
+  color: var(--text-main);
+  font-family: var(--font-family-title);
   margin-bottom: 2rem;
   font-weight: 700;
 }
@@ -54,7 +54,7 @@ input {
 
 input:focus {
   outline: none;
-  border-color: var(--color-principal);
+  border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(255, 127, 0, 0.1);
 }
 
@@ -75,7 +75,7 @@ input:focus {
 .btn-register {
   width: 100%;
   padding: 12px;
-  background-color: var(--color-principal);
+  background-color: var(--color-primary);
   color: white;
   border: none;
   border-radius: 8px;
@@ -106,7 +106,7 @@ input:focus {
 }
 
 .register-footer a {
-  color: var(--color-principal);
+  color: var(--color-primary);
   text-decoration: none;
   font-weight: 600;
 }

@@ -10,7 +10,7 @@
 }
 
 .account-container {
-  background-color: var(--fondo-claro);
+  background-color: var(--bg-main);
   padding: 3rem;
   width: 100%;
   max-width: 900px;
@@ -25,8 +25,8 @@
 /* Título superior */
 h2 {
   text-align: center;
-  color: var(--color-principal);
-  font-family: var(--fuente-titulos);
+  color: var(--color-primary);
+  font-family: var(--font-family-title);
   font-size: 2rem;
   margin-bottom: 1rem;
 }
@@ -44,7 +44,7 @@ h2 {
 .profile-placeholder {
   width: 80px;
   height: 80px;
-  background-color: var(--color-principal);
+  background-color: var(--color-primary);
   color: white;
   border-radius: 50%;
   display: flex;
@@ -55,7 +55,7 @@ h2 {
 }
 
 .badge {
-  background-color: var(--color-resaltado);
+  background-color: var(--color-accent);
   color: white;
   padding: 4px 12px;
   border-radius: 20px;
@@ -84,8 +84,8 @@ h2 {
 }
 
 .info-card h3 {
-  font-family: var(--fuente-titulos);
-  color: var(--color-principal);
+  font-family: var(--font-family-title);
+  color: var(--color-primary);
   margin-bottom: 1rem;
   font-size: 1.2rem;
   border-bottom: 2px solid var(--color-fondo-base);
@@ -101,14 +101,14 @@ h2 {
 
 .info-card li {
   margin-bottom: 0.8rem;
-  color: var(--color-texto-tenue);
+  color: var(--text-muted);
   font-family: var(--fuente-cuerpo);
   text-align: left;
   /* Alineado a la izquierda */
 }
 
 .info-card strong {
-  color: var(--texto-oscuro);
+  color: var(--text-main);
   display: inline-block;
   width: 140px;
   /* Alinea los valores */
@@ -129,27 +129,27 @@ h2 {
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s;
-  font-family: var(--fuente-titulos);
+  font-family: var(--font-family-title);
 }
 
 .btn-primary {
-  background-color: var(--color-principal);
+  background-color: var(--color-primary);
   color: white;
   border: none;
 }
 
 .btn-outline {
   background-color: transparent;
-  border: 2px solid var(--color-principal);
-  color: var(--color-principal);
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-resaltado);
+  background-color: var(--color-accent);
   transform: translateY(-2px);
 }
 
 .btn-outline:hover {
-  background-color: var(--color-principal);
+  background-color: var(--color-primary);
   color: white;
 }

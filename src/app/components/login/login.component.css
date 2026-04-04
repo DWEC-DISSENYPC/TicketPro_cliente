@@ -4,13 +4,13 @@
   justify-content: center;
   align-items: center;
   padding: 4rem 1rem;
-  background-color: var(--fondo-claro);
+  background-color: var(--bg-main);
   /* Un gris muy suave para que resalte la tarjeta blanca */
   min-height: 40vh;
 }
 
 .login-container {
-  background: var(--fondo-claro);
+  background: var(--bg-main);
   padding: 2.5rem;
   border-radius: 12px;
   box-shadow: 0 10px 30px var(--color-sombra);
@@ -20,8 +20,8 @@
 
 h2 {
   text-align: center;
-  color: var(--texto-oscuro);
-  font-family: var(--fuente-titulos);
+  color: var(--text-main);
+  font-family: var(--font-family-title);
   margin-bottom: 2rem;
   font-weight: 700;
   letter-spacing: 1px;
@@ -36,7 +36,7 @@ label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 600;
-  color: var(--color-texto-tenue);
+  color: var(--text-muted);
   font-size: 0.9rem;
 }
 
@@ -53,15 +53,15 @@ input {
 
 input:focus {
   outline: none;
-  border-color: var(--color-principal);
+  border-color: var(--color-primary);
   box-shadow: 0 0 0 3px var(--color-sombra);
 }
 
 .btn-login {
   width: 100%;
   padding: 14px;
-  background-color: var(--color-principal);
-  color: var(--texto-claro);
+  background-color: var(--color-primary);
+  color: var(--text-on-primary);
   border: none;
   border-radius: 8px;
   font-weight: bold;
@@ -72,17 +72,17 @@ input:focus {
 }
 
 .btn-login:hover:not(:disabled) {
-  background-color: var(--color-resaltado);
+  background-color: var(--color-accent);
   transform: translateY(-2px);
 }
 
 .btn-login:disabled {
-  background-color: var(--fondo-claro);;
+  background-color: var(--bg-main);;
   cursor: not-allowed;
 }
 
 .error-msg {
-  background-color: var(--fondo-claro);
+  background-color: var(--bg-main);
   color: var(--color-error);
   padding: 10px;
   border-radius: 6px;
@@ -96,11 +96,11 @@ input:focus {
   margin-top: 2rem;
   text-align: center;
   font-size: 0.85rem;
-  color:var(--color-texto-tenue);
+  color:var(--text-muted);
 }
 
 .login-footer a {
-  color: var(--color-principal);
+  color: var(--color-primary);
   text-decoration: none;
   font-weight: 600;
   font-family: var(--fuente-cuerpo);
@@ -146,7 +146,7 @@ input:focus {
 }
 
 .toggle-password:hover {
-  color: var(--color-principal);
+  color: var(--color-primary);
 }
 
 /* Ajuste sutil del padding general del form-group si es necesario */

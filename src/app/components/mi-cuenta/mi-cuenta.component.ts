@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { HeroComponent } from "../hero/hero.component";
+import { HeroComponent } from '../hero/hero.component';
 import { RouterModule, Router } from '@angular/router';
 
 @Component({
@@ -12,7 +12,7 @@ import { RouterModule, Router } from '@angular/router';
   styleUrl: './mi-cuenta.component.css',
 })
 export class MiCuentaComponent implements OnInit {
-  usuario: any = {}; // Aquí guardaremos los datos que vengan del backend
+  usuario: any = {};
   passwordActual: string = '';
   passwordNueva: string = '';
   loading: boolean = false;
@@ -29,9 +29,19 @@ export class MiCuentaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Aquí llamarías a un método de tu servicio para obtener los datos del perfil
     this.authService.getPerfil().subscribe((res) => {
       this.usuario = res;
+
+      // Normalizamos los campos para evitar undefined en el HTML
+      this.usuario.metodoPagoPreferido =
+        res.metodoPagoPref || res.metodoPagoPreferido || '';
+      this.usuario.calle = res.calle || '';
+      this.usuario.numero = res.numero || '';
+      this.usuario.pisoPuerta = res.pisoPuerta || '';
+      this.usuario.codigoPostal = res.codigoPostal || '';
+      this.usuario.ciudad = res.ciudad || '';
+      this.usuario.provincia = res.provincia || '';
+      this.usuario.pais = res.pais || '';
     });
   }
 
@@ -53,14 +63,11 @@ export class MiCuentaComponent implements OnInit {
       });
   }
 
-  // 1. Función para navegar a la edición del perfil
   irAEditar() {
-    console.log('Navegando a la edición del perfil...');
     this.router.navigate(['/editar-perfil']);
   }
 
   abrirModalPassword() {
     console.log('Abriendo modal de cambio de contraseña...');
-    // Aquí activarías una variable booleana para mostrar un popup
   }
 }

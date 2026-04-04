@@ -45,15 +45,53 @@
         <ul>
           <li>
             <strong>Método de pago:</strong>
-            {{ usuario.metodoPagoPref || "No definido" }}
-          </li>
-          <li>
-            <strong>Dirección:</strong>
-            {{ usuario.direccion?.calle || "No definida" }}
             {{
-              usuario.direccion?.ciudad ? ", " + usuario.direccion.ciudad : ""
+              usuario.metodoPagoPreferido === "TARJETA"
+                ? "Tarjeta de Crédito/Débito"
+                : usuario.metodoPagoPreferido === "PAYPAL"
+                  ? "PayPal"
+                  : usuario.metodoPagoPreferido === "TRANSFERENCIA"
+                    ? "Transferencia Bancaria"
+                    : usuario.metodoPagoPreferido || "No definido"
             }}
           </li>
+
+          <li>
+            <strong>Teléfono principal:</strong>
+            @if (usuario.telefonos && usuario.telefonos.length > 0) {
+              {{ usuario.telefonos[0].numero }}
+              <small>({{ usuario.telefonos[0].tipo | lowercase }})</small>
+            } @else {
+              No definido
+            }
+          </li>
+
+          <!-- CORREGIDO: ahora usa los campos reales del DTO -->
+          <li>
+            <strong>Dirección:</strong>
+
+            <!-- Calle -->
+            {{ usuario.calle || "No definida" }}
+
+            <!-- Número -->
+            <span *ngIf="usuario.numero">, {{ usuario.numero }}</span>
+
+            <!-- Piso / Puerta -->
+            <span *ngIf="usuario.pisoPuerta">, {{ usuario.pisoPuerta }}</span>
+
+            <br />
+
+            <!-- Código Postal + Ciudad -->
+            <span *ngIf="usuario.codigoPostal">{{ usuario.codigoPostal }}</span>
+            <span *ngIf="usuario.ciudad"> {{ usuario.ciudad }}</span>
+
+            <!-- Provincia -->
+            <span *ngIf="usuario.provincia"> ({{ usuario.provincia }})</span>
+
+            <!-- País -->
+            <span *ngIf="usuario.pais">, {{ usuario.pais }}</span>
+          </li>
+
           <li>
             <strong>Miembro desde:</strong>
             {{ usuario.createdAt | date: "dd/MM/yyyy" }}
