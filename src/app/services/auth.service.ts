@@ -87,12 +87,34 @@ export class AuthService {
   }
 
   updatePassword(
-    passwordActual: string,
     passwordNueva: string,
+    passwordActual: string = '',
   ): Observable<any> {
-    return this.http.put(`${this.usuariosUrl}/cambiar-password`, {
-      passwordActual,
-      passwordNueva,
-    });
+    const token = localStorage.getItem('token');
+    return this.http.patch(
+      `${this.usuariosUrl}/password`,
+      { passwordActual, passwordNueva },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+         responseType: 'text' as 'json'
+      },
+    );
+  }
+
+  subirImagenPerfil(formData: FormData) {
+    const token = localStorage.getItem('token');
+    console.log('Token al subir imagen:', token); // ¿Es null? ¿Está expirado?
+
+    return this.http.post<any>(
+      'http://localhost:8080/api/clientes/imagen',
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      },
+    );
   }
 }

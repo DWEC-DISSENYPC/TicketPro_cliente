@@ -1,30 +1,40 @@
 <nav class="navbar">
   <div class="nav-container">
-    <div class="nav-logo">
-      <a routerLink="/">
-        <img src="svg/logo_ticketpro_cabecera.svg" alt="TicketPro Logo" class="logo-img">
-      </a>
+
+    <div class="nav-left">
+      <button class="menu-toggle" (click)="toggleMenu()" aria-label="Abrir menú">
+        <i class="bi" [ngClass]="isMenuOpen ? 'bi-x-lg' : 'bi-list'"></i>
+      </button>
+
+      <div class="nav-logo">
+        <a routerLink="/">
+          <img src="svg/logo_ticketpro_cabecera.svg" alt="TicketPro Logo" class="logo-img">
+        </a>
+      </div>
     </div>
 
-    <ul class="nav-links">
-       <li>
-        <a routerLink="/eventos" routerLinkActive="active">Inicio</a>
+    <ul class="nav-links" [class.mobile-show]="isMenuOpen">
+      <li><a routerLink="/eventos" routerLinkActive="active" (click)="isMenuOpen = false">Inicio</a></li>
+
+      <!-- Categorías dinámicas -->
+      <li *ngFor="let categoria of categorias">
+        <a [routerLink]="['/categoria', categoria.toLowerCase()]"
+           routerLinkActive="active"
+           (click)="isMenuOpen = false">
+          {{ categoria }}
+        </a>
       </li>
-      <li>
-        <a routerLink="/caartelera" routerLinkActive="active">Cartelera</a>
-      </li>
-      <li>
-        <a routerLink="/conciertos" routerLinkActive="active">Conciertos</a>
-      </li>
-      <li><a routerLink="/teatro" routerLinkActive="active">Teatro</a></li>
+
+      <!-- Enlaces adicionales si no hay categorías cargadas -->
+      <ng-container *ngIf="categorias.length === 0 && !cargandoCategorias">
+        <li><a routerLink="/cartelera" routerLinkActive="active" (click)="isMenuOpen = false">Cartelera</a></li>
+        <li><a routerLink="/conciertos" routerLinkActive="active" (click)="isMenuOpen = false">Conciertos</a></li>
+        <li><a routerLink="/teatro" routerLinkActive="active" (click)="isMenuOpen = false">Teatro</a></li>
+      </ng-container>
     </ul>
 
     <div class="nav-actions">
-      <a
-        *ngIf="authService.isLoggedIn()"
-        routerLink="/carrito"
-        class="nav-icon-btn"
-      >
+      <a *ngIf="authService.isLoggedIn()" routerLink="/carrito" class="nav-icon-btn cart-btn">
         <i class="bi bi-cart3"></i>
         <span class="badge">0</span>
       </a>
@@ -40,21 +50,15 @@
 
         <div class="dropdown-content">
           <ng-container *ngIf="!authService.isLoggedIn()">
-            <a routerLink="/login"
-              ><i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión</a
-            >
-            <a routerLink="/register"
-              ><i class="bi bi-person-plus"></i> Crear Cuenta</a
-            >
+            <a routerLink="/login"><i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión</a>
+            <a routerLink="/register"><i class="bi bi-person-plus"></i> Crear Cuenta</a>
           </ng-container>
 
           <ng-container *ngIf="authService.isLoggedIn()">
             <a routerLink="/perfil"><i class="bi bi-person"></i> Ver Cuenta</a>
-            <a routerLink="/mis-compras"
-              ><i class="bi bi-ticket-perforated"></i> Mis Entradas</a
-            >
+            <a routerLink="/mis-compras"><i class="bi bi-ticket-perforated"></i> Mis Entradas</a>
             <hr />
-            <a (click)="onLogout()" class="logout-link" style="cursor: pointer">
+            <a (click)="onLogout()" class="logout-link">
               <i class="bi bi-door-open"></i> Cerrar Sesión
             </a>
           </ng-container>
@@ -63,9 +67,10 @@
     </div>
   </div>
 
-  <div class="toast-notification" [class.show]="showToast">
-  <i class="bi" [ngClass]="toastType === 'success' ? 'bi-check-circle-fill' : 'bi-info-circle-fill'"></i>
-  <span>{{ toastMessage }}</span>
-</div>
 
 </nav>
+
+<div class="toast-notification" [class.show]="showToast">
+    <i class="bi" [ngClass]="toastType === 'success' ? 'bi-check-circle-fill' : 'bi-info-circle-fill'"></i>
+    <span>{{ toastMessage }}</span>
+  </div>

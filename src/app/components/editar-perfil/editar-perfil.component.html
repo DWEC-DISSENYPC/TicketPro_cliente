@@ -1,3 +1,7 @@
+<!-- ============================================
+     HERO SUPERIOR DE LA PÁGINA
+     Muestra el título, subtítulo y fondo decorativo
+================================================ -->
 <app-hero
   titulo="EDITAR PERFIL"
   subtitulo="Actualiza tu información personal"
@@ -6,15 +10,116 @@
 >
 </app-hero>
 
+<!-- ============================================
+     CONTENEDOR GENERAL DE LA PÁGINA
+     Centra el contenido y aplica márgenes globales
+================================================ -->
 <div class="account-wrapper">
+  <!-- ============================================
+       CONTENEDOR INTERNO
+       Limita el ancho y centra el formulario
+  ================================================ -->
   <div class="account-container">
-    <form [formGroup]="editForm" (ngSubmit)="guardarCambios()">
-      <div class="profile-grid">
-        <!-- DATOS PERSONALES -->
-        <div class="info-card">
-          <h3>Datos Personales</h3>
+    <!-- ============================================
+         targeta de imagen y contraseña
+    ================================================ -->
 
-          <!-- Nombre -->
+
+      <div class="image-password-container">
+        <div class="info-card image-card">
+          <h3>Imagen de Perfil</h3>
+          <div class="profile-image-preview">
+            <img
+              *ngIf="imagenPerfilUrl"
+              [src]="imagenPerfilUrl"
+              class="profile-img"
+              (error)="imagenPerfilUrl = ''"
+              alt="Imagen de Perfil"
+            />
+            <div *ngIf="!imagenPerfilUrl" class="profile-placeholder">
+              {{ editForm.get("nombre")?.value?.charAt(0) | uppercase }}
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="imagenPerfil">Cambiar imagen</label>
+            <input
+              id="imagenPerfil"
+              type="file"
+              accept="image/*"
+              (change)="onImagenSeleccionada($event)"
+              class="form-control"
+            />
+          </div>
+          <button
+            type="button"
+            class="btn-text-add"
+            (click)="subirImagen()"
+            [disabled]="!imagenSeleccionada"
+          >
+            Actualizar Foto
+          </button>
+        </div>
+
+        <div class="info-card password-card">
+          <h3>Seguridad y Acceso</h3>
+          <p class="card-subtitle">Cambia tu contraseña de acceso aquí.</p>
+          <form (ngSubmit)="actualizarPassword()" #resetForm="ngForm">
+            <div class="form-group">
+              <label for="pass">Contraseña Actual</label>
+              <input
+                type="password"
+                name="passwordActual"
+                [(ngModel)]="passwordActual"
+                class="form-control"
+                required
+                placeholder="Introduce tu contraseña actual"
+              />
+            </div>
+            <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+            <div class="form-group">
+              <label for="confirm">Nueva Contraseña</label>
+              <input
+                type="password"
+                name="passwordNueva"
+                [(ngModel)]="passwordNueva"
+                class="form-control"
+                required
+                placeholder="Minimo 6 caracteres"
+              />
+            </div>
+
+            <button
+              type="submit"
+              [disabled]="!resetForm.valid || loading"
+              class="btn-primary"
+            >
+              {{ loading ? "Actualizando..." : "Cambiar contraseña" }}
+            </button>
+          </form>
+        </div>
+      </div>
+
+
+    <!-- ============================================
+         FORMULARIO PRINCIPAL
+         Usa Reactive Forms y el grid de 3 columnas
+    ================================================ -->
+
+    <form
+      [formGroup]="editForm"
+      (ngSubmit)="guardarCambios()"
+      class="edit-form-grid"
+    >
+      <!-- ============================================
+           TARJETA 1: DATOS PERSONALES
+           Primera columna del grid
+      ================================================ -->
+      <div class="info-card">
+        <h3><i class="icon-user"></i> Datos Personales</h3>
+
+        <!-- Fila: Nombre + Apellidos -->
+        <div class="form-row">
           <div class="form-group">
             <label for="nombre">Nombre *</label>
             <input
@@ -22,15 +127,11 @@
               type="text"
               formControlName="nombre"
               class="form-control"
-              placeholder="Introduce tu nombre"
-              title="Introduce tu nombre"
+              placeholder="Nombre"
             />
-            <div class="error" *ngIf="campoInvalido('nombre')">
-              El nombre es obligatorio.
-            </div>
+            <div class="error" *ngIf="campoInvalido('nombre')">Obligatorio</div>
           </div>
 
-          <!-- Apellidos -->
           <div class="form-group">
             <label for="apellidos">Apellidos *</label>
             <input
@@ -38,15 +139,13 @@
               type="text"
               formControlName="apellidos"
               class="form-control"
-              placeholder="Introduce tus apellidos"
-              title="Introduce tus apellidos"
+              placeholder="Apellidos"
             />
-            <div class="error" *ngIf="campoInvalido('apellidos')">
-              Los apellidos son obligatorios.
-            </div>
           </div>
+        </div>
 
-          <!-- Email -->
+        <!-- Fila: Email + DNI -->
+        <div class="form-row">
           <div class="form-group">
             <label for="email">Email *</label>
             <input
@@ -54,15 +153,9 @@
               type="email"
               formControlName="email"
               class="form-control"
-              placeholder="ejemplo@correo.com"
-              title="Introduce un email válido"
             />
-            <div class="error" *ngIf="campoInvalido('email')">
-              Introduce un email válido.
-            </div>
           </div>
 
-          <!-- DNI -->
           <div class="form-group">
             <label for="dni">DNI *</label>
             <input
@@ -71,124 +164,74 @@
               formControlName="dni"
               class="form-control"
               maxlength="9"
-              placeholder="12345678A"
-              title="Introduce tu DNI"
             />
-            <div class="error" *ngIf="campoInvalido('dni')">
-              El DNI debe tener 9 caracteres.
-            </div>
-          </div>
-
-          <!-- Teléfono -->
-         <div class="info-card">
-  <h3>Teléfonos de Contacto</h3>
-
-  <div formArrayName="telefonos">
-  <div *ngFor="let tel of telefonosFormArray.controls; let i=index" [formGroupName]="i" class="phone-group-row">
-
-    <div class="field">
-      <input type="text" formControlName="numero" class="form-control" placeholder="Número">
-    </div>
-
-    <div class="field">
-      <label for="metodoPagoPreferido">Método de Pago Preferido *</label>
-      <select id="metodoPagoPreferido" formControlName="tipo" class="form-control">
-        <option value="MOVIL">Móvil</option>
-        <option value="FIJO">Fijo</option>
-        <option value="TRABAJO">Trabajo</option>
-      </select>
-    </div>
-
-    <button type="button" class="btn-delete" (click)="eliminarTelefono(i)" *ngIf="telefonosFormArray.length > 1">
-      Eliminar
-    </button>
-  </div>
-</div>
-
-  <button type="button" class="btn-add" (click)="agregarTelefono()">
-    + Añadir otro teléfono
-  </button>
-</div>
-
-          <!-- Fecha nacimiento -->
-          <div class="form-group">
-            <label for="fechaNacimiento">Fecha de nacimiento *</label>
-            <input
-              id="fechaNacimiento"
-              type="date"
-              formControlName="fechaNacimiento"
-              class="form-control"
-              title="Selecciona tu fecha de nacimiento"
-            />
-            <div class="error" *ngIf="campoInvalido('fechaNacimiento')">
-              La fecha de nacimiento es obligatoria.
-            </div>
           </div>
         </div>
 
-        <!-- DIRECCIÓN -->
-        <div class="info-card">
-          <h3>Dirección</h3>
+        <!-- Campo: Fecha de nacimiento -->
+        <div class="form-group">
+          <label for="fechaNacimiento">Fecha de nacimiento *</label>
+          <input
+            id="fechaNacimiento"
+            type="date"
+            formControlName="fechaNacimiento"
+            class="form-control"
+          />
+        </div>
+      </div>
 
-          <div class="form-group">
-            <label for="calle">Calle *</label>
-            <input
-              id="calle"
-              type="text"
-              formControlName="calle"
-              class="form-control"
-              placeholder="Nombre de la calle"
-              title="Introduce tu calle"
-            />
-            <div class="error" *ngIf="campoInvalido('calle')">
-              La calle es obligatoria.
-            </div>
-          </div>
+      <!-- ============================================
+           TARJETA 2: DIRECCIÓN
+           Segunda columna del grid
+      ================================================ -->
+      <div class="info-card">
+        <h3><i class="icon-map"></i> Dirección</h3>
 
+        <!-- Calle -->
+        <div class="form-group">
+          <label for="calle">Calle *</label>
+          <input
+            id="calle"
+            type="text"
+            formControlName="calle"
+            class="form-control"
+          />
+        </div>
+
+        <!-- Nº + Piso/Puerta -->
+        <div class="form-row">
           <div class="form-group">
-            <label for="numero">Número *</label>
+            <label for="numero">Nº *</label>
             <input
               id="numero"
               type="text"
               formControlName="numero"
               class="form-control"
-              placeholder="Número"
-              title="Introduce el número"
             />
-            <div class="error" *ngIf="campoInvalido('numero')">
-              El número es obligatorio.
-            </div>
           </div>
 
           <div class="form-group">
-            <label for="pisoPuerta">Piso / Puerta *</label>
+            <label for="pisoPuerta">Piso/Pta *</label>
             <input
               id="pisoPuerta"
               type="text"
               formControlName="pisoPuerta"
               class="form-control"
-              placeholder="Ej: 3B"
-              title="Introduce piso y puerta"
             />
-            <div class="error" *ngIf="campoInvalido('pisoPuerta')">
-              Este campo es obligatorio.
-            </div>
           </div>
+        </div>
 
+        <!-- CP + Ciudad -->
+        <div class="form-row">
           <div class="form-group">
-            <label for="codigoPostal">Código Postal *</label>
+            <label for="codigoPostal">CP *</label>
             <input
               id="codigoPostal"
               type="text"
               formControlName="codigoPostal"
               class="form-control"
               maxlength="5"
-              placeholder="46000"
-              title="Introduce tu código postal"
             />
-            <div class="error" *ngIf="campoInvalido('codigoPostal')">
-              El código postal es obligatorio.
-            </div>
           </div>
 
           <div class="form-group">
@@ -198,14 +241,12 @@
               type="text"
               formControlName="ciudad"
               class="form-control"
-              placeholder="Ciudad"
-              title="Introduce tu ciudad"
             />
-            <div class="error" *ngIf="campoInvalido('ciudad')">
-              La ciudad es obligatoria.
-            </div>
           </div>
+        </div>
 
+        <!-- Provincia + País -->
+        <div class="form-row">
           <div class="form-group">
             <label for="provincia">Provincia *</label>
             <input
@@ -213,12 +254,7 @@
               type="text"
               formControlName="provincia"
               class="form-control"
-              placeholder="Provincia"
-              title="Introduce tu provincia"
             />
-            <div class="error" *ngIf="campoInvalido('provincia')">
-              La provincia es obligatoria.
-            </div>
           </div>
 
           <div class="form-group">
@@ -228,37 +264,98 @@
               type="text"
               formControlName="pais"
               class="form-control"
-              placeholder="España"
-              title="Introduce tu país"
             />
-            <div class="error" *ngIf="campoInvalido('pais')">
-              El país es obligatorio.
-            </div>
           </div>
-        </div>
-
-        <label for="metodoPagoPref">Método de Pago Preferido *</label>
-        <select
-          id="metodoPagoPref"
-          formControlName="metodoPagoPreferido"
-          class="form-control"
-        >
-          <option value="" disabled>Selecciona un método</option>
-          <option value="TARJETA">Tarjeta de Crédito/Débito</option>
-          <option value="PAYPAL">PayPal</option>
-          <option value="TRANSFERENCIA">Transferencia Bancaria</option>
-        </select>
-        <div class="error" *ngIf="campoInvalido('metodoPagoPref')">
-          El método de pago es obligatorio.
         </div>
       </div>
 
-      <div class="actions">
-        <button type="submit" class="btn-primary" [disabled]="editForm.invalid">
-          Guardar Cambios
-        </button>
+      <!-- ============================================
+           TARJETA 3: TELÉFONOS + PAGO
+           Tercera columna del grid
+      ================================================ -->
+      <div class="info-card-group">
+        <!-- Teléfonos -->
+        <div class="info-card">
+          <h3>Teléfonos de Contacto</h3>
+
+          <!-- Lista dinámica de teléfonos -->
+          <div formArrayName="telefonos" class="telefonos-container">
+            <div
+              *ngFor="let tel of telefonosFormArray.controls; let i = index"
+              [formGroupName]="i"
+              class="phone-row"
+            >
+              <input
+                type="text"
+                formControlName="numero"
+                class="form-control"
+                placeholder="Número"
+              />
+
+              <select
+                formControlName="tipo"
+                class="form-control"
+                title="Tipo de teléfono"
+              >
+                <option value="MOVIL">Móvil</option>
+                <option value="FIJO">Fijo</option>
+                <option value="TRABAJO">Trabajo</option>
+              </select>
+
+              <!-- Botón eliminar teléfono -->
+              <button
+                type="button"
+                class="btn-icon-delete"
+                (click)="eliminarTelefono(i)"
+                *ngIf="telefonosFormArray.length > 1"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+
+          <!-- Botón añadir teléfono -->
+          <button
+            type="button"
+            class="btn-text-add"
+            (click)="agregarTelefono()"
+          >
+            + Añadir
+          </button>
+        </div>
+
+        <div class="info-card">
+          <h3>Preferencia de Pago</h3>
+
+          <div class="form-group">
+            <label for="metodoPagoPref">Método de Pago *</label>
+            <select
+              id="metodoPagoPref"
+              formControlName="metodoPagoPref"
+              class="form-control"
+            >
+              <option value="TARJETA">Tarjeta de Crédito</option>
+              <option value="PAYPAL">PayPal</option>
+              <option value="TRANSFERENCIA">Transferencia</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================
+           BLOQUE DE preferencias de pago
+      ================================================ -->
+
+      <!-- ============================================
+           BLOQUE DE ACCIONES (BOTONES)
+           Ocupa todo el ancho del grid
+      ================================================ -->
+      <div class="form-actions-full">
         <button type="button" class="btn-outline" (click)="cancelar()">
           Cancelar
+        </button>
+        <button type="submit" class="btn-glass" [disabled]="editForm.invalid">
+          Guardar cambios
         </button>
       </div>
     </form>

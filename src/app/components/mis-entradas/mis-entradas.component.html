@@ -1,0 +1,99 @@
+<section class="mis-entradas">
+  <div class="container">
+    <div class="header-section">
+      <h1>Mis Entradas</h1>
+      <p>Gestiona tus compras y entradas</p>
+    </div>
+
+    <div class="filtros-section">
+      <label class="filtro-toggle">
+        <input
+          type="checkbox"
+          [(ngModel)]="mostrarSoloPendientes"
+          (change)="toggleFiltroPendientes()"
+        />
+        Mostrar solo entradas pendientes de usar
+      </label>
+    </div>
+
+    <!-- Estado de carga -->
+    <div *ngIf="cargando" class="loading-section">
+      <p>Cargando tus entradas...</p>
+    </div>
+
+    <!-- Mensajes de error y éxito -->
+    <div *ngIf="error" class="mensaje-error">{{ error }}</div>
+    <div *ngIf="exito" class="mensaje-exito">{{ exito }}</div>
+
+    <!-- Lista de compras -->
+    <div *ngIf="!cargando && comprasFiltradas.length > 0" class="compras-grid">
+      <article *ngFor="let compra of comprasFiltradas" class="compra-card">
+        <div class="compra-header">
+          <h3>{{ compra.tituloEvento }}</h3>
+          <span class="estado-badge" [ngClass]="getEstadoClass(compra.estado)">
+            {{ compra.estado }}
+          </span>
+        </div>
+
+        <div class="compra-detalles">
+          <div class="detalle-item">
+            <strong>Localizador:</strong>
+            <span>{{ compra.localizador }}</span>
+          </div>
+          <div class="detalle-item">
+            <strong>Fecha:</strong>
+            <span>{{ compra.fechaSesion | date: 'dd/MM/yyyy HH:mm' }}</span>
+          </div>
+          <div class="detalle-item">
+            <strong>Días restantes:</strong>
+            <span [class.dias-urgente]="getDiasRestantes(compra) < 5 && getDiasRestantes(compra) >= 0">
+              {{ getDiasRestantes(compra) }} día{{ getDiasRestantes(compra) !== 1 ? 's' : '' }}
+            </span>
+          </div>
+          <div class="detalle-item">
+            <strong>Entradas:</strong>
+            <span>{{ compra.numEntradas }}</span>
+          </div>
+          <div class="detalle-item">
+            <strong>Total pagado:</strong>
+            <span>{{ compra.totalPagado | currency:'EUR' }}</span>
+          </div>
+        </div>
+
+        <div class="compra-acciones">
+          <a [routerLink]="['/detalle-compra', compra.id]" class="btn-detalle">
+            Ver Detalle
+          </a>
+
+          <div class="cancelacion-info" *ngIf="!puedeCancelar(compra)">
+            <small>{{ getMensajeCancelacion(compra) }}</small>
+          </div>
+
+          <button
+            *ngIf="puedeCancelar(compra)"
+            class="btn-cancelar"
+            (click)="cancelarCompra(compra)"
+          >
+            Cancelar Compra
+          </button>
+        </div>
+      </article>
+    </div>
+
+    <!-- Mensaje cuando no hay compras -->
+    <div *ngIf="!cargando && comprasFiltradas.length === 0" class="empty-state">
+      <div class="empty-icon">
+        <i class="bi bi-ticket-perforated"></i>
+      </div>
+      <h3>No tienes entradas</h3>
+      <p>
+        {{ mostrarSoloPendientes
+           ? 'No tienes entradas pendientes de usar.'
+           : 'Aún no has comprado ninguna entrada.' }}
+      </p>
+      <a routerLink="/eventos" class="btn-explorar">
+        Explorar Eventos
+      </a>
+    </div>
+  </div>
+</section>

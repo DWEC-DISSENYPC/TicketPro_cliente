@@ -1,0 +1,89 @@
+<section class="evento-detalle" *ngIf="!cargando && evento">
+  <div class="detalle-hero" [style.backgroundImage]="'url(' + evento.imagenUrl + ')'">
+    <div class="detalle-hero-overlay">
+      <div class="detalle-hero-content">
+        <span class="badge-categoria">{{ evento.categoria }}</span>
+        <h1>{{ evento.titulo }}</h1>
+        <p>{{ evento.descripcion }}</p>
+        <div class="detalle-meta-row">
+          <span class="detalle-meta-item">Estado: {{ evento.estado }}</span>
+          <span class="detalle-meta-item" *ngIf="evento.duracionMinutos">Duración: {{ evento.duracionMinutos }} min</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detalle-body">
+    <div class="detalle-seleccion">
+      <label for="ciudadSeleccionada">Selecciona ciudad</label>
+      <select
+        id="ciudadSeleccionada"
+        [(ngModel)]="ciudadSeleccionada"
+        (change)="filtrarSesiones()"
+      >
+        <option *ngFor="let ciudad of ciudades" [value]="ciudad">{{ ciudad }}</option>
+      </select>
+    </div>
+
+    <div class="detalle-localizacion" *ngIf="sesionesFiltradas.length > 0">
+      <strong>Localización actual:</strong>
+      <span>{{ obtenerLocalizacion() }}</span>
+    </div>
+
+    <div *ngIf="sesionesFiltradas.length === 0" class="detalle-vacio">
+      <p>No hay sesiones disponibles para la ciudad seleccionada.</p>
+    </div>
+
+    <div class="sesiones-grid" *ngIf="sesionesFiltradas.length > 0">
+      <article *ngFor="let sesion of sesionesFiltradas" class="sesion-card">
+        <div class="sesion-datos">
+          <p><strong>Fecha y hora:</strong> {{ sesion.fechaHora | date: 'dd/MM/yyyy HH:mm' }}</p>
+          <p><strong>Sala:</strong> {{ sesion.nombreSala }}</p>
+          <p><strong>Ubicación:</strong> {{ sesion.nombreUbicacion }}</p>
+          <p><strong>Precio:</strong> {{ sesion.precioBase | currency:'EUR' }}</p>
+          <p><strong>Entradas disponibles:</strong> {{ entradasDisponibles(sesion) }}</p>
+        </div>
+
+        <div class="sesion-control">
+          <label for="cantidad-{{ sesion.id }}">Cantidad</label>
+          <input
+            id="cantidad-{{ sesion.id }}"
+            type="number"
+            min="1"
+            [max]="entradasDisponibles(sesion)"
+            [(ngModel)]="cantidadSeleccionada[sesion.id]"
+            (input)="onCantidadChange(sesion)"
+            (change)="onCantidadChange(sesion)"
+          />
+
+          <div *ngIf="cantidadAjustada[sesion.id]" class="mensaje-ajuste">
+            Se ha ajustado la cantidad al máximo disponible.
+          </div>
+
+          <button
+            class="btn-comprar"
+            [disabled]="entradasDisponibles(sesion) === 0 || cantidadNoValida(sesion)"
+            (click)="comprarSesion(sesion)"
+          >
+            Comprar
+          </button>
+        </div>
+      </article>
+    </div>
+
+    <div *ngIf="exitoCompra" class="detalle-exito">{{ exitoCompra }}</div>
+    <div *ngIf="error" class="detalle-error">{{ error }}</div>
+
+    <div class="detalle-volver">
+      <a routerLink="/eventos" class="btn-volver">Volver a eventos</a>
+    </div>
+  </div>
+</section>
+
+<div *ngIf="cargando" class="detalle-loading">
+  <p>Cargando detalles del evento...</p>
+</div>
+
+<div *ngIf="!cargando && !evento && !error" class="detalle-error">
+  <p>Evento no encontrado.</p>
+</div>

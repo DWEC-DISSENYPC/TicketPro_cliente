@@ -1,25 +1,29 @@
-/* Contenedor principal que envuelve todo bajo el Hero */
+/* Contenedor principal: ocupa el espacio bajo el Hero */
 .account-wrapper {
   display: flex;
   justify-content: center;
-  /* Centra la tarjeta horizontalmente */
-  background-color: #f4f7f6;
-  /* Un gris muy suave de fondo */
+  align-items: flex-start;
+  /* Alinea arriba para evitar saltos si el contenido crece */
+  background-color: var(--bg-surface-muted);
+  /* Gris suave global */
   padding: 3rem 1rem;
   min-height: 70vh;
 }
 
+/* Tarjeta principal (Glassmorphism sutil) */
 .account-container {
   background-color: var(--bg-main);
   padding: 3rem;
   width: 100%;
   max-width: 900px;
-  /* Ancho aceptable para escritorio */
-  border-radius: 15px;
-  box-shadow: 0 10px 30px var(--color-sombra);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-strong);
+  /* Sombra pronunciada para dar profundidad */
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  /* 'overflow: hidden' asegura que el contenido no sobresalga de los bordes redondeados */
+  overflow: hidden;
 }
 
 /* Título superior */
@@ -29,70 +33,97 @@ h2 {
   font-family: var(--font-family-title);
   font-size: 2rem;
   margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+  /* Técnica pro: reduce el espacio entre letras en títulos para mayor impacto */
 }
 
-/* Cabecera del perfil (Avatar + Username) */
+/* Cabecera del perfil: Avatar y Usuario */
 .profile-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-subtle);
+  /* Separación visual limpia */
 }
 
+/* Placeholder del avatar */
 .profile-placeholder {
   width: 80px;
   height: 80px;
   background-color: var(--color-primary);
-  color: white;
+  color: var(--text-on-primary);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 2rem;
   font-weight: bold;
+  box-shadow: var(--shadow-main);
 }
 
+/* Imagen de perfil real */
+.profile-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  /* Asegura que la foto no se deforme */
+  border: 3px solid var(--color-primary-soft);
+  /* Marco sutil alrededor de la foto */
+}
+
+/* Etiqueta de Rol (Badge) */
 .badge {
   background-color: var(--color-accent);
-  color: white;
-  padding: 4px 12px;
+  color: var(--text-on-primary);
+  padding: 4px 14px;
   border-radius: 20px;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  font-weight: 600;
   text-transform: uppercase;
+  letter-spacing: 1px;
+  /* Mejora la legibilidad en textos pequeños en mayúsculas */
 }
 
-/* Grid de Cajas de Información */
+/* Layout de la información: Rejilla adaptativa */
 .profile-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  /* Responsivo */
+  /* repeat(auto-fit...) hace que las columnas se ajusten solas según el ancho de pantalla */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 1.5rem;
 }
 
+/* Tarjetas individuales de información */
 .info-card {
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
+  background-color: var(--bg-main);
+  border: 1px solid var(--border-interactive);
   padding: 1.5rem;
-  border-radius: 10px;
-  transition: box-shadow 0.3s;
+  border-radius: var(--radius-md);
+  transition: var(--transition-standard);
+  /* Suaviza el efecto hover */
 }
 
 .info-card:hover {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  /* Elevación sutil al pasar el ratón */
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-main);
+  border-color: var(--color-primary-soft);
 }
 
 .info-card h3 {
   font-family: var(--font-family-title);
   color: var(--color-primary);
   margin-bottom: 1rem;
-  font-size: 1.2rem;
-  border-bottom: 2px solid var(--color-fondo-base);
+  font-size: 1.1rem;
+  border-bottom: 2px solid var(--color-primary-soft);
   padding-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
 }
 
-/* Lista de datos alineada a la izquierda */
+/* Estilos de lista */
 .info-card ul {
   list-style: none;
   padding: 0;
@@ -102,21 +133,30 @@ h2 {
 .info-card li {
   margin-bottom: 0.8rem;
   color: var(--text-muted);
-  font-family: var(--fuente-cuerpo);
-  text-align: left;
-  /* Alineado a la izquierda */
+  font-family: var(--font-family-body);
+  display: flex;
+  /* Flexbox para alinear el strong y el valor */
+  flex-wrap: wrap;
+  /* En móviles pequeños permite que el valor baje de línea */
 }
 
 .info-card strong {
   color: var(--text-main);
-  display: inline-block;
-  width: 140px;
-  /* Alinea los valores */
+  min-width: 140px;
+  /* Asegura que todos los textos de la izquierda empiecen igual */
+  font-weight: 600;
 }
 
-/* Sección de acciones */
+.info-card .address {
+  display: inline;
+  font-style: normal;
+}
+
+/* Botones y Acciones */
 .actions {
   display: flex;
+  flex-wrap: wrap;
+  /* Para que en móvil se pongan uno encima de otro si no caben */
   gap: 1rem;
   margin-top: 1rem;
 }
@@ -124,18 +164,24 @@ h2 {
 .btn-primary,
 .btn-outline {
   flex: 1;
-  padding: 12px;
-  border-radius: 8px;
-  font-weight: bold;
+  /* Hacen que ambos botones midan lo mismo */
+  min-width: 200px;
+  /* Evita que se encojan demasiado */
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: var(--transition-standard);
   font-family: var(--font-family-title);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  border: 2px solid transparent;
+  /* Reserva el espacio para el borde del hover */
 }
 
 .btn-primary {
   background-color: var(--color-primary);
-  color: white;
-  border: none;
+  color: var(--text-on-primary);
 }
 
 .btn-outline {
@@ -144,12 +190,14 @@ h2 {
   color: var(--color-primary);
 }
 
+/* Efectos Hover Pro */
 .btn-primary:hover {
   background-color: var(--color-accent);
-  transform: translateY(-2px);
+  transform: scale(1.02);
+  /* Escala sutil para sensación de presión */
 }
 
 .btn-outline:hover {
   background-color: var(--color-primary);
-  color: white;
+  color: var(--text-on-primary);
 }

@@ -1,0 +1,108 @@
+<section class="detalle-compra" *ngIf="!cargando && compra">
+  <div class="container">
+    <div class="header-section">
+      <a routerLink="/mis-compras" class="btn-volver">
+        <i class="bi bi-arrow-left"></i>
+        Volver a Mis Entradas
+      </a>
+      <h1>Detalle de Compra</h1>
+      <p>Localizador: <strong>{{ compra.localizador }}</strong></p>
+    </div>
+
+    <!-- Información general de la compra -->
+    <div class="compra-info">
+      <div class="info-card">
+        <h2>{{ compra.tituloEvento }}</h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <strong>Fecha y hora:</strong>
+            <span>{{ compra.fechaSesion | date: 'dd/MM/yyyy HH:mm' }}</span>
+          </div>
+          <div class="info-item">
+            <strong>Días restantes:</strong>
+            <span [class.dias-urgente]="getDiasRestantes() < 5 && getDiasRestantes() >= 0">
+              {{ getDiasRestantes() }} día{{ getDiasRestantes() !== 1 ? 's' : '' }}
+            </span>
+          </div>
+          <div class="info-item">
+            <strong>Número de entradas:</strong>
+            <span>{{ compra.numEntradas }}</span>
+          </div>
+          <div class="info-item">
+            <strong>Total pagado:</strong>
+            <span>{{ compra.totalPagado | currency:'EUR' }}</span>
+          </div>
+          <div class="info-item">
+            <strong>Estado:</strong>
+            <span class="estado-badge" [ngClass]="getEstadoClass(compra.estado)">
+              {{ compra.estado }}
+            </span>
+          </div>
+        </div>
+
+        <div class="compra-acciones" *ngIf="puedeCancelar()">
+          <button class="btn-cancelar" (click)="cancelarCompra()">
+            Cancelar Compra
+          </button>
+        </div>
+
+        <div class="cancelacion-info" *ngIf="!puedeCancelar()">
+          <small>{{ getMensajeCancelacion() }}</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lista de tickets -->
+    <div class="tickets-section">
+      <h2>Tus Tickets</h2>
+      <div class="tickets-grid">
+        <article *ngFor="let ticket of compra.tickets" class="ticket-card">
+          <div class="ticket-header">
+            <h3>Ticket #{{ ticket.id }}</h3>
+            <span class="ticket-estado" [ngClass]="ticket.usado ? 'usado' : 'disponible'">
+              {{ ticket.usado ? 'Usado' : 'Disponible' }}
+            </span>
+          </div>
+
+          <div class="ticket-codigo">
+            <strong>Código:</strong>
+            <span class="codigo-text">{{ ticket.codigo }}</span>
+          </div>
+
+          <div class="ticket-qr">
+            <div class="qr-placeholder" *ngIf="!ticket.qrCode">
+              <i class="bi bi-qr-code"></i>
+              <p>Código QR no disponible</p>
+            </div>
+            <img
+              *ngIf="ticket.qrCode"
+              [src]="ticket.qrCode"
+              [alt]="'QR Code para ticket ' + ticket.id"
+              class="qr-image"
+            />
+          </div>
+
+          <div class="ticket-acciones" *ngIf="!ticket.usado">
+            <button class="btn-descargar" (click)="descargarQR(ticket.id)">
+              <i class="bi bi-download"></i>
+              Descargar QR
+            </button>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Mensajes -->
+    <div *ngIf="exito" class="mensaje-exito">{{ exito }}</div>
+    <div *ngIf="error" class="mensaje-error">{{ error }}</div>
+  </div>
+</section>
+
+<div *ngIf="cargando" class="loading-section">
+  <p>Cargando detalle de la compra...</p>
+</div>
+
+<div *ngIf="!cargando && !compra && !error" class="error-section">
+  <p>Compra no encontrada.</p>
+  <a routerLink="/mis-compras" class="btn-volver">Volver a Mis Entradas</a>
+</div>

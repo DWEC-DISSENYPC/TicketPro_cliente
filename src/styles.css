@@ -26,6 +26,31 @@
   --status-error: #d32f2f;
   --status-warning: #ffa43c;
 
+    --bg-surface-muted: #f4f7f6;
+    /* Fondo gris suave para la página */
+    --border-subtle: #eeeeee;
+    /* Gris muy claro para líneas divisorias */
+    --border-interactive: #e0e0e0;
+    /* Gris para bordes de tarjetas */
+
+    --border-input: #dddddd;
+
+    --transition-standard: all 0.3s ease;
+    /* Transición suave reutilizable */
+    --radius-lg: 15px;
+    /* Radio de esquinas grande */
+    --radius-md: 10px;
+    /* Radio de esquinas medio */
+    --radius-sm: 8px;
+    /* Radio de esquinas pequeño */
+
+    --input-bg: #ffffff;
+    --input-border: var(--border-interactive);
+    --input-focus-shadow: rgba(73, 49, 212, 0.15);
+     /* Basado en tu color primary */
+    --bg-disabled: #e9ecef;
+    --text-disabled: #6c757d;
+
   /* --- Sombras y Efectos --- */
   --shadow-main: 0 4px 6px rgba(0, 0, 0, 0.1);
   --shadow-strong: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -38,7 +63,31 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
+.container {
+  width: 100%;
+  /* max-width: 1200px; */
+  margin: 0 auto;
+  /* padding: 0 20px; */
+}
 
 /********************************FIN VARIABLES GLOBALES***************************//* You can add global styles to this file, and also import other style files */
+
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body,
+app-root,
+app-navbar {
+  display: block;
+  overflow: visible;
+}

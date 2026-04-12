@@ -1,3 +1,4 @@
+<!-- HERO SUPERIOR DE LA PÁGINA -->
 <app-hero
   titulo="MI CUENTA"
   subtitulo="Mis datos personales y preferencias"
@@ -10,27 +11,34 @@
   <div class="account-container">
     <h2>Mi Cuenta</h2>
 
+    <!-- CABECERA DEL PERFIL: FOTO, NOMBRE DE USUARIO Y ROL -->
     <div class="profile-header">
       @if (usuario.imagenUrl) {
+        <!-- Foto de perfil si existe -->
         <img
           [src]="usuario.imagenUrl"
           alt="Foto de perfil"
           class="profile-img"
         />
       } @else {
+        <!-- Placeholder con inicial del nombre -->
         <div class="profile-placeholder">{{ usuario.nombre?.charAt(0) }}</div>
       }
+
+      <!-- Nombre de usuario y rol -->
       <h3>{{ usuario.username }}</h3>
       <span class="badge">{{ usuario.rol }}</span>
     </div>
 
+    <!-- GRID PRINCIPAL CON TARJETAS DE INFORMACIÓN -->
     <div class="profile-grid">
+
+      <!-- TARJETA: DATOS PERSONALES -->
       <div class="info-card">
         <h3>Datos Personales</h3>
         <ul>
           <li>
-            <strong>Nombre:</strong> {{ usuario.nombre }}
-            {{ usuario.apellidos }}
+            <strong>Nombre:</strong> {{ usuario.nombre }} {{ usuario.apellidos }}
           </li>
           <li><strong>DNI:</strong> {{ usuario.dni }}</li>
           <li><strong>Email:</strong> {{ usuario.email }}</li>
@@ -40,9 +48,12 @@
         </ul>
       </div>
 
+      <!-- TARJETA: PREFERENCIAS Y UBICACIÓN -->
       <div class="info-card">
         <h3>Preferencias y Ubicación</h3>
         <ul>
+
+          <!-- Método de pago preferido -->
           <li>
             <strong>Método de pago:</strong>
             {{
@@ -56,6 +67,7 @@
             }}
           </li>
 
+          <!-- Teléfono principal -->
           <li>
             <strong>Teléfono principal:</strong>
             @if (usuario.telefonos && usuario.telefonos.length > 0) {
@@ -66,32 +78,36 @@
             }
           </li>
 
-          <!-- CORREGIDO: ahora usa los campos reales del DTO -->
+          <!-- DIRECCIÓN COMPLETA -->
           <li>
             <strong>Dirección:</strong>
 
-            <!-- Calle -->
-            {{ usuario.calle || "No definida" }}
+            <!-- Etiqueta semántica para direcciones -->
+            <address>
+              <!-- Calle -->
+              {{ usuario.calle || "No definida" }}
 
-            <!-- Número -->
-            <span *ngIf="usuario.numero">, {{ usuario.numero }}</span>
+              <!-- Número -->
+              <span *ngIf="usuario.numero">, {{ usuario.numero }}</span>
 
-            <!-- Piso / Puerta -->
-            <span *ngIf="usuario.pisoPuerta">, {{ usuario.pisoPuerta }}</span>
+              <!-- Piso / Puerta -->
+              <span *ngIf="usuario.pisoPuerta">, {{ usuario.pisoPuerta }}</span>
 
-            <br />
+              <br />
 
-            <!-- Código Postal + Ciudad -->
-            <span *ngIf="usuario.codigoPostal">{{ usuario.codigoPostal }}</span>
-            <span *ngIf="usuario.ciudad"> {{ usuario.ciudad }}</span>
+              <!-- Código Postal + Ciudad -->
+              <span *ngIf="usuario.codigoPostal">{{ usuario.codigoPostal }}</span>
+              <span *ngIf="usuario.ciudad"> {{ usuario.ciudad }}</span>
 
-            <!-- Provincia -->
-            <span *ngIf="usuario.provincia"> ({{ usuario.provincia }})</span>
+              <!-- Provincia -->
+              <span *ngIf="usuario.provincia"> ({{ usuario.provincia }})</span>
 
-            <!-- País -->
-            <span *ngIf="usuario.pais">, {{ usuario.pais }}</span>
+              <!-- País -->
+              <span *ngIf="usuario.pais">, {{ usuario.pais }}</span>
+            </address>
           </li>
 
+          <!-- Fecha de creación de la cuenta -->
           <li>
             <strong>Miembro desde:</strong>
             {{ usuario.createdAt | date: "dd/MM/yyyy" }}
@@ -100,6 +116,7 @@
       </div>
     </div>
 
+    <!-- BOTONES DE ACCIÓN -->
     <div class="actions">
       <button class="btn-primary" (click)="irAEditar()">Editar Datos</button>
       <button class="btn-outline" (click)="abrirModalPassword()">
