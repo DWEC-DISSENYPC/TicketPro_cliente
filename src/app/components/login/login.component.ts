@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { HeroComponent } from '../hero/hero.component';
 
+/* ###### COMPONENTE DE IDENTIFICACION Y ACCESO ###### */
+// ------ Genera La Interaccion Directa Para Obtener Un Jwt Valido Tras Autenticar ------
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -13,25 +15,48 @@ import { HeroComponent } from '../hero/hero.component';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+  
+  /* ###### ATRIBUTOS INTERNOS DEL FORMULARIO ###### */
+
+  // ------ Estructura De Datos Recolectada En Caja ------
   credentials = { username: '', password: '' };
+  // ------ Error Propagado A La Vista ------
   errorMessage = '';
+
+  /* ###### PARAMETROS DE ENTRADA HERO COMPARTIDO ###### */
+
+  // ------ Frase Mayor En Negrita Que Encabeza ------
   @Input() titulo: string = '';
+  // ------ Parrafo Explicativo Que Cierra Idea ------
   @Input() subtitulo: string = '';
+  // ------ Enlace Referencial Fotografico ------
   @Input() imagenFondo: string = '';
+  // ------ Tamaño Maximo Reservado En Formato Vw O Vh O Px - Por Defecto 90 Para Home ------
   @Input() altura: string = '90vh';
 
+  /* ###### CONSTRUCTOR PRINCIPAL ###### */
 
+  // ------ Despliega Las Instancias Rest Para Llamados Servidor Y El Enrutador ------
   constructor(
     private authService: AuthService,
     private router: Router,
   ) {}
 
-  loading = false; // Nueva variable
+  /* ###### INDICADORES VISUALES DE AYUDA ###### */
+
+  // ------ Detonador De Elemento Bloqueante Cargando ------
+  loading = false; 
+  // ------ Bandera Que Alterna Text O Password En El Html ------
   showPassword = false;
 
+  /* ###### METODO PRINCIPAL DE SUBMIT ###### */
+
+  // ------ Detonacion Comun Que Empaqueta Y Remite Al Guard Rest ------
   onSubmit() {
-    this.loading = true; // Bloqueamos el botón
-    this.errorMessage = ''; // Limpiamos errores previos
+    // ------ Bloqueamos El Boton ------
+    this.loading = true; 
+    // ------ Limpiamos Errores Previos ------
+    this.errorMessage = ''; 
 
     this.authService.login(this.credentials).subscribe({
       next: (response) => {
@@ -39,13 +64,17 @@ export class LoginComponent {
         this.router.navigate(['/eventos']);
       },
       error: (err) => {
-        this.loading = false; // Liberamos el botón para reintentar
+        // ------ Liberamos El Boton Para Reintentar ------
+        this.loading = false; 
         this.errorMessage = 'Usuario o contraseña incorrectos';
       },
       complete: () => (this.loading = false),
     });
   }
 
+  /* ###### UTILIDADES Y FUNCIONES ADICIONES ###### */
+
+  // ------ Permite Ejecutar Desde Vista El Alternador Del Ojo Contraseña ------
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }

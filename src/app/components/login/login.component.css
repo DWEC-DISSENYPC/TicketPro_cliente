@@ -1,14 +1,19 @@
-/* Contenedor principal para centrar el login bajo el hero */
+/* ###### CONTENEDOR PRINCIPAL ###### */
+
+/* ------ Base Flexbox Para Centrar Login Bajo El Hero ------ */
 .login-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 4rem 1rem;
   background-color: var(--bg-main);
-  /* Un gris muy suave para que resalte la tarjeta blanca */
+  /* ------ Un Gris Muy Suave Para Que Resalte La Tarjeta Blanca ------ */
   min-height: 40vh;
 }
 
+/* ###### CAJA DEL FORMULARIO ###### */
+
+/* ------ Recuadro Frontal De Formulario ------ */
 .login-container {
   background: var(--bg-main);
   padding: 2.5rem;
@@ -18,6 +23,7 @@
   max-width: 400px;
 }
 
+/* ------ Cabecera Dentro De La Caja ------ */
 h2 {
   text-align: center;
   color: var(--text-main);
@@ -27,10 +33,19 @@ h2 {
   letter-spacing: 1px;
 }
 
+/* ###### INPUTS Y ETIQUETAS ###### */
+
+/* ------ Margen General Entre Casillas ------ */
 .form-group {
   margin-bottom: 1.5rem;
 }
 
+/* ------ Ajuste Sutil Del Padding General Del Form-Group ------ */
+.form-group label {
+  margin-bottom: 0.5rem;
+}
+
+/* ------ Texto De Ayuda Sobre El Input ------ */
 label {
   font-family: var(--fuente-cuerpo);
   display: block;
@@ -40,6 +55,7 @@ label {
   font-size: 0.9rem;
 }
 
+/* ------ Interfaz De Escritura ------ */
 input {
   width: 100%;
   padding: 12px 15px;
@@ -48,15 +64,19 @@ input {
   font-size: 1rem;
   transition: all 0.3s ease;
   box-sizing: border-box;
-  /* Importante para que el padding no rompa el ancho */
+  /* ------ Importante Para Que El Padding No Rompa El Ancho ------ */
 }
 
+/* ------ Remarca Borde Al Seleccionar Texto ------ */
 input:focus {
   outline: none;
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px var(--color-sombra);
 }
 
+/* ###### BOTON PRIMARIO DE INGRESO ###### */
+
+/* ------ Boton De Ancho Completo Call To Action ------ */
 .btn-login {
   width: 100%;
   padding: 14px;
@@ -71,16 +91,21 @@ input:focus {
   margin-top: 1rem;
 }
 
+/* ------ Animacion Sutil Y Cambio De Tono ------ */
 .btn-login:hover:not(:disabled) {
   background-color: var(--color-accent);
   transform: translateY(-2px);
 }
 
+/* ------ Tono Grisaceo Ante Formularios Incompletos ------ */
 .btn-login:disabled {
-  background-color: var(--bg-main);;
+  background-color: var(--bg-main);
   cursor: not-allowed;
 }
 
+/* ###### MENSAJERIA DE ERROR ###### */
+
+/* ------ Caja Excepcional Sobre Parametros Invalidos ------ */
 .error-msg {
   background-color: var(--bg-main);
   color: var(--color-error);
@@ -92,6 +117,9 @@ input:focus {
   border: 1px solid #ffcdd2;
 }
 
+/* ###### SECCION PIE (FOOTER) ###### */
+
+/* ------ Base Inferior De Link Rescate ------ */
 .login-footer {
   margin-top: 2rem;
   text-align: center;
@@ -99,6 +127,7 @@ input:focus {
   color:var(--text-muted);
 }
 
+/* ------ Texto Referenciado De Link ------ */
 .login-footer a {
   color: var(--color-primary);
   text-decoration: none;
@@ -106,28 +135,30 @@ input:focus {
   font-family: var(--fuente-cuerpo);
 }
 
+/* ------ Decoracion Al Pasar Raton ------ */
 .login-footer a:hover {
   text-decoration: underline;
 }
 
+/* ###### OJO PARA VER CONTRASEÑA ###### */
 
-/* Nuevo contenedor para el input y el botón */
+/* ------ Nuevo Contenedor Para El Input Y El Boton Especial ------ */
 .password-input-wrapper {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-/* El input debe tener un padding a la derecha para que el texto no pise el ojo */
+/* ------ El Input Debe Tener Padding A Derecha Para No Pisar El Ojo ------ */
 .password-input-wrapper input {
   padding-right: 45px;
-  /* Espacio para el botón */
+  /* ------ Espacio Para El Boton ------ */
   width: 100%;
-  /* Asegura que ocupe todo el ancho */
+  /* ------ Asegura Ocupar Todo El Ancho ------ */
   box-sizing: border-box;
 }
 
-/* Botón del ojo estilizado */
+/* ------ Boton Del Ojo Estilizado Centralizado ------ */
 .toggle-password {
   position: absolute;
   right: 12px;
@@ -142,14 +173,10 @@ input:focus {
   justify-content: center;
   transition: color 0.2s ease;
   z-index: 2;
-  /* Asegura que esté por encima del input */
+  /* ------ Asegura Que Este Por Encima Del Input ------ */
 }
 
+/* ------ Color Primario Al Acercar Mouse ------ */
 .toggle-password:hover {
   color: var(--color-primary);
-}
-
-/* Ajuste sutil del padding general del form-group si es necesario */
-.form-group label {
-  margin-bottom: 0.5rem;
 }

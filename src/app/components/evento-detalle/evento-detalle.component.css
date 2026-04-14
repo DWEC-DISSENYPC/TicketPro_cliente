@@ -1,3 +1,6 @@
+/* ###### CONTENEDOR PRINCIPAL DEL EVENTO ###### */
+
+/* ------ Muestra La Disposicion General Vertical ------ */
 .evento-detalle {
   display: flex;
   flex-direction: column;
@@ -5,6 +8,9 @@
   width: 100%;
 }
 
+/* ###### HERO DE CABECERA ###### */
+
+/* ------ Imagen Superior Ampliada ------ */
 .detalle-hero {
   width: 100%;
   min-height: 420px;
@@ -15,6 +21,7 @@
   align-items: flex-end;
 }
 
+/* ------ Sombreado Degardado Para Lectura ------ */
 .detalle-hero-overlay {
   width: 100%;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.75));
@@ -22,11 +29,13 @@
   box-sizing: border-box;
 }
 
+/* ------ Texto En Blanco Superpuesto ------ */
 .detalle-hero-content {
   color: #ffffff;
   max-width: 860px;
 }
 
+/* ------ Pastilla Informativa De Tipo De Evento ------ */
 .badge-categoria {
   display: inline-block;
   margin-bottom: 1rem;
@@ -36,6 +45,7 @@
   font-weight: 600;
 }
 
+/* ------ Fila Subyacente De Etiquetado ------ */
 .detalle-meta-row {
   display: flex;
   flex-wrap: wrap;
@@ -43,18 +53,23 @@
   margin-top: 1rem;
 }
 
+/* ------ Estilo Particular Individual ------ */
 .detalle-meta-item {
   background: rgba(255, 255, 255, 0.15);
   padding: 0.75rem 1rem;
   border-radius: 14px;
 }
 
+/* ###### CUERPO DEL DETALLE Y REJILLAS ###### */
+
+/* ------ Base Reticular Inferior ------ */
 .detalle-body {
   display: grid;
   gap: 1.5rem;
   padding: 0 1.5rem;
 }
 
+/* ------ Ampliacion Total De Anchura ------ */
 .detalle-seleccion,
 .detalle-localizacion,
 .detalle-vacio,
@@ -64,6 +79,7 @@
   width: 100%;
 }
 
+/* ------ Estandarizacion De Labels ------ */
 .detalle-seleccion label,
 .sesion-control label {
   display: block;
@@ -71,6 +87,7 @@
   font-weight: 600;
 }
 
+/* ------ Selectores Desplegables E Inputs Textuales ------ */
 .detalle-seleccion select,
 .sesion-control input {
   width: 100%;
@@ -82,12 +99,16 @@
   max-width: 150px;
 }
 
+/* ------ Rejilla Base De Tarjetas ------ */
 .sesiones-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
 }
 
+/* ###### TARJETAS DE SESION INDIVIDUAL ###### */
+
+/* ------ Cartel De Cada Sesion Disponible ------ */
 .sesion-card {
   background: rgba(255, 255, 255, 0.95);
   padding: 1.5rem;
@@ -99,21 +120,27 @@
   max-width: 500px;
 }
 
+/* ------ Interlineado Textual ------ */
 .sesion-datos p {
   margin: 0.7rem 0;
 }
 
+/* ------ Distribucion Opciones Verticales ------ */
 .sesion-control {
   display: grid;
   gap: 0.75rem;
 }
 
+/* ###### ALERTAS DE CAPACIDAD Y ESTADOS ###### */
+
+/* ------ Notificacion De Llenado O Tope Maximo Alcanzado ------ */
 .mensaje-ajuste {
   color: #c62828;
   font-weight: 700;
   font-size: 0.95rem;
 }
 
+/* ------ Boton De Opcion Para Efectuar Compra Y Retorno ------ */
 .btn-comprar,
 .btn-volver {
   display: inline-flex;
@@ -129,26 +156,33 @@
   text-decoration: none;
 }
 
+/* ------ Apariencia Deshabilitada ------ */
 .btn-comprar:disabled {
   opacity: 0.55;
   cursor: not-allowed;
 }
 
+/* ------ Confirmacion Global Con Color Verde ------ */
 .detalle-exito {
   color: #1a7f37;
   font-weight: 700;
 }
 
+/* ------ Bloqueos Con Rojo ------ */
 .detalle-error {
   color: #c62828;
   font-weight: 700;
 }
 
+/* ------ Centrado De Texto Intermedio ------ */
 .detalle-loading {
   padding: 2rem 1.5rem;
   text-align: center;
 }
 
+/* ###### RESPONSIVIDAD Y MEDIA QUERIES ###### */
+
+/* ------ Reducir Tamaños En Pantallas Inferiores ------ */
 @media (max-width: 720px) {
   .detalle-hero {
     min-height: 320px;

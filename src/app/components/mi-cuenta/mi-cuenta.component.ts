@@ -5,6 +5,8 @@ import { AuthService } from '../../services/auth.service';
 import { HeroComponent } from '../hero/hero.component';
 import { RouterModule, Router } from '@angular/router';
 
+/* ###### COMPONENTE DE MI CUENTA GENERAL ###### */
+// ------ Representa La Vista Personal Resumida De Todo El Objeto Logueado ------
 @Component({
   selector: 'app-mi-cuenta',
   imports: [CommonModule, FormsModule, HeroComponent, RouterModule],
@@ -12,56 +14,51 @@ import { RouterModule, Router } from '@angular/router';
   styleUrl: './mi-cuenta.component.css',
 })
 export class MiCuentaComponent implements OnInit {
-  // -----------------------------
-  // PROPIEDADES DEL COMPONENTE
-  // -----------------------------
 
-  /** Datos del usuario obtenidos del backend */
+  /* ###### PROPIEDADES ESTANDARDS DE COMPONENTE ###### */
+
+  // ------ Objeto Principal Recolectado Del Backend Central ------
   usuario: any = {};
-
-  /** Campos para el cambio de contraseña */
+  
+  // ------ Enunciados Variables Para Posible Update ------
   passwordActual: string = '';
   passwordNueva: string = '';
 
-  /** Estado de carga y mensajes */
+  // ------ Renderizadores Textuales Temporales E Inhabilitadores ------
   loading: boolean = false;
   mensaje: string = '';
 
-  /** Inputs opcionales para el hero */
+  /* ###### PROPIEDADES ENVIADAS AL HERO ###### */
+
+  // ------ Permisos Inputs Para Modificar Decorado Frontal ------
   @Input() titulo: string = '';
   @Input() subtitulo: string = '';
   @Input() imagenFondo: string = '';
   @Input() altura: string = '90vh';
 
+  /* ###### CONSTRUCTOR BASICO ###### */
+
+  // ------ Asienta Instancias Autenticacion Y El Redireccionador Ruta ------
   constructor(
     private authService: AuthService,
     private router: Router,
   ) {}
 
-  // -----------------------------
-  // CICLO DE VIDA
-  // -----------------------------
+  /* ###### CICLO DE CARGA INICIAL ###### */
 
-  /**
-   * Al iniciar el componente, obtenemos el perfil del usuario.
-   */
+  // ------ Arranca Tras Montar Buscando Un Get Seguro ------
   ngOnInit(): void {
     this.cargarPerfil();
   }
 
-  // -----------------------------
-  // MÉTODOS PRINCIPALES
-  // -----------------------------
+  /* ###### EXTRACCION DE SEGURIDAD RELACIONAL ###### */
 
-  /**
-   * Obtiene los datos del perfil desde el backend
-   * y normaliza los campos para evitar undefined en el HTML.
-   */
+  // ------ Obtiene Los Datos Rest Y Normaliza Su Mapeado Impidiendo Undefined Html ------
   private cargarPerfil(): void {
     this.authService.getPerfil().subscribe((res) => {
       this.usuario = res;
 
-      // Normalización de campos (evita errores en el HTML)
+      // ------ Normalizacion Forzada Contra Atributos Incompletos O Nulos ------
       this.usuario.metodoPagoPreferido =
         res.metodoPagoPref || res.metodoPagoPreferido || '';
 
@@ -75,20 +72,20 @@ export class MiCuentaComponent implements OnInit {
     });
   }
 
-  /**
-   * Envía la solicitud para cambiar la contraseña del usuario.
-   */
+  /* ###### ACTUALIZACION DE ATRIBUTO SEGURIDAD ###### */
+
+  // ------ Generador Post Exclusivo Y Oculto Para Modificar La Clave Temporalmente ------
   cambiarPassword(): void {
     this.loading = true;
 
     this.authService
-      .updatePassword( this.passwordNueva)
+      .updatePassword(this.passwordNueva)
       .subscribe({
         next: () => {
           this.mensaje = 'Contraseña actualizada con éxito';
           this.loading = false;
 
-          // Limpiamos los campos del formulario
+          // ------ Limpiamiento Expreso Al Lograr Cometido ------
           this.passwordActual = '';
           this.passwordNueva = '';
         },
@@ -99,16 +96,16 @@ export class MiCuentaComponent implements OnInit {
       });
   }
 
-  /**
-   * Navega al formulario de edición del perfil.
-   */
+  /* ###### RUTAS DEPENDIENTES ###### */
+
+  // ------ Salto Desviado Al Editor Rest ------
   irAEditar(): void {
     this.router.navigate(['/editar-perfil']);
   }
 
-  /**
-   * Abre el modal de cambio de contraseña (si lo implementas).
-   */
+  /* ###### VENTANAS GLOBALES EXTERNAS ###### */
+
+  // ------ Disparador Ciego Por Si Se Aplica Una Vista Previa Superpuesta ------
   abrirModalPassword(): void {
     console.log('Abriendo modal de cambio de contraseña...');
   }

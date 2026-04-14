@@ -1,5 +1,10 @@
+<!-- ###### SECCION DE DETALLE DE COMPRA ###### -->
+<!-- ------ Muestra La Informacion General Si La Compra Se Cargo Correctamente ------ -->
 <section class="detalle-compra" *ngIf="!cargando && compra">
   <div class="container">
+    
+    <!-- ###### CABECERA DEL DETALLE ###### -->
+    <!-- ------ Boton Para Volver Y Titulo De La Compra ------ -->
     <div class="header-section">
       <a routerLink="/mis-compras" class="btn-volver">
         <i class="bi bi-arrow-left"></i>
@@ -9,7 +14,8 @@
       <p>Localizador: <strong>{{ compra.localizador }}</strong></p>
     </div>
 
-    <!-- Información general de la compra -->
+    <!-- ###### INFORMACION GENERAL DE LA COMPRA ###### -->
+    <!-- ------ Bloque Principal Con Los Datos Del Evento Comprado ------ -->
     <div class="compra-info">
       <div class="info-card">
         <h2>{{ compra.tituloEvento }}</h2>
@@ -40,19 +46,23 @@
           </div>
         </div>
 
+        <!-- ###### ACCIONES DE LA COMPRA ###### -->
+        <!-- ------ Funciones Exclusivas Si Son Compatibles ------ -->
         <div class="compra-acciones" *ngIf="puedeCancelar()">
           <button class="btn-cancelar" (click)="cancelarCompra()">
             Cancelar Compra
           </button>
         </div>
 
+        <!-- ------ Aviso En Caso De Transcurso O Imposibilidad De Devolucion ------ -->
         <div class="cancelacion-info" *ngIf="!puedeCancelar()">
           <small>{{ getMensajeCancelacion() }}</small>
         </div>
       </div>
     </div>
 
-    <!-- Lista de tickets -->
+    <!-- ###### VISOR DE TICKETS DISPONIBLES ###### -->
+    <!-- ------ Lista De Tickets Individuales Ajenos O Vinculados A La Sesion ------ -->
     <div class="tickets-section">
       <h2>Tus Tickets</h2>
       <div class="tickets-grid">
@@ -70,10 +80,12 @@
           </div>
 
           <div class="ticket-qr">
+            <!-- ------ Oculto Si El Generador Del Ticket Qr Falla ------ -->
             <div class="qr-placeholder" *ngIf="!ticket.qrCode">
               <i class="bi bi-qr-code"></i>
               <p>Código QR no disponible</p>
             </div>
+            <!-- ------ Visualiza El Ticket Qr Principalmente ------ -->
             <img
               *ngIf="ticket.qrCode"
               [src]="ticket.qrCode"
@@ -82,6 +94,7 @@
             />
           </div>
 
+          <!-- ------ Permitir La Impresion ------ -->
           <div class="ticket-acciones" *ngIf="!ticket.usado">
             <button class="btn-descargar" (click)="descargarQR(ticket.id)">
               <i class="bi bi-download"></i>
@@ -92,16 +105,21 @@
       </div>
     </div>
 
-    <!-- Mensajes -->
+    <!-- ###### BANNERS DE RESPUESTA GLOBAL ###### -->
+    <!-- ------ Se Generan Solo Si Existe Texto Informacional En El Controller ------ -->
     <div *ngIf="exito" class="mensaje-exito">{{ exito }}</div>
     <div *ngIf="error" class="mensaje-error">{{ error }}</div>
   </div>
 </section>
 
+<!-- ###### ESTADO DE RETARDO O CARGA ###### -->
+<!-- ------ Bloque Alternativo Mientras Resuelve Promesa ------ -->
 <div *ngIf="cargando" class="loading-section">
   <p>Cargando detalle de la compra...</p>
 </div>
 
+<!-- ###### ESTADO DE FALLO COMPLETO ###### -->
+<!-- ------ Error Grave Informando El Fallo Al Cliente ------ -->
 <div *ngIf="!cargando && !compra && !error" class="error-section">
   <p>Compra no encontrada.</p>
   <a routerLink="/mis-compras" class="btn-volver">Volver a Mis Entradas</a>

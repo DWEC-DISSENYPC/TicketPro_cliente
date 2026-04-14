@@ -1,3 +1,6 @@
+/* ###### CONTENEDOR PRINCIPAL DEL FOOTER ###### */
+
+/* ------ Bloque Inferior De La Pagina ------ */
 .footer {
   background: var(--color-primary);
   color: var(--text-on-primary);
@@ -5,6 +8,7 @@
   font-family: var(--font-family-body);
 }
 
+/* ------ Distribucion En Flexbox Para El Reagrupamiento ------ */
 .footer-inner {
   display: flex;
   flex-wrap: wrap;
@@ -16,11 +20,15 @@
   margin: 0 auto;
 }
 
+/* ###### MARCA Y LOGOTIPO ###### */
+
+/* ------ Contenedor Reservado De Marca Comercial ------ */
 .footer-brand {
   flex: 1 1 280px;
   min-width: 220px;
 }
 
+/* ------ Logo Expandido ------ */
 .footer-logo {
   display: inline-block;
   font-family: var(--font-family-title);
@@ -29,6 +37,7 @@
   margin-bottom: 10px;
 }
 
+/* ------ Parrafo Que Detalla La Informacion General ------ */
 .footer-brand p {
   color: rgba(255, 255, 255, 0.82);
   font-size: 0.95rem;
@@ -36,6 +45,9 @@
   max-width: 380px;
 }
 
+/* ###### ENLACES A LAS SECCIONES ###### */
+
+/* ------ Contenedor De Lista O Grid De Pestañas Secundarias ------ */
 .footer-links {
   display: flex;
   flex: 1 1 360px;
@@ -43,10 +55,12 @@
   flex-wrap: wrap;
 }
 
+/* ------ Columnas Verticales En El Apartado De Links ------ */
 .footer-links div {
   min-width: 160px;
 }
 
+/* ------ Titulo Encima De Las Listas ------ */
 .footer-links h4 {
   font-family: var(--font-family-title);
   font-size: 1rem;
@@ -54,6 +68,7 @@
   color: var(--text-on-primary);
 }
 
+/* ------ Opcion Linkeable Y Suave ------ */
 .footer-links a {
   display: block;
   color: rgba(255, 255, 255, 0.85);
@@ -63,10 +78,14 @@
   transition: color 0.2s ease;
 }
 
+/* ------ Hover Contrastante ------ */
 .footer-links a:hover {
   color: var(--color-accent);
 }
 
+/* ###### CINTA INFERIOR DE COPYRIGHT ###### */
+
+/* ------ Ultima Franja Pegada Abajo Del Todo ------ */
 .footer-bottom {
   margin-top: 24px;
   padding-top: 18px;
@@ -76,7 +95,12 @@
   font-size: 0.9rem;
 }
 
+/* ###### RESPONSIVIDAD Y MEDIA QUERIES ###### */
+
+/* ------ Adaptable Para Telefonos Y Pantallas Mas Pequeñas ------ */
 @media (max-width: 768px) {
+  
+  /* ------ Pierde Flexbox Desarmandose En Block ------ */
   .footer-inner {
     flex-direction: column;
     align-items: stretch;
@@ -84,17 +108,20 @@
     padding: 0 20px;
   }
 
+  /* ------ El Contenedor Agarra Todo El Maximo ------ */
   .footer-inner.container {
     width: 100%;
     max-width: none;
   }
 
+  /* ------ Ampliacion Interna ------ */
   .footer-brand,
   .footer-links div {
     width: 100%;
     min-width: auto;
   }
 
+  /* ------ Disminucion Del Gap Linkeable ------ */
   .footer-links {
     gap: 20px;
   }

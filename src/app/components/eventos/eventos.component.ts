@@ -7,6 +7,8 @@ import { EventoDTO } from '../../models/evento.model';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
+/* ###### COMPONENTE DE EVENTOS COMPARTIDO ###### */
+// ------ Expone Las Diferentes Vertientes De Listados Publicos Y Accesibles ------
 @Component({
   selector: 'app-eventos',
   imports: [HeroComponent, CommonModule, RouterModule],
@@ -14,46 +16,68 @@ import { Subscription } from 'rxjs';
   styleUrl: './eventos.component.css',
 })
 export class EventosComponent implements OnInit, OnDestroy {
-  // Propiedades del Hero
+  /* ###### PROPIEDADES ENVIADAS POR EL PADRE (HERO) ###### */
+
+  // ------ Variables Sobre-Escritas Si Se Le Inyecta Valor Por Etiqueta ------
   @Input() titulo: string = '';
   @Input() subtitulo: string = '';
   @Input() imagenFondo: string = '';
   @Input() altura: string = '70vh';
 
-  // Propiedades de eventos
+  /* ###### ALMACENES Y ESTADOS CENTRALES ###### */
+
+  // ------ Dtos Completos Devueltos Por La Promesa ------
   eventos: EventoDTO[] = [];
+  // ------ Listado Despues De Pasar Por Las Capas De Corte ------
   eventosFiltrados: EventoDTO[] = [];
+  // ------ Renderizado De Cargando ------
   cargando: boolean = false;
+  // ------ Notificador De Falla ------
   error: string | null = null;
+  // ------ Limite Del Select Sql Que Retorna ------
   cantidadEventos: number = 8;
 
-  // Propiedades de categoría
+  /* ###### SUSCRIPCIONES Y CATEGORIZADOR ###### */
+
+  // ------ Control De Filtro Url Constante ------
   categoriaActual: string | null = null;
+  // ------ Suscripcion Recicable A La Fuga De Memoria ------
   private routeSub: Subscription = new Subscription();
 
+  /* ###### CONSTRUCTOR PRINCIPAL ###### */
+
+  // ------ Pone En Marcha Los Servicios Requeridos Http ------
   constructor(
     private eventoService: EventoService,
     private route: ActivatedRoute
   ) {}
 
+  /* ###### CICLO DE INICIO ON INIT ###### */
+
+  // ------ Suscribirse A Cambios Constantes En Los Parametros De La Ruta Local ------
   ngOnInit(): void {
-    // Suscribirse a cambios en los parámetros de la ruta
-    this.routeSub = this.route.params.subscribe(params => {
+    this.routeSub = this.route.params.subscribe((params) => {
       this.categoriaActual = params['categoria'] || null;
       this.cargarEventos();
     });
   }
 
+  /* ###### CICLO POSTERIOR (DESTRUCCION DE OBJETO) ###### */
+
+  // ------ Al Abandonar La Capa Destruye La Escucha Dinamica ------
   ngOnDestroy(): void {
     this.routeSub.unsubscribe();
   }
 
+  /* ###### SOLICITUDES Y ENCLAVE HTTP ###### */
+
+  // ------ Detonacion Comun Que Alterna Entre Filtrado O Default Aleatoria ------
   cargarEventos(): void {
     this.cargando = true;
     this.error = null;
 
     if (this.categoriaActual) {
-      // Si hay una categoría seleccionada, obtener todos los eventos y filtrar
+      // ------ Si Hay Una Categoria Seleccionada Obtener Todos Los Eventos Y Filtrar ------
       this.eventoService.listarTodos().subscribe({
         next: (todosLosEventos) => {
           this.eventos = todosLosEventos;
@@ -67,7 +91,7 @@ export class EventosComponent implements OnInit, OnDestroy {
         },
       });
     } else {
-      // Si no hay categoría, mostrar eventos aleatorios
+      // ------ Si No Hay Categoria Mostrar Eventos Aleatorios O Novedosos ------
       this.eventoService.obtenerEventosAleatorios(this.cantidadEventos).subscribe({
         next: (data) => {
           this.eventos = data;
@@ -83,16 +107,22 @@ export class EventosComponent implements OnInit, OnDestroy {
     }
   }
 
+  /* ###### FILTRADO DIRECTO DEL FRONTEND ###### */
+
+  // ------ Patea Objetos Invalidos Si Sus Propiedades Categoricas Difieren ------
   filtrarEventosPorCategoria(): void {
     if (this.categoriaActual) {
-      this.eventosFiltrados = this.eventos.filter(evento =>
-        evento.categoria.toLowerCase() === this.categoriaActual!.toLowerCase()
+      this.eventosFiltrados = this.eventos.filter(
+        (evento) => evento.categoria.toLowerCase() === this.categoriaActual!.toLowerCase()
       );
     } else {
       this.eventosFiltrados = this.eventos;
     }
   }
 
+  /* ###### REPETICION PUBLICADA ###### */
+
+  // ------ Enlace Entre Html Y La Obtencion Replicada ------
   recargarEventos(): void {
     this.cargarEventos();
   }

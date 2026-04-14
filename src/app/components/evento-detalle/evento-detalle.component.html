@@ -1,10 +1,17 @@
+<!-- ###### SECCION GLOBAL DE DETALLE ######## -->
+<!-- ------ Base Principal Almacen Si Se Completa La Promesa ------ -->
 <section class="evento-detalle" *ngIf="!cargando && evento">
+  
+  <!-- ###### IMAGEN HERO Y TITULAR ###### -->
+  <!-- ------ Cabecera Decorada Con La Portada ------ -->
   <div class="detalle-hero" [style.backgroundImage]="'url(' + evento.imagenUrl + ')'">
     <div class="detalle-hero-overlay">
       <div class="detalle-hero-content">
         <span class="badge-categoria">{{ evento.categoria }}</span>
         <h1>{{ evento.titulo }}</h1>
         <p>{{ evento.descripcion }}</p>
+        
+        <!-- ------ Pequeños Atributos Agrupados ------ -->
         <div class="detalle-meta-row">
           <span class="detalle-meta-item">Estado: {{ evento.estado }}</span>
           <span class="detalle-meta-item" *ngIf="evento.duracionMinutos">Duración: {{ evento.duracionMinutos }} min</span>
@@ -13,7 +20,11 @@
     </div>
   </div>
 
+  <!-- ###### CUERPO DEL DETALLE ###### -->
+  <!-- ------ Zona Que Alberga Formularios Y Multiples Opciones ------ -->
   <div class="detalle-body">
+    
+    <!-- ------ Selector Previo De Localizacion Geografica ------ -->
     <div class="detalle-seleccion">
       <label for="ciudadSeleccionada">Selecciona ciudad</label>
       <select
@@ -21,21 +32,28 @@
         [(ngModel)]="ciudadSeleccionada"
         (change)="filtrarSesiones()"
       >
+        <!-- ------ Lista Renderizada Del Recurso Activo ------ -->
         <option *ngFor="let ciudad of ciudades" [value]="ciudad">{{ ciudad }}</option>
       </select>
     </div>
 
+    <!-- ------ Muestra Del Escenario O Recinto Vinculado ------ -->
     <div class="detalle-localizacion" *ngIf="sesionesFiltradas.length > 0">
       <strong>Localización actual:</strong>
       <span>{{ obtenerLocalizacion() }}</span>
     </div>
 
+    <!-- ------ Aviso Cuando No Hay Fechas Para Esta Locacion ------ -->
     <div *ngIf="sesionesFiltradas.length === 0" class="detalle-vacio">
       <p>No hay sesiones disponibles para la ciudad seleccionada.</p>
     </div>
 
+    <!-- ###### VISUALIZADOR DE SESIONES ACTIVAS ###### -->
+    <!-- ------ Formato De Rejilla Que Construye Fechas Separadas ------ -->
     <div class="sesiones-grid" *ngIf="sesionesFiltradas.length > 0">
       <article *ngFor="let sesion of sesionesFiltradas" class="sesion-card">
+        
+        <!-- ------ Bloque Informativo De La Sesion ------ -->
         <div class="sesion-datos">
           <p><strong>Fecha y hora:</strong> {{ sesion.fechaHora | date: 'dd/MM/yyyy HH:mm' }}</p>
           <p><strong>Sala:</strong> {{ sesion.nombreSala }}</p>
@@ -44,7 +62,9 @@
           <p><strong>Entradas disponibles:</strong> {{ entradasDisponibles(sesion) }}</p>
         </div>
 
+        <!-- ------ Interfaz Interactivo De Intercambio Monetario ------ -->
         <div class="sesion-control">
+          
           <label for="cantidad-{{ sesion.id }}">Cantidad</label>
           <input
             id="cantidad-{{ sesion.id }}"
@@ -56,10 +76,12 @@
             (change)="onCantidadChange(sesion)"
           />
 
+          <!-- ------ Warning Limitador Para No Exceder Stock ------ -->
           <div *ngIf="cantidadAjustada[sesion.id]" class="mensaje-ajuste">
             Se ha ajustado la cantidad al máximo disponible.
           </div>
 
+          <!-- ------ Boton Accion De Compra Directa ------ -->
           <button
             class="btn-comprar"
             [disabled]="entradasDisponibles(sesion) === 0 || cantidadNoValida(sesion)"
@@ -71,19 +93,26 @@
       </article>
     </div>
 
+    <!-- ###### MENSAJERIA GLOBAL ###### -->
+    <!-- ------ Recoge Errores Remotos O Exitos ------ -->
     <div *ngIf="exitoCompra" class="detalle-exito">{{ exitoCompra }}</div>
     <div *ngIf="error" class="detalle-error">{{ error }}</div>
 
+    <!-- ------ Retorna A Principal De Busqueda ------ -->
     <div class="detalle-volver">
       <a routerLink="/eventos" class="btn-volver">Volver a eventos</a>
     </div>
   </div>
 </section>
 
+<!-- ###### ESTADO DE CARGA Y ESPERA ###### -->
+<!-- ------ Bloque Temporal De Muestreo Inicial ------ -->
 <div *ngIf="cargando" class="detalle-loading">
   <p>Cargando detalles del evento...</p>
 </div>
 
+<!-- ###### ESTADO NO ENCONTRADO O ERROR MAESTRO ###### -->
+<!-- ------ Capa Negativa Final De La Peticion ------ -->
 <div *ngIf="!cargando && !evento && !error" class="detalle-error">
   <p>Evento no encontrado.</p>
 </div>

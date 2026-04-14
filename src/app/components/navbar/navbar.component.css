@@ -1,5 +1,6 @@
-/*************************** BARRA DE NAVEGACIÓN *******************************/
+/* ###### BARRA DE NAVEGACION ESTANDARIZADA ###### */
 
+/* ------ Agrupacion Fija Como Container De Vista ------ */
 :host {
   display: block;
   position: sticky;
@@ -8,7 +9,9 @@
   width: 100%;
 }
 
-/* Contenedor principal del Navbar */
+/* ###### MENU SUPERIOR (NAVBAR) ###### */
+
+/* ------ Contenedor Principal De Color Base ------ */
 .navbar {
   background-color: var(--color-primary);
   width: 100%;
@@ -16,12 +19,11 @@
   display: flex;
   align-items: center;
   box-shadow: var(--shadow-main);
-
   z-index: 1000;
   padding: 0 1rem;
 }
 
-/* Contenedor interno */
+/* ------ Flexbox Central Para Los Elementos Internos ------ */
 .nav-container {
   width: 100%;
   display: flex;
@@ -30,7 +32,9 @@
   gap: 20px;
 }
 
-/* Grupo izquierdo: Hamburguesa + Logo */
+/* ###### LADO IZQUIERDO: LOGO E ICONOS ###### */
+
+/* ------ Bloque Identificativo E Isotipo ------ */
 .nav-left {
   display: flex;
   align-items: center;
@@ -38,11 +42,12 @@
   flex-shrink: 0;
 }
 
+/* ------ Ancho Fijo De La Imagen De Logo ------ */
 .logo-img {
   width: 200px;
 }
 
-/* Botón Hamburguesa */
+/* ------ Boton De Opciones Hamburguesa Oculto En Pc ------ */
 .menu-toggle {
   display: none;
   background: none;
@@ -53,7 +58,9 @@
   padding: 5px;
 }
 
-/* Enlaces de navegación */
+/* ###### NAVEGACION CENTRAL ###### */
+
+/* ------ Lista Estilizada De Paginas Propias ------ */
 .nav-links {
   display: flex;
   flex-wrap: wrap;
@@ -67,10 +74,12 @@
   min-width: 0;
 }
 
+/* ------ Quita Interlineados Auto A Los Navs ------ */
 .nav-links li {
   flex: 0 0 auto;
 }
 
+/* ------ Letras De Titulo De Menu Interno ------ */
 .nav-links a {
   display: inline-block;
   color: var(--text-on-primary);
@@ -83,12 +92,15 @@
   white-space: nowrap;
 }
 
+/* ------ Resaltado Al Pasar Cursor Sobre Link O Link Activo ------ */
 .nav-links a:hover,
 .nav-links a.active {
   color: var(--color-accent);
 }
 
-/* Acciones de la derecha */
+/* ###### ACCIONES DERECHO: CARRITO Y CUENTA ###### */
+
+/* ------ Ultimo Bloque Derecho Flexionado ------ */
 .nav-actions {
   display: flex;
   align-items: center;
@@ -96,6 +108,7 @@
   flex-shrink: 0;
 }
 
+/* ------ Reseteo Basico De Botones Front ------ */
 .nav-icon-btn {
   background: none;
   border: none;
@@ -107,12 +120,13 @@
   gap: 5px;
 }
 
+/* ------ Texto Que Imprime El Login Actual ------ */
 .username-text {
   font-size: 1.2rem;
   font-family: var(--font-family-body);
 }
 
-/* Badge del carrito */
+/* ------ Contador Del Carrito Flotante Rojo O Naranja ------ */
 .badge {
   background-color: var(--color-accent);
   color: var(--text-on-primary);
@@ -122,7 +136,9 @@
   transform: translate(-4px, -12px);
 }
 
-/* Dropdown */
+/* ###### MENU DESPLEGABLE DE USUARIO ###### */
+
+/* ------ Contenedor Padron Ocultante ------ */
 .user-dropdown {
   position: relative;
   display: inline-block;
@@ -130,6 +146,7 @@
   margin-right: 20px;
 }
 
+/* ------ Tarjeta Contextual Que Sale Clicando ------ */
 .dropdown-content {
   display: none;
   position: absolute;
@@ -143,6 +160,7 @@
   z-index: 1001;
 }
 
+/* ------ Separacion Para Que No Falle El Hover ------ */
 .dropdown-content::before {
   content: "";
   position: absolute;
@@ -153,6 +171,7 @@
   background: transparent;
 }
 
+/* ------ Enlaces Desplegables Uniformes ------ */
 .dropdown-content a {
   padding: 12px 20px;
   font-size: 0.95rem;
@@ -164,15 +183,17 @@
   transition: background 0.2s;
 }
 
+/* ------ Sombrea Fondo Al Acercar Mouse ------ */
 .dropdown-content a:hover {
   background-color: var(--color-accent);
 }
 
+/* ------ Revelador Activo Mediante Hovers ------ */
 .user-dropdown:hover .dropdown-content {
   display: block;
 }
 
-/* Flecha del usuario */
+/* ------ Ico Representativo De Seleccion ------ */
 .arrow {
   font-size: 1rem;
   color: var(--text-on-primary);
@@ -180,80 +201,82 @@
   margin-right: 20px;
 }
 
-/* Logout */
+/* ------ Enlace Auxiliar De Interrupcion Session ------ */
 .logout-link {
   color: var(--text-on-primary) !important;
   cursor: pointer;
 }
 
-/* ============================
-   TOAST NOTIFICATION (POPUP)
-   ============================ */
+/* ###### TOAST NOTIFICATION (ALERTA) ###### */
 
+/* ------ Ventana Emergente Temporizada Absoluta ------ */
 .toast-notification {
   position: fixed;
   top: 80px;
-  /* justo debajo del navbar */
+  /* ------ Justo Debajo Del Navbar ------ */
   right: 20px;
-
   background-color: var(--bg-main);
-  /* mismo fondo que la página */
+  /* ------ Mismo Fondo Que La Pagina ------ */
   color: var(--text-main);
-  /* texto principal */
-
+  /* ------ Texto Principal ------ */
   padding: 12px 20px;
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   gap: 10px;
-
   box-shadow: var(--shadow-main);
   border-left: 4px solid var(--color-accent);
-
-  /* Animación */
+  /* ------ Animacion Escondida Por Defecto ------ */
   visibility: hidden;
   opacity: 0;
   transform: translateY(-20px);
   transition: all 0.4s ease;
-
   z-index: 9999;
   pointer-events: none;
-  /* NO bloquea clics ni navegación */
+  /* ------ No Bloquea Clics Ni Navegacion ------ */
 }
 
-/* Cuando se muestra */
+/* ------ Clase Adosada Al Mostrar Modificador ------ */
 .toast-notification.show {
   visibility: visible;
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Iconos */
+/* ------ Color Primario Para El Check ------ */
 .toast-notification i {
   font-size: 1.2rem;
   color: var(--color-accent);
-  /* icono con color de acento */
+  /* ------ Icono Con Color De Acento ------ */
 }
 
-/******************** DISEÑO RESPONSIVO *******************/
+/* ###### DISEÑO RESPONSIVO Y QUERIES ###### */
+
+/* ------ Moviliza La Barra Y Convierte Hamburger ------ */
 @media (max-width: 992px) {
+  
+  /* ------ Vuelve Operante Botonera Menu ------ */
   .menu-toggle {
     display: block;
   }
 
+  /* ------ Contenedor Ajusta Referencias Relativas ------ */
   .nav-container {
     position: relative;
   }
 
+  /* ------ Reposiciona Botoneria Redes Sociales ------ */
   .nav-icon-btn {
     margin-right: 20px;
   }
 
+  /* ------ Oculta Identidad Temporal Por Espacio ------ */
   .username-text,
   .arrow {
     display: none;
   }
 
+  /* ------ Oculta Links Inicialmente En Movil ------ */
   .nav-links {
     position: absolute;
     top: 70px;
@@ -270,16 +293,20 @@
     max-width: none;
   }
 
+  /* ------ Permite Mostrar Lateral Mente Tras Interaccion ------ */
   .nav-links.mobile-show {
     left: 0;
   }
 
+  /* ------ Agranda Tactil Movil Size Letra ------ */
   .nav-links a {
     font-size: 1.2rem;
   }
 }
 
+/* ------ Escalas Intermedias Resolucion ------ */
 @media (max-width: 1200px) {
+  /* ------ Previene Choques Expandiendo Limites Flex Nav ------ */
   .nav-links {
     max-width: 100%;
   }

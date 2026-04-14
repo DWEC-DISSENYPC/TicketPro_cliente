@@ -4,6 +4,8 @@ import { RouterModule, ActivatedRoute } from '@angular/router';
 import { EventoService } from '../../services/evento.service';
 import { DetalleCompraDTO, MensajeResponseDTO } from '../../models/evento.model';
 
+/* ###### COMPONENTE DE DETALLE DE COMPRA ###### */
+// ------ Se Encarga De Mostrar Y Gestionar Las Entradas Ya Compradas ------
 @Component({
   selector: 'app-detalle-compra',
   standalone: true,
@@ -12,16 +14,29 @@ import { DetalleCompraDTO, MensajeResponseDTO } from '../../models/evento.model'
   styleUrls: ['./detalle-compra.component.css'],
 })
 export class DetalleCompraComponent implements OnInit {
+
+  /* ###### ESTADOS Y VARIABLES PUBLICAS ###### */
+
+  // ------ Guarda Objeto Dto De La Compra ------
   compra: DetalleCompraDTO | null = null;
+  // ------ Indicador Visual De Carga Desde Api ------
   cargando: boolean = false;
+  // ------ Variable Para Capturar Mensajes De Error ------
   error: string | null = null;
+  // ------ Variable Para Transmitir Mensajes De Exito ------
   exito: string | null = null;
 
+  /* ###### CONSTRUCTOR ###### */
+
+  // ------ Inyecta El Servicio Rest Y El Manejador De Rutas Activas ------
   constructor(
     private route: ActivatedRoute,
     private eventoService: EventoService
   ) {}
 
+  /* ###### CICLO DE VIDA OND INIT ###### */
+
+  // ------ Detecta El Parametro Enviado En La Ruta Al Entrar ------
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (!isNaN(id) && id > 0) {
@@ -31,6 +46,9 @@ export class DetalleCompraComponent implements OnInit {
     }
   }
 
+  /* ###### FUNCIONES DE CARGA Y LOGICA PRINCIPAL ###### */
+
+  // ------ Hace Solicitud Http Al Backend Para Cargar Compra Completa ------
   cargarDetalleCompra(id: number): void {
     this.cargando = true;
     this.error = null;
@@ -49,6 +67,7 @@ export class DetalleCompraComponent implements OnInit {
     });
   }
 
+  // ------ Emite Cancelacion Si El Boton Esta Disponible Y El Metodo Acuerda Confirmacion ------
   cancelarCompra(): void {
     if (!this.compra) return;
 
@@ -60,7 +79,7 @@ export class DetalleCompraComponent implements OnInit {
     this.eventoService.cancelarCompra(this.compra.id).subscribe({
       next: (respuesta) => {
         this.exito = respuesta.mensaje;
-        // Recargar los detalles para reflejar el cambio de estado
+        // ------ Recargar Los Detalles Para Reflejar El Cambio De Estado ------
         this.cargarDetalleCompra(this.compra!.id);
       },
       error: (err) => {
@@ -70,18 +89,23 @@ export class DetalleCompraComponent implements OnInit {
     });
   }
 
+  /* ###### CONTROLADORES DE RENDERIZADO VISUAL ###### */
+
+  // ------ Retorna Si Efectivamente Han Pasado Menos De 5 Dias Para Estar En Plazo Ocultable ------
   puedeCancelar(): boolean {
     if (!this.compra) return false;
-    // Se puede cancelar si faltan más de 5 días para el evento
+    // ------ Se Puede Cancelar Si Faltan Mas De 5 Dias Para El Evento ------
     const diasRestantes = this.calcularDiasRestantes(this.compra.fechaSesion);
     return diasRestantes > 5;
   }
 
+  // ------ Funcion Puente Exclusiva Para Enviar Dias Calculados De Vuelta ------
   getDiasRestantes(): number {
     if (!this.compra) return 0;
     return this.calcularDiasRestantes(this.compra.fechaSesion);
   }
 
+  // ------ Prepara El Texto Mostrado Debajo Si Ya Es Demasiado Tarde ------
   getMensajeCancelacion(): string {
     if (!this.compra) return '';
     const diasRestantes = this.calcularDiasRestantes(this.compra.fechaSesion);
@@ -94,10 +118,12 @@ export class DetalleCompraComponent implements OnInit {
     }
   }
 
+  // ------ Funcion Utilitaria Para Diferenciar Tiempos Ms ------
   private calcularDiasRestantes(fechaSesion: string): number {
     const fechaEvento = new Date(fechaSesion);
     const hoy = new Date();
-    hoy.setHours(0, 0, 0, 0); // Resetear horas para comparación justa
+    // ------ Resetear Horas Para Comparacion Justa ------
+    hoy.setHours(0, 0, 0, 0); 
     fechaEvento.setHours(0, 0, 0, 0);
 
     const diferenciaMs = fechaEvento.getTime() - hoy.getTime();
@@ -106,6 +132,7 @@ export class DetalleCompraComponent implements OnInit {
     return diasRestantes;
   }
 
+  // ------ Clase De Css Personalizada Segun Si Es Valida O Expirada ------
   getEstadoClass(estado: string): string {
     const estadoLower = estado.toLowerCase();
     if (estadoLower === 'usada' || estadoLower === 'confirmada') {
@@ -118,9 +145,10 @@ export class DetalleCompraComponent implements OnInit {
     return 'estado-otro';
   }
 
+  // ------ Dispara La Capacidad De Capturar O Obtener Recurso Codificado ------
   descargarQR(ticketId: number): void {
-    // Esta función podría implementar la descarga del código QR
-    // Por ahora solo mostramos un mensaje
+    // ------ Esta Funcion Podria Implementar La Descarga Del Codigo Qr ------
+    // ------ Por Ahora Solo Mostramos Un Mensaje ------
     alert('Funcionalidad de descarga QR próximamente disponible.');
   }
 }

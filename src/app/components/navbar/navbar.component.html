@@ -1,6 +1,10 @@
+<!-- ###### MENU DE NAVEGACION COMPLETO ###### -->
+<!-- ------ Componente Ubicado Horizontalmente Usado Principalmente De Enrutador ------ -->
 <nav class="navbar">
   <div class="nav-container">
 
+    <!-- ###### ZONA IZQUIERDA: LOGOTIPO Y MENU MOVIL ###### -->
+    <!-- ------ Agrupa Hamburguesas Y SVG Referente Al Recurso Central ------ -->
     <div class="nav-left">
       <button class="menu-toggle" (click)="toggleMenu()" aria-label="Abrir menú">
         <i class="bi" [ngClass]="isMenuOpen ? 'bi-x-lg' : 'bi-list'"></i>
@@ -13,10 +17,12 @@
       </div>
     </div>
 
+    <!-- ###### ZONA CENTRAL DE ENLACES ROUTER ###### -->
+    <!-- ------ Bucle Lista Para Las Diferentes Opciones Tematicas ------ -->
     <ul class="nav-links" [class.mobile-show]="isMenuOpen">
       <li><a routerLink="/eventos" routerLinkActive="active" (click)="isMenuOpen = false">Inicio</a></li>
 
-      <!-- Categorías dinámicas -->
+      <!-- ------ Categorias Dinamicas Obtenidas Del Endpoint Backend ------ -->
       <li *ngFor="let categoria of categorias">
         <a [routerLink]="['/categoria', categoria.toLowerCase()]"
            routerLinkActive="active"
@@ -25,7 +31,7 @@
         </a>
       </li>
 
-      <!-- Enlaces adicionales si no hay categorías cargadas -->
+      <!-- ------ Enlaces Adicionales Si Fallan O No Hay Categorias Cargadas ------ -->
       <ng-container *ngIf="categorias.length === 0 && !cargandoCategorias">
         <li><a routerLink="/cartelera" routerLinkActive="active" (click)="isMenuOpen = false">Cartelera</a></li>
         <li><a routerLink="/conciertos" routerLinkActive="active" (click)="isMenuOpen = false">Conciertos</a></li>
@@ -33,31 +39,45 @@
       </ng-container>
     </ul>
 
+    <!-- ###### MENU USUARIO DERECHO E INTERFAZ CARRITO ###### -->
+    <!-- ------ Operaciones Y Desplegables Activos Del Header Loggin ------ -->
     <div class="nav-actions">
+      
+      <!-- ------ Atajo Condicionado Al Carrito Si Tiene Sesion ------ -->
       <a *ngIf="authService.isLoggedIn()" routerLink="/carrito" class="nav-icon-btn cart-btn">
         <i class="bi bi-cart3"></i>
+        <!-- ------ Indicador Con Las Cifras Agendadas No Transactables ------ -->
         <span class="badge">0</span>
       </a>
 
+      <!-- ------ Contenedor Relativo Del Menu Oculto Personal ------ -->
       <div class="user-dropdown">
         <button class="nav-icon-btn user-btn">
           <i class="bi bi-person-circle"></i>
+          
+          <!-- ------ Interpola El Getter Nombre Si Se Cumple Autentificacion ------ -->
           <span class="username-text" *ngIf="authService.isLoggedIn()">
             {{ authService.getUsername() }}
           </span>
           <i class="bi bi-chevron-down arrow"></i>
         </button>
 
+        <!-- ------ Card Desplegable Segun Log Geo ------ -->
         <div class="dropdown-content">
+          
+          <!-- ------ Interfaz Negada Sin Credenciales Validas ------ -->
           <ng-container *ngIf="!authService.isLoggedIn()">
             <a routerLink="/login"><i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión</a>
             <a routerLink="/register"><i class="bi bi-person-plus"></i> Crear Cuenta</a>
           </ng-container>
 
+          <!-- ------ Interfaz Concedida Y Log Logrado ------ -->
           <ng-container *ngIf="authService.isLoggedIn()">
             <a routerLink="/perfil"><i class="bi bi-person"></i> Ver Cuenta</a>
             <a routerLink="/mis-compras"><i class="bi bi-ticket-perforated"></i> Mis Entradas</a>
             <hr />
+            
+            <!-- ------ Cortador Directo Que Expurga Variables Y Limpia ------ -->
             <a (click)="onLogout()" class="logout-link">
               <i class="bi bi-door-open"></i> Cerrar Sesión
             </a>
@@ -66,11 +86,11 @@
       </div>
     </div>
   </div>
-
-
 </nav>
 
+<!-- ###### TOAST NOTIFICADOR FLOTANTE ###### -->
+<!-- ------ Alert Temporizado Que Sobre Vuela Html ------ -->
 <div class="toast-notification" [class.show]="showToast">
-    <i class="bi" [ngClass]="toastType === 'success' ? 'bi-check-circle-fill' : 'bi-info-circle-fill'"></i>
-    <span>{{ toastMessage }}</span>
-  </div>
+  <i class="bi" [ngClass]="toastType === 'success' ? 'bi-check-circle-fill' : 'bi-info-circle-fill'"></i>
+  <span>{{ toastMessage }}</span>
+</div>

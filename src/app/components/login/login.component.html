@@ -1,3 +1,5 @@
+<!-- ###### COMPONENTE HERO CABECERA ###### -->
+<!-- ------ Inserta Atributos De Pantalla Dinamica Visual ------ -->
 <app-hero
   titulo="MI CUENTA"
   subtitulo="Accede para gestionar tus entradas y compras"
@@ -5,11 +7,19 @@
   [altura]="'30vh'">
 </app-hero>
 
+<!-- ###### PANTALLA CENTRADA DE REGISTRO FORMULARIO ###### -->
+<!-- ------ Contiene Todo El Interfaz Logico De Operacion Login ------ -->
 <div class="login-wrapper">
+  
+  <!-- ###### CAJA DE CREDENCIALES ###### -->
+  <!-- ------ El Recuadro Blanco Tipico Dedicado Al User ------ -->
   <div class="login-container">
     <h2>Iniciar Sesión</h2>
 
+    <!-- ------ Formulario Directo Y Formulario Ng Combinado ------ -->
     <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      
+      <!-- ------ Caja Para Entrar El Identificador ------ -->
       <div class="form-group">
         <label for="username">Usuario</label>
         <input
@@ -21,9 +31,11 @@
           required>
       </div>
 
+      <!-- ------ Caja Para Entrar El Password ------ -->
       <div class="form-group">
         <label for="password">Contraseña</label>
 
+        <!-- ------ Wrapper Especial Que Une Ojo E Input Sensible ------ -->
         <div class="password-input-wrapper">
           <input
             [type]="showPassword ? 'text' : 'password'"
@@ -33,6 +45,7 @@
             placeholder="••••••••"
             required>
 
+          <!-- ------ Boton Accionador Toggle Del Atributo Tipado ------ -->
           <button
             type="button"
             class="toggle-password"
@@ -43,14 +56,19 @@
         </div>
       </div>
 
+      <!-- ###### BOTON DE PROCEDER LOGICO ###### -->
+      <!-- ------ Condicionado Visualmente Segun Validez Del Form ------ -->
       <button type="submit" class="btn-login" [disabled]="!loginForm.form.valid">
         Entrar
       </button>
 
+      <!-- ###### TEXTOS Y ALERTAS SECUNDARIOS ###### -->
+      <!-- ------ Solo Visible Si Se Devuelve Fallo Jwt ------ -->
       <div *ngIf="errorMessage" class="error-msg">
         {{ errorMessage }}
       </div>
 
+      <!-- ------ Lleva Al Rescate Si Hubo Perdida De Parametros ------ -->
       <div class="login-footer">
         <p>¿Olvidaste tu contraseña? <a href="forgot-password">Recupérala aquí</a></p>
       </div>

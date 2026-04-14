@@ -1,3 +1,5 @@
+<!-- ###### SECCION DE CABECERA COMPARTIDA ###### -->
+<!-- ------ Componente Hero Estandar ------ -->
 <app-hero
   titulo="ÚNETE A TICKETPRO"
   subtitulo="Crea tu cuenta para comprar entradas de forma rápida"
@@ -6,13 +8,20 @@
 >
 </app-hero>
 
+<!-- ###### CONTENEDOR DEL FORMULARIO REGISTRO ###### -->
+<!-- ------ Cubo De Ingreso De Datos Central ------ -->
 <div class="register-wrapper">
+  
   <div class="register-container">
     <h2>Registro de Usuario</h2>
 
+    <!-- ------ NgForm Directivo Ligado A Submit Post ------ -->
     <form (ngSubmit)="onRegister()" #registerForm="ngForm">
 
+      <!-- ###### DATOS PERSONALES BASICOS (DOBLE COLUMNA) ###### -->
       <div class="form-row">
+        
+        <!-- ------ Caja De Nombre Nombre ------ -->
         <div class="form-group">
           <label for="nombre">Nombre</label>
           <input
@@ -28,6 +37,7 @@
           <small class="error-text" *ngIf="nombre.invalid && nombre.touched">El nombre es obligatorio</small>
         </div>
 
+        <!-- ------ Caja De Apellidos ------ -->
         <div class="form-group">
           <label for="apellidos">Apellidos</label>
           <input
@@ -44,6 +54,9 @@
         </div>
       </div>
 
+      <!-- ###### DOCUMENTACION Y CONTACTO ###### -->
+
+      <!-- ------ Dni Unico De Facturacion ------ -->
       <div class="form-group">
         <label for="dni">DNI / NIE</label>
         <input
@@ -59,6 +72,7 @@
         <small class="error-text" *ngIf="dni.invalid && dni.touched">El DNI es obligatorio para la facturación</small>
       </div>
 
+      <!-- ------ Validacion Electronica Por Patrones Front ------ -->
       <div class="form-group">
         <label for="email">Email</label>
         <input
@@ -76,6 +90,9 @@
         <small class="error-text" *ngIf="email.errors?.['email'] && email.touched">Formato de email no válido</small>
       </div>
 
+      <!-- ###### CREDENCIALES DE ACCESO ###### -->
+
+      <!-- ------ Identificador Nickname Corto ------ -->
       <div class="form-group">
         <label for="username">Nombre de Usuario</label>
         <input
@@ -93,6 +110,7 @@
         <small class="error-text" *ngIf="username.errors?.['minlength'] && username.touched">Debe tener al menos 4 caracteres</small>
       </div>
 
+      <!-- ------ Contraserña Personal Interactiva Toggleable ------ -->
       <div class="form-group">
         <label for="password">Contraseña</label>
         <div class="password-input-wrapper">
@@ -115,6 +133,7 @@
         <small class="error-text" *ngIf="password.errors?.['minlength'] && password.touched">Mínimo 6 caracteres</small>
       </div>
 
+      <!-- ------ Retipeo Evaluado De Constancia ------ -->
       <div class="form-group">
         <label for="confirmPassword">Confirmar Contraseña</label>
         <input
@@ -130,6 +149,9 @@
         <small class="error-text" *ngIf="user.password !== user.confirmPassword && confirmPass.touched">Las contraseñas no coinciden</small>
       </div>
 
+      <!-- ###### BOTON DE PROCEDER LOGICO ###### -->
+      
+      <!-- ------ Depende De Multiples Booleanos Para Volverse Utilitario ------ -->
       <button
         type="submit"
         class="btn-register"
@@ -138,6 +160,9 @@
         {{ loading ? "Creando cuenta..." : "Crear Cuenta" }}
       </button>
 
+      <!-- ###### ESPACIOS INFORMATIVOS Y ALERTAS ###### -->
+
+      <!-- ------ Bloque Exclusivo Para Volcado Estresante Backend ------ -->
       <div *ngIf="errorMessage" class="error-msg">
         {{ errorMessage }}
       </div>

@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { EventoService } from '../../services/evento.service';
 import { HistorialCompraDTO, MensajeResponseDTO } from '../../models/evento.model';
 
+/* ###### COMPONENTE MIS ENTRADAS HISTORIAL ###### */
+// ------ Representa Formulario Completo Del Listado Comercial Transaccional Con Opceion De Cancelar ------
 @Component({
   selector: 'app-mis-entradas',
   standalone: true,
@@ -13,19 +15,38 @@ import { HistorialCompraDTO, MensajeResponseDTO } from '../../models/evento.mode
   styleUrls: ['./mis-entradas.component.css'],
 })
 export class MisEntradasComponent implements OnInit {
+
+  /* ###### ESTADOS Y ALMACENES MEMORIA GENERAL ###### */
+
+  // ------ Array Solicitado Crudo Entero ------
   compras: HistorialCompraDTO[] = [];
+  // ------ Render Clon Manipulable Mediante Switch En Frontend ------
   comprasFiltradas: HistorialCompraDTO[] = [];
+  
+  // ------ Activador Del Retorno Boolean Solo Pendientes ------
   mostrarSoloPendientes: boolean = false;
+  // ------ Animador Spinner Cargando ------
   cargando: boolean = false;
+  // ------ Guardador Eventual De Falla Servidor ------
   error: string | null = null;
+  // ------ Receptor Frase De Confirmacion Asincronia Exito ------
   exito: string | null = null;
 
+  /* ###### CONSTRUCTOR CENTRAL ###### */
+
+  // ------ Solamente Injecta Modulo Comunicador Hacia Rutas Rest Controlador Ticket ------
   constructor(private eventoService: EventoService) {}
 
+  /* ###### CICLO VIDA CON CARGADO AUTO ###### */
+
+  // ------ Detonacion De Consulta Previa Construccion ------
   ngOnInit(): void {
     this.cargarCompras();
   }
 
+  /* ###### GESTION DE OBTENCION DEL LISTADO ###### */
+
+  // ------ Disparador Diferencial Entre Endpoint Pendiente O Endpoint General ------
   cargarCompras(): void {
     this.cargando = true;
     this.error = null;
@@ -60,13 +81,20 @@ export class MisEntradasComponent implements OnInit {
     }
   }
 
+  /* ###### FILTRADOR ACCIONADO POR BOOLEAN ###### */
+
+  // ------ Niega Y Restaura De Nuevo La Descarga Total ------
   toggleFiltroPendientes(): void {
     this.mostrarSoloPendientes = !this.mostrarSoloPendientes;
     this.cargarCompras();
   }
 
+  /* ###### MANEJO ELIMINACION O DEVOLUCION TICKET ###### */
+
+  // ------ Disparador Seguro A Endpoint Delete Con Mensaje Interfaz Alerta ------
   cancelarCompra(compra: HistorialCompraDTO): void {
     const diasRestantes = this.getDiasRestantes(compra);
+    // ------ Advertencia Nativa JS Detiene Posible Pulsacion Error ------
     if (!confirm(`¿Estás seguro de que quieres cancelar esta compra? Faltan ${diasRestantes} día${diasRestantes !== 1 ? 's' : ''} para el evento. El importe será devuelto a tu tarjeta.`)) {
       return;
     }
@@ -74,7 +102,7 @@ export class MisEntradasComponent implements OnInit {
     this.eventoService.cancelarCompra(compra.id).subscribe({
       next: (respuesta) => {
         this.exito = respuesta.mensaje;
-        this.cargarCompras(); // Recargar la lista
+        this.cargarCompras(); // ------ Recargar La Lista ------
       },
       error: (err) => {
         console.error('Error cancelando compra:', err);
@@ -83,16 +111,21 @@ export class MisEntradasComponent implements OnInit {
     });
   }
 
+  /* ###### CALCULOS TEMPORALES REACTIVOS FRONTEND ###### */
+
+  // ------ Verificador Condicional Para Impedir Bloqueo Mayor 5 Dias ------
   puedeCancelar(compra: HistorialCompraDTO): boolean {
-    // Se puede cancelar si faltan más de 5 días para el evento
+    // ------ Se Puede Cancelar Si Faltan Mas De 5 Dias Para El Evento ------
     const diasRestantes = this.calcularDiasRestantes(compra.fechaSesion);
     return diasRestantes > 5;
   }
 
+  // ------ Envoltorio A Objeto Entero Metodo Helper ------
   getDiasRestantes(compra: HistorialCompraDTO): number {
     return this.calcularDiasRestantes(compra.fechaSesion);
   }
 
+  // ------ Generador Formateado Textual Acorde Al Tiempo Restante Restrictivo ------
   getMensajeCancelacion(compra: HistorialCompraDTO): string {
     const diasRestantes = this.calcularDiasRestantes(compra.fechaSesion);
     if (diasRestantes < 0) {
@@ -104,10 +137,11 @@ export class MisEntradasComponent implements OnInit {
     }
   }
 
+  // ------ Helper Base Conversor Milesimas Matematica Absoluta ------
   private calcularDiasRestantes(fechaSesion: string): number {
     const fechaEvento = new Date(fechaSesion);
     const hoy = new Date();
-    hoy.setHours(0, 0, 0, 0); // Resetear horas para comparación justa
+    hoy.setHours(0, 0, 0, 0); // ------ Resetear Horas Para Comparacion Justa ------
     fechaEvento.setHours(0, 0, 0, 0);
 
     const diferenciaMs = fechaEvento.getTime() - hoy.getTime();
@@ -116,6 +150,9 @@ export class MisEntradasComponent implements OnInit {
     return diasRestantes;
   }
 
+  /* ###### CONVERTIDORES LOGICA CSS AL FRONT ###### */
+
+  // ------ Atribuye Clase Visual Acorde A String Devuelto Servidor ------
   getEstadoClass(estado: string): string {
     const estadoLower = estado.toLowerCase();
     if (estadoLower === 'usada' || estadoLower === 'confirmada') {

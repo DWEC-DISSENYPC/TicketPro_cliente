@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   ReactiveFormsModule,
-  FormsModule, // <-- Añadido para [(ngModel)]
+  FormsModule, // ------ Añadido Para Ng Model ------
   FormBuilder,
   FormGroup,
   FormArray,
@@ -12,6 +12,8 @@ import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { HeroComponent } from '../hero/hero.component';
 
+/* ###### COMPONENTE DE EDICION DE PERFIL ###### */
+// ------ Agrupa La Logica Para Editar Los Datos De La Cuenta Del Usuario ------
 @Component({
   selector: 'app-editar-perfil',
   standalone: true,
@@ -26,25 +28,47 @@ import { HeroComponent } from '../hero/hero.component';
   styleUrl: './editar-perfil.component.css',
 })
 export class EditarPerfilComponent implements OnInit {
+
+  /* ###### ESTADOS DEL FORMULARIO Y VARIABLES GLOBALES ###### */
+
+  // ------ Objeto Que Almacena El Formulario Reactivo ------
   editForm!: FormGroup;
+  // ------ Indicador Visual De Carga ------
   loading: boolean = false;
+  // ------ Enum Temporal De Tipos De Telefono ------
   tiposTelefono = ['MOVIL', 'FIJO', 'TRABAJO'];
+  // ------ Estado Para Contraseña En Uso ------
   passwordActual: string = '';
+  // ------ Estado Para Contraseña Deseada ------
   passwordNueva: string = '';
+  // ------ Mensajeria De Fallo ------
   errorMessage: string = '';
+  // ------ Mensajeria De Exito ------
   mensajeSuccess: string = '';
 
-  // --- Propiedades Imagen ---
+  /* ###### PROPIEDADES DE IMAGEN ###### */
+
+  // ------ Archivo Intermedio Subido Desde El Ordenador ------
   imagenSeleccionada: File | null = null;
+  // ------ Ruta Directa Del Alojamiento Remoto De Imagen ------
   imagenPerfilUrl: string = '';
 
-  // --- Propiedades Contraseña ---
+  /* ###### PROPIEDADES DE CONTRASEÑA ADICIONALES ###### */
+
+  // ------ Alterna Visualizacion Al Escribir Pass ------
   showPassword = false;
-  nuevaPass: string = ''; // Usamos string en lugar de any
+  // ------ Almacen De Seguridad Secundaria ------
+  nuevaPass: string = ''; 
+  // ------ Requisito De Comparacion ------
   confirmarPass: string = '';
+  // ------ Hash De Solicitud En Correo ------
   token: string = '';
+  // ------ Interfaz Temporal De Contraseña ------
   passActual: string | undefined;
 
+  /* ###### CONSTRUCTOR PRINCIPAL ###### */
+
+  // ------ Genera Las Dependencias Inyectables Hacia Auth E Inicia Obstruido Form ------
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -53,11 +77,16 @@ export class EditarPerfilComponent implements OnInit {
     this.initForm();
   }
 
+  /* ###### CICLO DE VIDA INTERNO ###### */
+
+  // ------ Detonador De Acciones Posteriores Al Cargar Graficos ------
   ngOnInit(): void {
     this.cargarDatosUsuario();
   }
 
-  // --- LÓGICA FORMULARIO PRINCIPAL ---
+  /* ###### LOGICA FORMULARIO PRINCIPAL ###### */
+
+  // ------ Inicializador De FormGroup Global Relativo ------
   initForm() {
     this.editForm = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(2)]],
@@ -75,9 +104,10 @@ export class EditarPerfilComponent implements OnInit {
       pais: ['', [Validators.required]],
       metodoPagoPref: ['', [Validators.required]],
     });
-    // Eliminado passwordMatchValidator de aquí porque ya no es reactivo
+    // ------ Eliminado Password Match Validator De Aqui Porque Ya No Es Reactivo ------
   }
 
+  // ------ Detonador Http De Almacenamiento Creador Update ------
   guardarCambios() {
     if (this.editForm.invalid) {
       this.editForm.markAllAsTouched();
@@ -98,7 +128,9 @@ export class EditarPerfilComponent implements OnInit {
     });
   }
 
-  // --- LÓGICA IMAGEN (Independiente) ---
+  /* ###### LOGICA DE IMAGEN (INDEPENDIENTE) ###### */
+
+  // ------ Previsualizador Html Del File Api ------
   onImagenSeleccionada(event: any) {
     const file = event.target.files[0];
     if (file) {
@@ -111,6 +143,7 @@ export class EditarPerfilComponent implements OnInit {
     }
   }
 
+  // ------ Ejecuta La Peticion Con El File Formato Crudo En Multipart ------
   subirImagen() {
     if (!this.imagenSeleccionada) return;
 
@@ -121,7 +154,8 @@ export class EditarPerfilComponent implements OnInit {
     this.authService.subirImagenPerfil(formData).subscribe({
       next: (res) => {
         this.imagenPerfilUrl = res.url;
-        this.imagenSeleccionada = null; // Limpiamos selección
+        // ------ Limpiamos Seleccion ------
+        this.imagenSeleccionada = null; 
         this.showToastMessage('Imagen actualizada correctamente', 'success');
         this.loading = false;
       },
@@ -132,8 +166,9 @@ export class EditarPerfilComponent implements OnInit {
     });
   }
 
-  // --- LÓGICA CONTRASEÑA (Independiente) ---
+  /* ###### LOGICA CONTRASEÑA (INDEPENDIENTE) ###### */
 
+  // ------ Dispara Peticion Propia De Nuevo Hash ------
   actualizarPassword(): void {
     if (!this.passwordActual || !this.passwordNueva) {
       this.errorMessage = 'Debes completar ambos campos.';
@@ -160,11 +195,14 @@ export class EditarPerfilComponent implements OnInit {
       });
   }
 
-  // --- MÉTODOS AUXILIARES ---
+  /* ###### METODOS DE SOPORTE Y MANUBLAJE DE ARRAYS ###### */
+
+  // ------ Getter Del Array Formularios Para Usarlo En Template ------
   get telefonosFormArray() {
     return this.editForm.get('telefonos') as FormArray;
   }
 
+  // ------ Añade Un FormGroup Extra Al Subrarray Telefono ------
   agregarTelefono(numero = '', tipo = 'MOVIL') {
     this.telefonosFormArray.push(
       this.fb.group({
@@ -177,10 +215,12 @@ export class EditarPerfilComponent implements OnInit {
     );
   }
 
+  // ------ Corta Y Retira Indice Solicitado Del Array Formulario ------
   eliminarTelefono(index: number) {
     this.telefonosFormArray.removeAt(index);
   }
 
+  // ------ Peticion Desencadenada De Informacion Restablecida Por Defecto ------
   cargarDatosUsuario() {
     this.loading = true;
     this.authService.getPerfil().subscribe({
@@ -202,19 +242,24 @@ export class EditarPerfilComponent implements OnInit {
     });
   }
 
+  // ------ Revisa El Toched Del Controlador Directo Visual ------
   campoInvalido(campo: string): boolean {
     const control = this.editForm.get(campo);
     return !!control && control.invalid && control.touched;
   }
 
+  // ------ Boton Restablece Navegacion Atrás ------
   cancelar() {
     this.router.navigate(['/perfil']);
   }
+
+  /* ###### CONTROLADORES TOAST NOTIFICACIONES ###### */
 
   showToast: boolean = false;
   toastMessage: string = '';
   toastType: 'success' | 'info' = 'info';
 
+  // ------ Ejecucion Global Temporizada A Desvancer ------
   showToastMessage(message: string, type: 'success' | 'info' = 'info') {
     this.toastMessage = message;
     this.toastType = type;

@@ -1,4 +1,6 @@
-/* ======================== SECCIÓN PRINCIPAL ======================== */
+/* ###### SECCION PRINCIPAL ###### */
+
+/* ------ Limitador Del Cuerpo Central ------ */
 .eventos-container {
   max-width: 1200px;
   margin: 60px auto;
@@ -6,12 +8,15 @@
   width: 100%;
 }
 
-/* ======================== ENCABEZADO DE SECCIÓN ======================== */
+/* ###### ENCABEZADO DE SECCION ###### */
+
+/* ------ Titulador Central Principal ------ */
 .eventos-header {
   text-align: center;
   margin-bottom: 50px;
 }
 
+/* ------ Texto En Negrita Destacado ------ */
 .eventos-titulo {
   font-family: var(--font-family-title);
   font-size: 2.5rem;
@@ -22,6 +27,7 @@
   text-transform: capitalize;
 }
 
+/* ------ Aclaracion O Contexto Del Arriba ------ */
 .eventos-subtitulo {
   font-family: var(--font-family-body);
   font-size: 1.1rem;
@@ -29,7 +35,9 @@
   font-weight: 400;
 }
 
-/* ======================== GRID DE EVENTOS ======================== */
+/* ###### GRID DE EVENTOS ###### */
+
+/* ------ Reticulacion Flexible Del Almacen ------ */
 .eventos-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -37,7 +45,9 @@
   margin-bottom: 40px;
 }
 
-/* ======================== TARJETA DE EVENTO ======================== */
+/* ###### TARJETA DE EVENTO ###### */
+
+/* ------ Elemento Agrupador Para Los Actos ------ */
 .evento-card {
   background: var(--bg-main);
   border-radius: var(--radius-lg);
@@ -51,21 +61,26 @@
   cursor: pointer;
 }
 
+/* ------ Efecto Elevacion Al Foco ------ */
 .evento-card:hover {
   box-shadow: var(--shadow-strong);
   transform: translateY(-8px);
   border-color: var(--color-primary);
 }
 
-/* ======================== IMAGEN EVENTO ======================== */
+/* ###### IMAGEN DE EVENTO ###### */
+
+/* ------ Relacion De Aspecto Conservada ------ */
 .evento-imagen-wrapper {
   position: relative;
   width: 100%;
-  padding-bottom: 66.67%; /* Relación 3:2 */
+  /* ------ Relacion 3:2 ------ */
+  padding-bottom: 66.67%; 
   overflow: hidden;
   background: var(--bg-section);
 }
 
+/* ------ Fotografia Ajustada Al Marco ------ */
 .evento-imagen {
   position: absolute;
   top: 0;
@@ -76,11 +91,12 @@
   transition: transform 0.4s ease;
 }
 
+/* ------ Efecto Lupa Para El Poster ------ */
 .evento-card:hover .evento-imagen {
   transform: scale(1.08);
 }
 
-/* Badge de categoría */
+/* ------ Badge De Categoria Superpuesto ------ */
 .evento-badge {
   position: absolute;
   top: 12px;
@@ -96,7 +112,7 @@
   font-family: var(--font-family-body);
 }
 
-/* Estado del evento */
+/* ------ Indicador De Estado Eventual ------ */
 .evento-estado {
   position: absolute;
   top: 12px;
@@ -110,22 +126,27 @@
   background-color: var(--bg-surface-muted);
 }
 
+/* ------ Con Stock Verde ------ */
 .estado-disponible {
   background: var(--status-success);
   color: var(--text-on-primary);
 }
 
+/* ------ Sin Stock Rojo ------ */
 .estado-agotado {
   background: var(--status-error);
   color: var(--text-on-primary);
 }
 
+/* ------ Cercano En Tiempo ------ */
 .estado-proximo {
   background: var(--status-warning);
   color: var(--text-main);
 }
 
-/* ======================== CONTENIDO EVENTO ======================== */
+/* ###### CONTENIDO DEL EVENTO ###### */
+
+/* ------ Informacion Inferior Descriptiva ------ */
 .evento-contenido {
   padding: 20px;
   display: flex;
@@ -134,6 +155,7 @@
   flex-grow: 1;
 }
 
+/* ------ Nombre Del Recital O Concierto ------ */
 .evento-titulo {
   font-family: var(--font-family-title);
   font-size: 1.3rem;
@@ -143,6 +165,7 @@
   margin: 0;
 }
 
+/* ------ Extracto De La Info Original ------ */
 .evento-descripcion {
   font-family: var(--font-family-body);
   font-size: 0.95rem;
@@ -155,7 +178,9 @@
   margin: 0;
 }
 
-/* ======================== INFO EVENTO ======================== */
+/* ###### INFO TECNICA DEL EVENTO ###### */
+
+/* ------ Agrupa Parametros Fisicos ------ */
 .evento-info {
   display: flex;
   align-items: center;
@@ -165,6 +190,7 @@
   border-top: 1px solid var(--border-subtle);
 }
 
+/* ------ Muestra Del Tiempo Previsto ------ */
 .evento-duracion {
   font-family: var(--font-family-body);
   font-size: 0.9rem;
@@ -174,11 +200,14 @@
   gap: 6px;
 }
 
+/* ------ Ico Para El Tiempo ------ */
 .icon-clock {
   font-size: 1rem;
 }
 
-/* ======================== BOTONES ======================== */
+/* ###### BOTONES ACCESO DIRECTO ###### */
+
+/* ------ Botoneria Llamativa De Tarjeta ------ */
 .btn-entradas {
   margin-top: auto;
   padding: 12px 20px;
@@ -200,6 +229,7 @@
   text-decoration: none;
 }
 
+/* ------ Realza El Gradiente Al Foco ------ */
 .btn-entradas:hover {
   background: linear-gradient(
     135deg,
@@ -210,17 +240,21 @@
   box-shadow: 0 4px 12px rgba(73, 49, 212, 0.3);
 }
 
+/* ------ Elimina Transformacion Al Clickear ------ */
 .btn-entradas:active {
   transform: translateY(0);
 }
 
-/* ======================== BOTONES DE ACCIÓN ======================== */
+/* ###### BOTONES DE SOLICITUD ASINCRONA ###### */
+
+/* ------ Zona Centrada Inferior ------ */
 .eventos-acciones {
   display: flex;
   justify-content: center;
   margin-top: 40px;
 }
 
+/* ------ Refresco Constante De Sugerencias ------ */
 .btn-recargar {
   padding: 14px 40px;
   background: var(--color-accent);
@@ -236,6 +270,7 @@
   letter-spacing: 0.5px;
 }
 
+/* ------ Hover Vaciando El Relleno ------ */
 .btn-recargar:hover:not(:disabled) {
   background: transparent;
   color: var(--color-accent);
@@ -243,11 +278,13 @@
   box-shadow: 0 4px 12px rgba(233, 147, 19, 0.3);
 }
 
+/* ------ Desactivado ------ */
 .btn-recargar:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
+/* ------ Boton Reparador Simple ------ */
 .btn-reintentar {
   padding: 10px 20px;
   background: var(--color-primary);
@@ -261,12 +298,15 @@
   margin-top: 12px;
 }
 
+/* ------ Efecto Click Reintento ------ */
 .btn-reintentar:hover {
   background: rgba(73, 49, 212, 0.8);
   transform: translateY(-2px);
 }
 
-/* ======================== ESTADOS: CARGA Y ERROR ======================== */
+/* ###### ESTADOS: CARGA VACIOS Y ERRORES ###### */
+
+/* ------ Mensajes Informacionales Sustituto ------ */
 .eventos-loading,
 .eventos-error,
 .eventos-vacio {
@@ -277,6 +317,7 @@
   margin: 40px 0;
 }
 
+/* ------ Parrafo Que Modifica Status ------ */
 .eventos-loading p,
 .eventos-error p,
 .eventos-vacio p {
@@ -286,17 +327,21 @@
   margin: 0;
 }
 
+/* ------ Modificador Rojizo ------ */
 .eventos-error {
   background: rgba(211, 47, 47, 0.05);
   border: 2px solid var(--status-error);
 }
 
+/* ------ Letra Color Alerta ------ */
 .eventos-error p {
   color: var(--status-error);
   font-weight: 500;
 }
 
-/* ======================== RESPONSIVE ======================== */
+/* ###### COMPORTAMIENTOS RESPONSIVE Y MEDIA ###### */
+
+/* ------ Reduccion De Grid Al Redimensionar ------ */
 @media (max-width: 1024px) {
   .eventos-grid {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -308,6 +353,7 @@
   }
 }
 
+/* ------ Compactacion Mayor Para Moviles ------ */
 @media (max-width: 768px) {
   .eventos-container {
     margin: 40px auto;
@@ -345,6 +391,7 @@
   }
 }
 
+/* ------ Dispositivos Extremamente Pequeños ------ */
 @media (max-width: 480px) {
   .eventos-container {
     margin: 30px auto;

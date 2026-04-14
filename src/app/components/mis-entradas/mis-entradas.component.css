@@ -1,36 +1,49 @@
+/* ###### CONTENEDOR PRINCIPAL DE ENTRADAS ###### */
+
+/* ------ Envoltura De Pagina Base ------ */
 .mis-entradas {
   min-height: 100vh;
   background: var(--color-background, #f8f9fa);
   padding: 2rem 0;
 }
 
+/* ------ Limitador Centrado Vertical ------ */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
+/* ###### ENCABEZADO DE PAGINA ###### */
+
+/* ------ Titulaciones De Vista ------ */
 .header-section {
   text-align: center;
   margin-bottom: 2rem;
 }
 
+/* ------ Texto En Negrita Destacado Superior ------ */
 .header-section h1 {
   color: var(--color-primary, #6c3bff);
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
 }
 
+/* ------ Descripcion Complementaria Al Titulo ------ */
 .header-section p {
   color: var(--color-text-secondary, #6c757d);
   font-size: 1.1rem;
 }
 
+/* ###### SECCION DE FILTROS ###### */
+
+/* ------ Contenedor Central Filtro ------ */
 .filtros-section {
   margin-bottom: 2rem;
   text-align: center;
 }
 
+/* ------ Botoneria Interfaz Toggle ------ */
 .filtro-toggle {
   display: inline-flex;
   align-items: center;
@@ -43,12 +56,16 @@
   box-shadow: var(--shadow-main, 0 4px 12px rgba(0, 0, 0, 0.08));
 }
 
+/* ------ Caja Checkbox Ampliada ------ */
 .filtro-toggle input[type="checkbox"] {
   width: 1.2rem;
   height: 1.2rem;
   accent-color: var(--color-primary, #6c3bff);
 }
 
+/* ###### MENSAJES Y NOTIFICACIONES ###### */
+
+/* ------ Cargador Visual Simple Central ------ */
 .loading-section {
   text-align: center;
   padding: 3rem;
@@ -56,6 +73,7 @@
   color: var(--color-text-secondary, #6c757d);
 }
 
+/* ------ Alertas Contextuales Globales ------ */
 .mensaje-error,
 .mensaje-exito {
   padding: 1rem 1.5rem;
@@ -64,24 +82,32 @@
   font-weight: 600;
 }
 
+/* ------ Notificacion Critica O Negativa ------ */
 .mensaje-error {
   background: #fee;
   color: #c62828;
   border: 1px solid #fcc;
 }
 
+/* ------ Notificacion Valida O Segura ------ */
 .mensaje-exito {
   background: #efe;
   color: #1a7f37;
   border: 1px solid #cfc;
 }
 
+/* ###### GRID DE COMPRAS ###### */
+
+/* ------ Cuadricula Flexible Y Responsive ------ */
 .compras-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 1.5rem;
 }
 
+/* ###### TARJETA DE COMPRA INDIVIDUAL ###### */
+
+/* ------ Elemento Agrupador Para Las Entradas ------ */
 .compra-card {
   background: #ffffff;
   border-radius: 20px;
@@ -92,6 +118,7 @@
   gap: 1.25rem;
 }
 
+/* ------ Encabezado Interno Cartel ------ */
 .compra-header {
   display: flex;
   justify-content: space-between;
@@ -99,6 +126,7 @@
   gap: 1rem;
 }
 
+/* ------ Titulo De Compra Relativa ------ */
 .compra-header h3 {
   margin: 0;
   color: var(--color-primary, #6c3bff);
@@ -106,6 +134,9 @@
   line-height: 1.3;
 }
 
+/* ###### BADGES Y ESTADOS LOGICOS ###### */
+
+/* ------ Pill Distintiva General ------ */
 .estado-badge {
   padding: 0.5rem 1rem;
   border-radius: 999px;
@@ -115,32 +146,40 @@
   letter-spacing: 0.5px;
 }
 
+/* ------ Usada Con Color Verde Fuerte ------ */
 .estado-usada,
 .estado-confirmada {
   background: #d4edda;
   color: #155724;
 }
 
+/* ------ Pendiente Con Color Amarillo Triste ------ */
 .estado-pendiente {
   background: #fff3cd;
   color: #856404;
 }
 
+/* ------ Cancelada Con Color Rojo Sangre ------ */
 .estado-cancelada {
   background: #f8d7da;
   color: #721c24;
 }
 
+/* ------ Estado Indefinido En Gris ------ */
 .estado-otro {
   background: #e2e3e5;
   color: #383d41;
 }
 
+/* ###### LISTA DE PARAMETROS COMPRA ###### */
+
+/* ------ Tabla Lineal Basica Interna ------ */
 .compra-detalles {
   display: grid;
   gap: 0.75rem;
 }
 
+/* ------ Item Por Atributo De Instancia ------ */
 .detalle-item {
   display: flex;
   justify-content: space-between;
@@ -149,25 +188,32 @@
   border-bottom: 1px solid #f0f0f0;
 }
 
+/* ------ Saca La Linea Del Ultimo Item ------ */
 .detalle-item:last-child {
   border-bottom: none;
 }
 
+/* ------ Destacador De La Clave Textual ------ */
 .detalle-item strong {
   color: var(--color-text-primary, #212529);
 }
 
+/* ------ Señal De Alarma Fecha Proxima ------ */
 .dias-urgente {
   color: #c62828;
   font-weight: 700;
 }
 
+/* ###### BOTONES ACCIONABLES ###### */
+
+/* ------ Zona Inferior Para Operar Con La Entrada ------ */
 .compra-acciones {
   display: flex;
   gap: 0.75rem;
   margin-top: auto;
 }
 
+/* ------ Base Decorativa De Los Distintos Metodos ------ */
 .btn-detalle,
 .btn-cancelar,
 .btn-explorar {
@@ -183,49 +229,62 @@
   transition: all 0.2s ease;
 }
 
+/* ------ Estilo Call To Action Primario ------ */
 .btn-detalle {
   background: var(--color-primary, #6c3bff);
   color: #ffffff;
   flex: 1;
 }
 
+/* ------ Oscurecimiento Ante Seleccion ------ */
 .btn-detalle:hover {
   background: var(--color-primary-hover, #5a2fc8);
   transform: translateY(-1px);
 }
 
+/* ------ Estilo Secundario Destructivo ------ */
 .btn-cancelar {
   background: #dc3545;
   color: #ffffff;
   flex: 1;
 }
 
+/* ------ Oscurecimiento Del Restar ------ */
 .btn-cancelar:hover {
   background: #c82333;
   transform: translateY(-1px);
 }
 
+/* ------ Boton Central Descubrir Alternativo ------ */
 .btn-explorar {
   background: var(--color-primary, #6c3bff);
   color: #ffffff;
   margin-top: 1.5rem;
 }
 
+/* ------ Efecto Boton Secundario Descubrir ------ */
 .btn-explorar:hover {
   background: var(--color-primary-hover, #5a2fc8);
   transform: translateY(-1px);
 }
 
+/* ###### RESTRICCION CANCELAMIENTO ###### */
+
+/* ------ Etiqueta Para Justificar Bloqueos Logicos ------ */
 .cancelacion-info {
   margin-top: 0.5rem;
   text-align: center;
 }
 
+/* ------ Letra Disminuida Complemento ------ */
 .cancelacion-info small {
   color: var(--color-text-secondary, #6c757d);
   font-size: 0.85rem;
 }
 
+/* ###### ESTADOS VACIOS CENTRALES ###### */
+
+/* ------ Cubo Renderizado Si Array Carece Items ------ */
 .empty-state {
   text-align: center;
   padding: 4rem 2rem;
@@ -234,45 +293,58 @@
   box-shadow: var(--shadow-main, 0 4px 12px rgba(0, 0, 0, 0.08));
 }
 
+/* ------ Iconograma Enorme Tristeza ------ */
 .empty-icon {
   font-size: 4rem;
   color: var(--color-text-secondary, #6c757d);
   margin-bottom: 1.5rem;
 }
 
+/* ------ Tipografia Triste Central ------ */
 .empty-state h3 {
   color: var(--color-primary, #6c3bff);
   margin-bottom: 0.75rem;
 }
 
+/* ------ Complemento Triste Centrado ------ */
 .empty-state p {
   color: var(--color-text-secondary, #6c757d);
   margin-bottom: 2rem;
 }
 
+/* ###### RESPONSIVIDAD Y MEDIA QUERIES ###### */
+
+/* ------ Colapsa Elementos Bajo La Escala Tablet ------ */
 @media (max-width: 768px) {
+  
+  /* ------ Margen Interno Reduce ------ */
   .container {
     padding: 0 1rem;
   }
 
+  /* ------ Decrecimiento De Tamaño De Titular ------ */
   .header-section h1 {
     font-size: 2rem;
   }
 
+  /* ------ Unifica En Columna Unica ------ */
   .compras-grid {
     grid-template-columns: 1fr;
   }
 
+  /* ------ Baja Las Cabeceras ------ */
   .compra-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.75rem;
   }
 
+  /* ------ Los Botones Bajan En Bloque ------ */
   .compra-acciones {
     flex-direction: column;
   }
 
+  /* ------ Ensanchamiento Obligatorio Movil ------ */
   .btn-detalle,
   .btn-cancelar {
     width: 100%;

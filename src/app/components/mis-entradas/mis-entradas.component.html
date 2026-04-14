@@ -1,10 +1,17 @@
+<!-- ###### SECCION GLOBAL DE MIS ENTRADAS ######## -->
+<!-- ------ Componente Gestor Central Donde Se Maneja El Historial Comercial ------ -->
 <section class="mis-entradas">
   <div class="container">
+    
+    <!-- ###### CABECERA FIJA SUPERIOR ###### -->
+    <!-- ------ Descripcion Sencilla De La Pantalla Actual ------ -->
     <div class="header-section">
       <h1>Mis Entradas</h1>
       <p>Gestiona tus compras y entradas</p>
     </div>
 
+    <!-- ###### FILTRADOS FRONTEND DINAMICOS ###### -->
+    <!-- ------ Interruptor Rapido Para Separar Vigentes Frente Desuso ------ -->
     <div class="filtros-section">
       <label class="filtro-toggle">
         <input
@@ -16,59 +23,83 @@
       </label>
     </div>
 
-    <!-- Estado de carga -->
+    <!-- ###### ESTADO DE CARGA Y PROCESAMIENTO ###### -->
+    <!-- ------ Parrafo Notificador Visual Http ------ -->
     <div *ngIf="cargando" class="loading-section">
       <p>Cargando tus entradas...</p>
     </div>
 
-    <!-- Mensajes de error y éxito -->
+    <!-- ###### ZONA DE MENSAJERIA FEEDBACK LOGICO ###### -->
+    <!-- ------ Fallas O Exitos Del Metodo Eliminar Cancelacion ------ -->
     <div *ngIf="error" class="mensaje-error">{{ error }}</div>
     <div *ngIf="exito" class="mensaje-exito">{{ exito }}</div>
 
-    <!-- Lista de compras -->
+    <!-- ###### GRILLA MAESTRA DE ITEMS ###### -->
+    <!-- ------ Despega Si El Listado Es Promiponente Y Existen Entradas ------ -->
     <div *ngIf="!cargando && comprasFiltradas.length > 0" class="compras-grid">
+      
+      <!-- ------ Replicador Tarjetero Bucle Formateado ------ -->
       <article *ngFor="let compra of comprasFiltradas" class="compra-card">
+        
+        <!-- ------ Cabezera Tarjeta Muestra Titulo General ------ -->
         <div class="compra-header">
           <h3>{{ compra.tituloEvento }}</h3>
+          
+          <!-- ------ Condicionante De Clase Mediante Control Switch Angular ------ -->
           <span class="estado-badge" [ngClass]="getEstadoClass(compra.estado)">
             {{ compra.estado }}
           </span>
         </div>
 
+        <!-- ------ Desglose Lineal Informativo Del Ticket Central ------ -->
         <div class="compra-detalles">
+          
+          <!-- ------ Identificador Transaccional Unico ------ -->
           <div class="detalle-item">
             <strong>Localizador:</strong>
             <span>{{ compra.localizador }}</span>
           </div>
+          
+          <!-- ------ Calendario Formateador Completo Europeo ------ -->
           <div class="detalle-item">
             <strong>Fecha:</strong>
             <span>{{ compra.fechaSesion | date: 'dd/MM/yyyy HH:mm' }}</span>
           </div>
+
+          <!-- ------ Conteo Atrás Reactivo Hasta Inicio Evento ------ -->
           <div class="detalle-item">
             <strong>Días restantes:</strong>
             <span [class.dias-urgente]="getDiasRestantes(compra) < 5 && getDiasRestantes(compra) >= 0">
               {{ getDiasRestantes(compra) }} día{{ getDiasRestantes(compra) !== 1 ? 's' : '' }}
             </span>
           </div>
+
+          <!-- ------ Bloques De Ingreso Vinculados Al Locator ------ -->
           <div class="detalle-item">
             <strong>Entradas:</strong>
             <span>{{ compra.numEntradas }}</span>
           </div>
+
+          <!-- ------ Montante Impresora Divisado Oficial ------ -->
           <div class="detalle-item">
             <strong>Total pagado:</strong>
             <span>{{ compra.totalPagado | currency:'EUR' }}</span>
           </div>
         </div>
 
+        <!-- ###### INTERFAZ ACCIONAL POR ENTRADA ###### -->
+        <!-- ------ Zona Concreta Donde Alterar Y Examinar Una Individualidad ------ -->
         <div class="compra-acciones">
           <a [routerLink]="['/detalle-compra', compra.id]" class="btn-detalle">
             Ver Detalle
           </a>
 
+          <!-- ------ Mensaje Bloqueo En Caso Caducidad Promocional Restrictiva ------ -->
           <div class="cancelacion-info" *ngIf="!puedeCancelar(compra)">
             <small>{{ getMensajeCancelacion(compra) }}</small>
           </div>
 
+          <!-- ------ Boton Solo Activo En Base A Fechas Adecuadas Cancelatorias ------ -->
           <button
             *ngIf="puedeCancelar(compra)"
             class="btn-cancelar"
@@ -80,17 +111,21 @@
       </article>
     </div>
 
-    <!-- Mensaje cuando no hay compras -->
+    <!-- ###### VENTANA ALTERNATINA ESTADO DE CAJON VACIO ###### -->
+    <!-- ------ Remplaza Tableros En Caso Lista Array Null ------ -->
     <div *ngIf="!cargando && comprasFiltradas.length === 0" class="empty-state">
       <div class="empty-icon">
         <i class="bi bi-ticket-perforated"></i>
       </div>
       <h3>No tienes entradas</h3>
       <p>
+        <!-- ------ Alternancia Literaria Segun Interrupor Frontend De Filtro Arriba ------ -->
         {{ mostrarSoloPendientes
            ? 'No tienes entradas pendientes de usar.'
            : 'Aún no has comprado ninguna entrada.' }}
       </p>
+      
+      <!-- ------ Reorientacion Hacia Pagina Comercial Busqueda ------ -->
       <a routerLink="/eventos" class="btn-explorar">
         Explorar Eventos
       </a>

@@ -1,20 +1,28 @@
+/* ###### ESTILOS BASE Y CONTENEDOR ###### */
+
+/* ------ Seccion Principal De La Pantalla ------ */
 .detalle-compra {
   min-height: 100vh;
   background: var(--color-background, #f8f9fa);
   padding: 2rem 0;
 }
 
+/* ------ Contenedor Centrado ------ */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
+/* ###### CABEZERA DE LA PAGINA ###### */
+
+/* ------ Agrupa Elementos De Cabecera ------ */
 .header-section {
   text-align: center;
   margin-bottom: 2rem;
 }
 
+/* ------ Enlace De Retroceso ------ */
 .btn-volver {
   display: inline-flex;
   align-items: center;
@@ -26,25 +34,32 @@
   transition: color 0.2s ease;
 }
 
+/* ------ Hover En El Enlace De Volver ------ */
 .btn-volver:hover {
   color: var(--color-primary-hover, #5a2fc8);
 }
 
+/* ------ Titulo Principal ------ */
 .header-section h1 {
   color: var(--color-primary, #6c3bff);
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
 }
 
+/* ------ Subtitulo Con Localizador ------ */
 .header-section p {
   color: var(--color-text-secondary, #6c757d);
   font-size: 1.1rem;
 }
 
+/* ###### TARJETA DE INFORMACION ====== */
+
+/* ------ Margen Del Contenedor De Info ------ */
 .compra-info {
   margin-bottom: 3rem;
 }
 
+/* ------ Tarjeta Blanca ------ */
 .info-card {
   background: #ffffff;
   border-radius: 20px;
@@ -52,12 +67,14 @@
   box-shadow: var(--shadow-main, 0 4px 12px rgba(0, 0, 0, 0.08));
 }
 
+/* ------ Titulo Interior Tarjeta ------ */
 .info-card h2 {
   color: var(--color-primary, #6c3bff);
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
 }
 
+/* ------ Cuadricula Para Datos ------ */
 .info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -65,22 +82,28 @@
   margin-bottom: 2rem;
 }
 
+/* ------ Bloque Individual De Dato ------ */
 .info-item {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
+/* ------ Etiqueta Del Dato ------ */
 .info-item strong {
   color: var(--color-text-primary, #212529);
   font-weight: 600;
 }
 
+/* ------ Texto En Color Rojo Urgente ------ */
 .dias-urgente {
   color: #c62828;
   font-weight: 700;
 }
 
+/* ###### ETIQUETAS DE ESTADO ###### */
+
+/* ------ Pastilla De Estado General ------ */
 .estado-badge {
   display: inline-block;
   padding: 0.5rem 1rem;
@@ -92,31 +115,39 @@
   width: fit-content;
 }
 
+/* ------ Estado Validado ------ */
 .estado-usada,
 .estado-confirmada {
   background: #d4edda;
   color: #155724;
 }
 
+/* ------ Estado A La Espera ------ */
 .estado-pendiente {
   background: #fff3cd;
   color: #856404;
 }
 
+/* ------ Estado Anulado ------ */
 .estado-cancelada {
   background: #f8d7da;
   color: #721c24;
 }
 
+/* ------ Estado Por Defecto ------ */
 .estado-otro {
   background: #e2e3e5;
   color: #383d41;
 }
 
+/* ###### BOTONES DE ACCION ###### */
+
+/* ------ Contenedor Centrado ------ */
 .compra-acciones {
   text-align: center;
 }
 
+/* ------ Boton De Peligro Para Cancelar ------ */
 .btn-cancelar {
   background: #dc3545;
   color: #ffffff;
@@ -128,21 +159,27 @@
   transition: background-color 0.2s ease;
 }
 
+/* ------ Hover Boton Cancelar ------ */
 .btn-cancelar:hover {
   background: #c82333;
 }
 
+/* ------ Zona Mensaje Cancelacion ------ */
 .cancelacion-info {
   margin-top: 1rem;
   text-align: center;
 }
 
+/* ------ Texto Pequeño Informativo ------ */
 .cancelacion-info small {
   color: var(--color-text-secondary, #6c757d);
   font-size: 0.9rem;
   font-style: italic;
 }
 
+/* ###### ZONA DE TICKETS INDIVIDUALES ###### */
+
+/* ------ Titulo De Tus Tickets ------ */
 .tickets-section h2 {
   color: var(--color-primary, #6c3bff);
   font-size: 2rem;
@@ -150,12 +187,14 @@
   text-align: center;
 }
 
+/* ------ Grid Adaptativo Para Entradas ------ */
 .tickets-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 1.5rem;
 }
 
+/* ------ Tarjeta Visual De Tu Entrada ------ */
 .ticket-card {
   background: #ffffff;
   border-radius: 16px;
@@ -166,18 +205,21 @@
   gap: 1rem;
 }
 
+/* ------ Encabezado De La Entrada ------ */
 .ticket-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+/* ------ Numero De Entrada ------ */
 .ticket-header h3 {
   margin: 0;
   color: var(--color-primary, #6c3bff);
   font-size: 1.1rem;
 }
 
+/* ------ Pastilla De Estado Especifica ------ */
 .ticket-estado {
   padding: 0.25rem 0.75rem;
   border-radius: 999px;
@@ -186,26 +228,31 @@
   text-transform: uppercase;
 }
 
+/* ------ Ticket Ya Cobrado ------ */
 .ticket-estado.usado {
   background: #f8d7da;
   color: #721c24;
 }
 
+/* ------ Ticket Sin Usar ------ */
 .ticket-estado.disponible {
   background: #d4edda;
   color: #155724;
 }
 
+/* ------ Codigo Alfanumerico Superior ------ */
 .ticket-codigo {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
+/* ------ Cabecera De Tipo Codigo ------ */
 .ticket-codigo strong {
   color: var(--color-text-primary, #212529);
 }
 
+/* ------ Estilo Monospace Para Resaltar El Texto ------ */
 .codigo-text {
   font-family: 'Courier New', monospace;
   background: #f8f9fa;
@@ -216,11 +263,13 @@
   word-break: break-all;
 }
 
+/* ------ Centrador Del Codigo Qr ------ */
 .ticket-qr {
   text-align: center;
   margin: 1rem 0;
 }
 
+/* ------ Div Reemplazo Del Qr ------ */
 .qr-placeholder {
   display: flex;
   flex-direction: column;
@@ -232,10 +281,12 @@
   color: var(--color-text-secondary, #6c757d);
 }
 
+/* ------ Logo Grande En Lugar De Qr ------ */
 .qr-placeholder i {
   font-size: 3rem;
 }
 
+/* ------ Tamaño Estandarizado Codigo Escaneable ------ */
 .qr-image {
   max-width: 150px;
   height: auto;
@@ -243,11 +294,13 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* ------ Contenedor Para Boton De Entrada ------ */
 .ticket-acciones {
   text-align: center;
   margin-top: auto;
 }
 
+/* ------ Boton De Guardar En Dispositivo ------ */
 .btn-descargar {
   display: inline-flex;
   align-items: center;
@@ -262,10 +315,14 @@
   transition: background-color 0.2s ease;
 }
 
+/* ------ Hover Interactivo ------ */
 .btn-descargar:hover {
   background: var(--color-primary-hover, #5a2fc8);
 }
 
+/* ###### MENSAJES DE RESPUESTA Y ALERTAS ###### */
+
+/* ------ Cartel De Aviso General ------ */
 .mensaje-exito,
 .mensaje-error {
   padding: 1rem 1.5rem;
@@ -275,18 +332,21 @@
   text-align: center;
 }
 
+/* ------ Confirmacion Exitosa Color Verde ------ */
 .mensaje-exito {
   background: #d4edda;
   color: #155724;
   border: 1px solid #c3e6cb;
 }
 
+/* ------ Fallo Color Rojo ------ */
 .mensaje-error {
   background: #f8d7da;
   color: #721c24;
   border: 1px solid #f5c6cb;
 }
 
+/* ------ Paneles Centralizados Para Vistas De Fallo O Carga ------ */
 .loading-section,
 .error-section {
   text-align: center;
@@ -298,11 +358,15 @@
   max-width: 600px;
 }
 
+/* ------ Texto Informativo Central ------ */
 .loading-section p {
   color: var(--color-text-secondary, #6c757d);
   font-size: 1.1rem;
 }
 
+/* ###### RESPONSIVE Y MEDIA QUERIES ###### */
+
+/* ------ Adaptable Para Telefonos Y Pantallas Pequeñas ------ */
 @media (max-width: 768px) {
   .container {
     padding: 0 1rem;

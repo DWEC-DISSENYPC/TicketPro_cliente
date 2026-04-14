@@ -1,4 +1,5 @@
-<!-- HERO SUPERIOR DE LA PÁGINA -->
+<!-- ###### HERO SUPERIOR PUBLICO ###### -->
+<!-- ------ Cabecera Compartida Externa ------ -->
 <app-hero
   titulo="MI CUENTA"
   subtitulo="Mis datos personales y preferencias"
@@ -7,33 +8,42 @@
 >
 </app-hero>
 
+<!-- ###### CONTENEDOR GENERAL DE CUENTA ###### -->
+<!-- ------ Centra El Contenido Visual Del Historial Y Perfil ------ -->
 <div class="account-wrapper">
+  
+  <!-- ------ Caja O Marco Interactivo ------ -->
   <div class="account-container">
     <h2>Mi Cuenta</h2>
 
-    <!-- CABECERA DEL PERFIL: FOTO, NOMBRE DE USUARIO Y ROL -->
+    <!-- ###### CABECERA DEL PERFIL ###### -->
+    <!-- ------ Muestra Foto De Perfil Y Rol Concedido ------ -->
     <div class="profile-header">
       @if (usuario.imagenUrl) {
-        <!-- Foto de perfil si existe -->
+        
+        <!-- ------ Foto Renderizada Si Exise Guardada ------ -->
         <img
           [src]="usuario.imagenUrl"
           alt="Foto de perfil"
           class="profile-img"
         />
       } @else {
-        <!-- Placeholder con inicial del nombre -->
+        
+        <!-- ------ Alternativa Vacia Con Su Inicial Mayuscula ------ -->
         <div class="profile-placeholder">{{ usuario.nombre?.charAt(0) }}</div>
       }
 
-      <!-- Nombre de usuario y rol -->
+      <!-- ------ Nombre Primario Y Rol Tipo Pill ------ -->
       <h3>{{ usuario.username }}</h3>
       <span class="badge">{{ usuario.rol }}</span>
     </div>
 
-    <!-- GRID PRINCIPAL CON TARJETAS DE INFORMACIÓN -->
+    <!-- ###### CUADRICULA CENTRAL DE DATOS ###### -->
+    <!-- ------ Agrupa Las Diversas Tematicas Del Formulario ------ -->
     <div class="profile-grid">
 
-      <!-- TARJETA: DATOS PERSONALES -->
+      <!-- ###### TARJETA 1 DE DATOS PERSONALES ###### -->
+      <!-- ------ Reune Los Atributos Estructurales Civiles ------ -->
       <div class="info-card">
         <h3>Datos Personales</h3>
         <ul>
@@ -48,12 +58,13 @@
         </ul>
       </div>
 
-      <!-- TARJETA: PREFERENCIAS Y UBICACIÓN -->
+      <!-- ###### TARJETA 2 DE PREFERENCIAS Y UBICACION ###### -->
+      <!-- ------ Datos Geograficos Y Economicos Asociados Al Usuario ------ -->
       <div class="info-card">
         <h3>Preferencias y Ubicación</h3>
         <ul>
 
-          <!-- Método de pago preferido -->
+          <!-- ------ Opcion De Pago Traduccion Por Enums ------ -->
           <li>
             <strong>Método de pago:</strong>
             {{
@@ -67,7 +78,7 @@
             }}
           </li>
 
-          <!-- Teléfono principal -->
+          <!-- ------ Array Extrapolado Para Su Primer Telefono Ocultando El Resto ------ -->
           <li>
             <strong>Teléfono principal:</strong>
             @if (usuario.telefonos && usuario.telefonos.length > 0) {
@@ -78,36 +89,32 @@
             }
           </li>
 
-          <!-- DIRECCIÓN COMPLETA -->
+          <!-- ------ Resumen Direccional Impreso Textualmente ------ -->
           <li>
             <strong>Dirección:</strong>
 
-            <!-- Etiqueta semántica para direcciones -->
+            <!-- ------ Etiqueta Semantica Propia Para Direcciones ------ -->
             <address>
-              <!-- Calle -->
+              <!-- ------ Nombre Viario ------ -->
               {{ usuario.calle || "No definida" }}
 
-              <!-- Número -->
+              <!-- ------ Numeracion Y Puertas ------ -->
               <span *ngIf="usuario.numero">, {{ usuario.numero }}</span>
-
-              <!-- Piso / Puerta -->
               <span *ngIf="usuario.pisoPuerta">, {{ usuario.pisoPuerta }}</span>
-
+              
               <br />
 
-              <!-- Código Postal + Ciudad -->
+              <!-- ------ Emplazamiento Postal Y Ciudadania ------ -->
               <span *ngIf="usuario.codigoPostal">{{ usuario.codigoPostal }}</span>
               <span *ngIf="usuario.ciudad"> {{ usuario.ciudad }}</span>
 
-              <!-- Provincia -->
+              <!-- ------ Macro Regiones Geograficas ------ -->
               <span *ngIf="usuario.provincia"> ({{ usuario.provincia }})</span>
-
-              <!-- País -->
               <span *ngIf="usuario.pais">, {{ usuario.pais }}</span>
             </address>
           </li>
 
-          <!-- Fecha de creación de la cuenta -->
+          <!-- ------ Control Cronologico De Relacion Comercial ------ -->
           <li>
             <strong>Miembro desde:</strong>
             {{ usuario.createdAt | date: "dd/MM/yyyy" }}
@@ -116,7 +123,8 @@
       </div>
     </div>
 
-    <!-- BOTONES DE ACCIÓN -->
+    <!-- ###### DIRECCIONES A EDICION Y PREFERENCIAS ###### -->
+    <!-- ------ Botoneria Requerida Inferior ------ -->
     <div class="actions">
       <button class="btn-primary" (click)="irAEditar()">Editar Datos</button>
       <button class="btn-outline" (click)="abrirModalPassword()">

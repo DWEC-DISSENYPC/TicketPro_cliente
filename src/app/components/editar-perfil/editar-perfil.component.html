@@ -1,7 +1,5 @@
-<!-- ============================================
-     HERO SUPERIOR DE LA PÁGINA
-     Muestra el título, subtítulo y fondo decorativo
-================================================ -->
+<!-- ###### HERO SUPERIOR DE LA PAGINA ###### -->
+<!-- ------ Muestra El Titulo Subtitulo Y Fondo Decorativo ------ -->
 <app-hero
   titulo="EDITAR PERFIL"
   subtitulo="Actualiza tu información personal"
@@ -10,21 +8,15 @@
 >
 </app-hero>
 
-<!-- ============================================
-     CONTENEDOR GENERAL DE LA PÁGINA
-     Centra el contenido y aplica márgenes globales
-================================================ -->
+<!-- ###### CONTENEDOR GENERAL DE LA PAGINA ###### -->
+<!-- ------ Centra El Contenido Y Aplica Margenes Globales ------ -->
 <div class="account-wrapper">
-  <!-- ============================================
-       CONTENEDOR INTERNO
-       Limita el ancho y centra el formulario
-  ================================================ -->
+  <!-- ###### CONTENEDOR INTERNO ###### -->
+  <!-- ------ Limita El Ancho Y Centra El Formulario ------ -->
   <div class="account-container">
-    <!-- ============================================
-         targeta de imagen y contraseña
-    ================================================ -->
-
-
+    
+    <!-- ###### TARJETA DE IMAGEN Y CONTRASEÑA ###### -->
+    <!-- ------ Grid De Dos Columnas Para Gestion Visual Y De Acceso ------ -->
       <div class="image-password-container">
         <div class="info-card image-card">
           <h3>Imagen de Perfil</h3>
@@ -60,6 +52,7 @@
           </button>
         </div>
 
+        <!-- ------ Tarjeta De Reseteo De Password ------ -->
         <div class="info-card password-card">
           <h3>Seguridad y Acceso</h3>
           <p class="card-subtitle">Cambia tu contraseña de acceso aquí.</p>
@@ -75,6 +68,7 @@
                 placeholder="Introduce tu contraseña actual"
               />
             </div>
+            
             <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
 
             <div class="form-group">
@@ -100,25 +94,20 @@
         </div>
       </div>
 
-
-    <!-- ============================================
-         FORMULARIO PRINCIPAL
-         Usa Reactive Forms y el grid de 3 columnas
-    ================================================ -->
+    <!-- ###### FORMULARIO PRINCIPAL MULTI COLUMNA ###### -->
+    <!-- ------ Usa Reactive Forms Y El Grid De 3 Columnas ------ -->
 
     <form
       [formGroup]="editForm"
       (ngSubmit)="guardarCambios()"
       class="edit-form-grid"
     >
-      <!-- ============================================
-           TARJETA 1: DATOS PERSONALES
-           Primera columna del grid
-      ================================================ -->
+      <!-- ###### TARJETA 1 : DATOS PERSONALES ###### -->
+      <!-- ------ Primera Columna Del Formulario Identidad Visual ------ -->
       <div class="info-card">
         <h3><i class="icon-user"></i> Datos Personales</h3>
 
-        <!-- Fila: Nombre + Apellidos -->
+        <!-- ------ Fila: Nombre Y Apellidos ------ -->
         <div class="form-row">
           <div class="form-group">
             <label for="nombre">Nombre *</label>
@@ -144,7 +133,7 @@
           </div>
         </div>
 
-        <!-- Fila: Email + DNI -->
+        <!-- ------ Fila: Email Y DNI ------ -->
         <div class="form-row">
           <div class="form-group">
             <label for="email">Email *</label>
@@ -168,7 +157,7 @@
           </div>
         </div>
 
-        <!-- Campo: Fecha de nacimiento -->
+        <!-- ------ Campo: Fecha De Nacimiento ------ -->
         <div class="form-group">
           <label for="fechaNacimiento">Fecha de nacimiento *</label>
           <input
@@ -180,14 +169,12 @@
         </div>
       </div>
 
-      <!-- ============================================
-           TARJETA 2: DIRECCIÓN
-           Segunda columna del grid
-      ================================================ -->
+      <!-- ###### TARJETA 2 : DIRECCION COMPLETA ###### -->
+      <!-- ------ Segunda Columna Del Grid Físico ------ -->
       <div class="info-card">
         <h3><i class="icon-map"></i> Dirección</h3>
 
-        <!-- Calle -->
+        <!-- ------ Calle Y Via ------ -->
         <div class="form-group">
           <label for="calle">Calle *</label>
           <input
@@ -198,7 +185,7 @@
           />
         </div>
 
-        <!-- Nº + Piso/Puerta -->
+        <!-- ------ Numero Bloque Y Piso O Puerta ------ -->
         <div class="form-row">
           <div class="form-group">
             <label for="numero">Nº *</label>
@@ -221,7 +208,7 @@
           </div>
         </div>
 
-        <!-- CP + Ciudad -->
+        <!-- ------ Codigo Postal Y Ubicacion Relativa ------ -->
         <div class="form-row">
           <div class="form-group">
             <label for="codigoPostal">CP *</label>
@@ -245,7 +232,7 @@
           </div>
         </div>
 
-        <!-- Provincia + País -->
+        <!-- ------ Provincia Estatal O Region Y Pais ------ -->
         <div class="form-row">
           <div class="form-group">
             <label for="provincia">Provincia *</label>
@@ -269,16 +256,14 @@
         </div>
       </div>
 
-      <!-- ============================================
-           TARJETA 3: TELÉFONOS + PAGO
-           Tercera columna del grid
-      ================================================ -->
+      <!-- ###### TARJETA 3 : TELEFONOS Y PREFERENCIAS DE PAGO ###### -->
+      <!-- ------ Tercera Columna Segmentada ------ -->
       <div class="info-card-group">
-        <!-- Teléfonos -->
+        <!-- ------ Telefonos Contacto ------ -->
         <div class="info-card">
           <h3>Teléfonos de Contacto</h3>
 
-          <!-- Lista dinámica de teléfonos -->
+          <!-- ------ Lista Dinamica De Telefonos Form Array ------ -->
           <div formArrayName="telefonos" class="telefonos-container">
             <div
               *ngFor="let tel of telefonosFormArray.controls; let i = index"
@@ -302,7 +287,7 @@
                 <option value="TRABAJO">Trabajo</option>
               </select>
 
-              <!-- Botón eliminar teléfono -->
+              <!-- ------ Boton Corto Que Elimina El Telefono Array ------ -->
               <button
                 type="button"
                 class="btn-icon-delete"
@@ -314,7 +299,7 @@
             </div>
           </div>
 
-          <!-- Botón añadir teléfono -->
+          <!-- ------ Boton Añadir Nuevo Telefono Al Bucle ------ -->
           <button
             type="button"
             class="btn-text-add"
@@ -324,6 +309,7 @@
           </button>
         </div>
 
+        <!-- ------ Tarjeta De Medio De Pago Preferido ------ -->
         <div class="info-card">
           <h3>Preferencia de Pago</h3>
 
@@ -342,14 +328,8 @@
         </div>
       </div>
 
-      <!-- ============================================
-           BLOQUE DE preferencias de pago
-      ================================================ -->
-
-      <!-- ============================================
-           BLOQUE DE ACCIONES (BOTONES)
-           Ocupa todo el ancho del grid
-      ================================================ -->
+      <!-- ###### BLOQUE DE ACCIONES (BOTONES PRINCIPALES) ###### -->
+      <!-- ------ Ocupa Todo El Ancho Ocultando En Grid Inferior ------ -->
       <div class="form-actions-full">
         <button type="button" class="btn-outline" (click)="cancelar()">
           Cancelar

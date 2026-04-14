@@ -1,81 +1,84 @@
-/******************************VARIABLES GLOBALES **********************************/
+/* ###### VARIABLES GLOBALES ###### */
 
 :root {
-  /* --- Colores de Marca (Brand) --- */
+  
+  /* ------ Colores De Marca (Brand) ------ */
   --color-primary: #4931d4;
   --color-primary-soft: rgba(73, 49, 212, 0.1);
   --color-accent: #e99313;
   --color-accent-hover: #d08210;
 
-  /* --- Superficies y Fondos (Surfaces) --- */
+  /* ------ Superficies Y Fondos (Surfaces) ------ */
   --bg-main: #ffffff;
   --bg-section: #f8f9fa;
   --bg-glass: rgba(255, 255, 255, 0.1);
   --border-color: rgba(0, 0, 0, 0.1);
 
-  /* --- Colores de Texto --- */
+  /* ------ Colores De Texto ------ */
   --text-main: #212121;
-  /* Casi negro, mejor para la vista */
+  /* ------ Casi Negro Mejor Para La Vista ------ */
   --text-muted: #666666;
-  /* Para textos secundarios */
+  /* ------ Para Textos Secundarios ------ */
   --text-on-primary: #ffffff;
-  /* Texto sobre fondos oscuros */
+  /* ------ Texto Sobre Fondos Oscuros ------ */
 
-  /* --- Estados (Status) --- */
+  /* ------ Estados (Status) ------ */
   --status-success: #140c88;
   --status-error: #d32f2f;
   --status-warning: #ffa43c;
 
-    --bg-surface-muted: #f4f7f6;
-    /* Fondo gris suave para la página */
-    --border-subtle: #eeeeee;
-    /* Gris muy claro para líneas divisorias */
-    --border-interactive: #e0e0e0;
-    /* Gris para bordes de tarjetas */
+  --bg-surface-muted: #f4f7f6;
+  /* ------ Fondo Gris Suave Para La Pagina ------ */
+  --border-subtle: #eeeeee;
+  /* ------ Gris Muy Claro Para Lineas Divisorias ------ */
+  --border-interactive: #e0e0e0;
+  /* ------ Gris Para Bordes De Tarjetas ------ */
 
-    --border-input: #dddddd;
+  --border-input: #dddddd;
 
-    --transition-standard: all 0.3s ease;
-    /* Transición suave reutilizable */
-    --radius-lg: 15px;
-    /* Radio de esquinas grande */
-    --radius-md: 10px;
-    /* Radio de esquinas medio */
-    --radius-sm: 8px;
-    /* Radio de esquinas pequeño */
+  --transition-standard: all 0.3s ease;
+  /* ------ Transicion Suave Reutilizable ------ */
+  --radius-lg: 15px;
+  /* ------ Radio De Esquinas Grande ------ */
+  --radius-md: 10px;
+  /* ------ Radio De Esquinas Medio ------ */
+  --radius-sm: 8px;
+  /* ------ Radio De Esquinas Pequeño ------ */
 
-    --input-bg: #ffffff;
-    --input-border: var(--border-interactive);
-    --input-focus-shadow: rgba(73, 49, 212, 0.15);
-     /* Basado en tu color primary */
-    --bg-disabled: #e9ecef;
-    --text-disabled: #6c757d;
+  --input-bg: #ffffff;
+  --input-border: var(--border-interactive);
+  --input-focus-shadow: rgba(73, 49, 212, 0.15);
+  /* ------ Basado En Tu Color Primary ------ */
+  --bg-disabled: #e9ecef;
+  --text-disabled: #6c757d;
 
-  /* --- Sombras y Efectos --- */
+  /* ------ Sombras Y Efectos ------ */
   --shadow-main: 0 4px 6px rgba(0, 0, 0, 0.1);
   --shadow-strong: 0 8px 16px rgba(0, 0, 0, 0.2);
 
-  /* --- Tipografía --- */
+  /* ------ Tipografia ------ */
   --font-family-title: 'Montserrat', sans-serif;
   --font-family-body: 'Roboto', Arial, sans-serif;
 }
 
+/* ###### RESETEO CSS BASE ###### */
+
+/* ------ Eliminacion De Interespaciados Defecto ------ */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* ------ Alineacion Universal Absoluta ------ */
 .container {
   width: 100%;
-  /* max-width: 1200px; */
   margin: 0 auto;
-  /* padding: 0 20px; */
 }
 
-/********************************FIN VARIABLES GLOBALES***************************//* You can add global styles to this file, and also import other style files */
+/* ###### CSS GLOBAL ROOT ###### */
 
-
+/* ------ Base Html Inflexible Ocultante Horinzontal ------ */
 html,
 body {
   margin: 0;
@@ -85,6 +88,7 @@ body {
   overflow-x: hidden;
 }
 
+/* ------ Asegura Render Correcto A Navbars Estaticos ------ */
 body,
 app-root,
 app-navbar {

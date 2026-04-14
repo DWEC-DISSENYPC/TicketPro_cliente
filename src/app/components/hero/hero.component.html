@@ -1,12 +1,21 @@
-
+<!-- ###### CONTENEDOR HERO PUBLICO ###### -->
+<!-- ------ Componente Que Modifica Su Altura Y Su Banner Constantemente ------ -->
 <section class="hero"
   [style.backgroundImage]="'url(' + imagenFondo + ')'"
   [style.height]="altura">
+  
+  <!-- ------ Filtro Capa Media Para Brillo De Letra ------ -->
   <div class="hero-overlay">
+    
+    <!-- ------ Caja De Textos Presentacional ------ -->
     <div class="hero-content">
+      
+      <!-- ------ Datos Dinamicos Insertados ------ -->
       <h1 class="hero-title">{{ titulo }}</h1>
       <p class="hero-subtitle">{{ subtitulo }}</p>
 
+      <!-- ###### BOTONES DIRECTOS ###### -->
+      <!-- ------ Comandos Visuales Inertes Momentaneos ------ -->
       <div class="hero-actions">
         <button class="btn-glass">BUSCAR EVENTOS</button>
         <button class="btn-outline">EXPLORAR CARTELERA</button>

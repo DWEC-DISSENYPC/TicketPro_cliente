@@ -1,3 +1,6 @@
+/* ###### CONTENEDOR PRINCIPAL DEL REGISTRO ###### */
+
+/* ------ Agrupador Flex Y Background ------ */
 .register-wrapper {
   display: flex;
   justify-content: center;
@@ -7,6 +10,9 @@
   min-height: 60vh;
 }
 
+/* ###### CAJA DEL FORMULARIO ###### */
+
+/* ------ Recuadro En Blanco Del Registro ------ */
 .register-container {
   background: #ffffff;
   padding: 2.5rem;
@@ -14,9 +20,10 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 500px;
-  /* Un poco más ancho que el login */
+  /* ------ Un Poco Mas Ancho Que El Login Para Doble Fila ------ */
 }
 
+/* ------ Titulo De Interfaz Superior ------ */
 h2 {
   text-align: center;
   color: var(--text-main);
@@ -25,16 +32,23 @@ h2 {
   font-weight: 700;
 }
 
+/* ###### GRID DE DOBLE COLUMNA ###### */
+
+/* ------ Fila Para Nombre Y Apellidos ------ */
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
 }
 
+/* ###### SECCIONES Y ETIQUETAS ###### */
+
+/* ------ Separacion Con Respecto Al Siguiente Input ------ */
 .form-group {
   margin-bottom: 1.2rem;
 }
 
+/* ------ Nombre Del Campo Referido ------ */
 label {
   display: block;
   margin-bottom: 0.4rem;
@@ -43,6 +57,7 @@ label {
   font-size: 0.85rem;
 }
 
+/* ------ Inputs Estilizados Basicos ------ */
 input {
   width: 100%;
   padding: 10px 15px;
@@ -52,18 +67,23 @@ input {
   box-sizing: border-box;
 }
 
+/* ------ Sombrea Interfaz Al Clicar Entorno ------ */
 input:focus {
   outline: none;
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(255, 127, 0, 0.1);
 }
 
+/* ###### INTERFAZ PARA EL BOTON OJO ###### */
+
+/* ------ Container Para Contraseña Y Boton Visual ------ */
 .password-input-wrapper {
   position: relative;
   display: flex;
   align-items: center;
 }
 
+/* ------ Boton De Ojo Ocultador ------ */
 .toggle-password {
   position: absolute;
   right: 12px;
@@ -72,6 +92,9 @@ input:focus {
   cursor: pointer;
 }
 
+/* ###### BOTON DE REGISTRO PRINCIPAL ###### */
+
+/* ------ Llenado Total Accent Button ------ */
 .btn-register {
   width: 100%;
   padding: 12px;
@@ -85,10 +108,14 @@ input:focus {
   margin-top: 1rem;
 }
 
+/* ------ Condicion Inhabilitadora Visual Por Defecto ------ */
 .btn-register:disabled {
   background-color: #ccc;
 }
 
+/* ###### VALIDACION DE ERRORES FRONTEND ###### */
+
+/* ------ Alerta De Operacion Fallida Http ------ */
 .error-msg {
   color: #d32f2f;
   background: #ffebee;
@@ -99,38 +126,42 @@ input:focus {
   font-size: 0.85rem;
 }
 
-.register-footer {
-  margin-top: 1.5rem;
-  text-align: center;
-  font-size: 0.85rem;
-}
-
-.register-footer a {
-  color: var(--color-primary);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-/* Bordes rojos para inputs inválidos */
+/* ------ Contorno Rojizo Para Inputs Invalidos ------ */
 .input-error {
   border-color: #d32f2f !important;
   background-color: #fff8f8;
 }
 
-/* Texto de error debajo del input */
+/* ------ Texto Informativo Menor Bajo Input Erroneo ------ */
 .error-text {
   color: #d32f2f;
   font-size: 0.75rem;
   margin-top: 4px;
   display: block;
   font-weight: 500;
-}
-
-/* Animación suave para que aparezcan los errores */
-.error-text {
+  /* ------ Animacion Suave Para Que Aparezcan Los Errores ------ */
   animation: fadeIn 0.3s ease-in;
 }
 
+/* ###### PIE DE FORMULARIO ###### */
+
+/* ------ Centrado De Texto Referencial Hacia Login ------ */
+.register-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+/* ------ Trazado En Acento ------ */
+.register-footer a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ###### KEYFRAMES DE ANIMACION ###### */
+
+/* ------ Efecto Fantasma Hacía Arriba ------ */
 @keyframes fadeIn {
   from {
     opacity: 0;

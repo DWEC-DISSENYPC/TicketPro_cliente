@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { RouterLink } from '@angular/router';
 
+/* ###### COMPONENTE DE RECUPERACION DE CLAVE ###### */
+// ------ Expone Pantalla Visual Simple Interconectada Para Envios De Correos ------
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
@@ -12,14 +14,27 @@ import { RouterLink } from '@angular/router';
   styleUrl: './forgot-password.component.css',
 })
 export class ForgotPasswordComponent {
+  
+  /* ###### ESTADOS BINDED DEL FORMULARIO ###### */
+
+  // ------ Guarda Input Bi Direccional Del Html ------
   email: string = '';
+  // ------ Notificador Render De Exito Http ------
   mensajeSuccess: string = '';
+  // ------ Error Propagado A La Vista ------
   errorMessage: string = '';
+  // ------ Bloqueador Visual En Uso ------
   loading: boolean = false;
 
-  // Solo se declara AQUÍ, dentro del constructor.
+  /* ###### CONSTRUCTOR PRINCIPAL ###### */
+
+  // ------ Inyecta Exclusivamente El Gestor Central De Usuarios ------
+  // ------ Solo Se Declara Aqui Dentro Del Constructor ------
   constructor(private authService: AuthService) {}
 
+  /* ###### DETONADOR HTTP DE ENLACE ###### */
+
+  // ------ Consumo Del Metodo Asincrono Pasando Email Activo ------
   enviarEnlace() {
     this.loading = true;
     this.errorMessage = '';
@@ -27,13 +42,13 @@ export class ForgotPasswordComponent {
 
     this.authService.forgotPassword(this.email).subscribe({
       next: (res: any) => {
-        // El código esperará aquí el tiempo que hemos definido en Java
+        // ------ El Codigo Esperara Aqui El Tiempo Que Hemos Definido En Java ------
         this.mensajeSuccess = res.message;
         this.loading = false;
         this.email = '';
       },
       error: (err: any) => {
-        // Solo en caso de error real de conexión
+        // ------ Solo En Caso De Error Real De Conexion ------
         this.errorMessage = 'Servicio temporalmente no disponible.';
         this.loading = false;
       },

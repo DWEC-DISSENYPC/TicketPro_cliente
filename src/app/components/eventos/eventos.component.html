@@ -1,3 +1,5 @@
+<!-- ###### HERO DE ESTILO MODULAR ######## -->
+<!-- ------ Componente Extraido De Parametros Propios Para La Seccion ------ -->
 <app-hero
   [titulo]="titulo || (categoriaActual ? categoriaActual : 'Vive la Experiencia')"
   [subtitulo]="subtitulo || (categoriaActual ? 'Descubre los mejores eventos de ' + categoriaActual.toLowerCase() : 'Los mejores eventos de teatro, música, deportes y mucho más a un clic.')"
@@ -5,9 +7,12 @@
   [altura]="altura">
 </app-hero>
 
-<!-- SECCIÓN DE EVENTOS -->
+<!-- ###### SECCION GLOBAL DE EVENTOS ####### -->
+<!-- ------ Agrupa Directamente Formatos Aleatorios O Por Categoria ------ -->
 <section class="eventos-container">
-  <!-- Encabezado de la sección -->
+  
+  <!-- ###### ENCABEZADO DE LA SECCION ###### -->
+  <!-- ------ Titulacion Variable Tras Navegar ###### -->
   <div class="eventos-header">
     <h2 class="eventos-titulo">
       {{ categoriaActual ? categoriaActual : 'Eventos Destacados' }}
@@ -17,21 +22,25 @@
     </p>
   </div>
 
-  <!-- Estado de carga -->
+  <!-- ###### ESTADO DE CARGA TEMPORAL ###### -->
+  <!-- ------ Avisador Visual Simple ------ -->
   <div *ngIf="cargando" class="eventos-loading">
     <p>Cargando eventos...</p>
   </div>
 
-  <!-- Mensaje de error -->
+  <!-- ###### MENSAJE DE ERROR REACTIVO ###### -->
+  <!-- ------ Zona Dedicada Al Manejo De Caidas Http ------ -->
   <div *ngIf="error" class="eventos-error">
     <p>{{ error }}</p>
     <button (click)="recargarEventos()" class="btn-reintentar">Reintentar</button>
   </div>
 
-  <!-- Grid de eventos -->
+  <!-- ###### MATRIZ Y GRID GENERADO POR ARRAY ###### -->
+  <!-- ------ Carga Modulos Tarjeta Reiteradamente ------ -->
   <div *ngIf="!cargando && !error && eventosFiltrados.length > 0" class="eventos-grid">
     <div *ngFor="let evento of eventosFiltrados" class="evento-card">
-      <!-- Imagen del evento -->
+      
+      <!-- ------ Contenedor Superior De La Tarjeta De Imagen ------ -->
       <div class="evento-imagen-wrapper">
         <img alt="imagen del evento"
           [src]="evento.imagenUrl"
@@ -39,17 +48,19 @@
           class="evento-imagen"
           loading="lazy" />
         <div class="evento-badge">{{ evento.categoria }}</div>
+        
+        <!-- ------ Indicador De Disponibilidad ------ -->
         <div class="evento-estado" [ngClass]="'estado-' + evento.estado.toLowerCase()">
           {{ evento.estado }}
         </div>
       </div>
 
-      <!-- Contenido del evento -->
+      <!-- ------ Textos De Acercamiento Al Publico ------ -->
       <div class="evento-contenido">
         <h3 class="evento-titulo">{{ evento.titulo }}</h3>
         <p class="evento-descripcion">{{ evento.descripcion }}</p>
 
-        <!-- Información adicional -->
+        <!-- ------ Barra Contextual Adicional ------ -->
         <div class="evento-info">
           <span class="evento-duracion" *ngIf="evento.duracionMinutos">
             <i class="icon-clock">⏱</i>
@@ -57,20 +68,22 @@
           </span>
         </div>
 
-        <!-- Botón de acción -->
+        <!-- ------ Desviador A Pagina Individual ------ -->
         <a [routerLink]="['/evento', evento.id]" class="btn-entradas">Ver Detalles</a>
       </div>
     </div>
   </div>
 
-  <!-- Mensaje cuando no hay eventos -->
+  <!-- ###### EXCEPCION DE EVENTOS VACIOS ###### -->
+  <!-- ------ Se Asoma Cuando Hay 0 Actos Coincidentes ------ -->
   <div *ngIf="!cargando && !error && eventosFiltrados.length === 0" class="eventos-vacio">
     <p>
       {{ categoriaActual ? 'No hay eventos disponibles en la categoría ' + categoriaActual : 'No hay eventos disponibles en este momento.' }}
     </p>
   </div>
 
-  <!-- Botón para recargar eventos aleatorios -->
+  <!-- ###### RECARGA MANUAS DE PETICIONES ###### -->
+  <!-- ------ Accionador De Metodos Del Endpoint Rest ------ -->
   <div class="eventos-acciones">
     <button (click)="recargarEventos()" class="btn-recargar" [disabled]="cargando">
       {{ categoriaActual ? 'Actualizar ' + categoriaActual : 'Mostrar Otros Eventos' }}

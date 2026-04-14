@@ -1,16 +1,20 @@
-/* Contenedor principal: ocupa el espacio bajo el Hero */
+/* ###### CONTENEDOR PRINCIPAL ###### */
+
+/* ------ Ocupa El Espacio Bajo El Hero ------ */
 .account-wrapper {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  /* Alinea arriba para evitar saltos si el contenido crece */
+  /* ------ Alinea Arriba Para Evitar Saltos Si El Contenido Crece ------ */
   background-color: var(--bg-surface-muted);
-  /* Gris suave global */
+  /* ------ Gris Suave Global ------ */
   padding: 3rem 1rem;
   min-height: 70vh;
 }
 
-/* Tarjeta principal (Glassmorphism sutil) */
+/* ###### TARJETA PRINCIPAL (GLASSMORPHISM SUTIL) ###### */
+
+/* ------ Base Container Frontal ------ */
 .account-container {
   background-color: var(--bg-main);
   padding: 3rem;
@@ -18,15 +22,15 @@
   max-width: 900px;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-strong);
-  /* Sombra pronunciada para dar profundidad */
+  /* ------ Sombra Pronunciada Para Dar Profundidad ------ */
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  /* 'overflow: hidden' asegura que el contenido no sobresalga de los bordes redondeados */
+  /* ------ Asegura Que El Contenido No Sobresalga De Bordes ------ */
   overflow: hidden;
 }
 
-/* Título superior */
+/* ------ Titulo Superior De La Tarjeta ------ */
 h2 {
   text-align: center;
   color: var(--color-primary);
@@ -34,10 +38,12 @@ h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
   letter-spacing: -0.5px;
-  /* Técnica pro: reduce el espacio entre letras en títulos para mayor impacto */
+  /* ------ Reduce El Espacio Entre Letras Para Mayor Impacto ------ */
 }
 
-/* Cabecera del perfil: Avatar y Usuario */
+/* ###### CABECERA DEL PERFIL ###### */
+
+/* ------ Avatar Y Usuario Agrupados ------ */
 .profile-header {
   display: flex;
   flex-direction: column;
@@ -45,10 +51,10 @@ h2 {
   gap: 1rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid var(--border-subtle);
-  /* Separación visual limpia */
+  /* ------ Separacion Visual Limpia ------ */
 }
 
-/* Placeholder del avatar */
+/* ------ Placeholder Circunferencial Por Defecto ------ */
 .profile-placeholder {
   width: 80px;
   height: 80px;
@@ -63,18 +69,20 @@ h2 {
   box-shadow: var(--shadow-main);
 }
 
-/* Imagen de perfil real */
+/* ------ Imagen De Recurso Subido Efectiva ------ */
 .profile-img {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  /* Asegura que la foto no se deforme */
+  /* ------ Asegura Que La Foto No Se Deforme ------ */
   border: 3px solid var(--color-primary-soft);
-  /* Marco sutil alrededor de la foto */
+  /* ------ Marco Sutil Alrededor ------ */
 }
 
-/* Etiqueta de Rol (Badge) */
+/* ###### ETIQUETA DE ROL Y ESTADOS ###### */
+
+/* ------ Pill Decorativa ------ */
 .badge {
   background-color: var(--color-accent);
   color: var(--text-on-primary);
@@ -84,34 +92,40 @@ h2 {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  /* Mejora la legibilidad en textos pequeños en mayúsculas */
+  /* ------ Mejora La Legibilidad En Textos Cortos ------ */
 }
 
-/* Layout de la información: Rejilla adaptativa */
+/* ###### LAYOUT DE LA INFORMACION ###### */
+
+/* ------ Rejilla Adaptativa Central ------ */
 .profile-grid {
   display: grid;
-  /* repeat(auto-fit...) hace que las columnas se ajusten solas según el ancho de pantalla */
+  /* ------ Grid Auto Fit Adapta Columna A Resolucion ------ */
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 1.5rem;
 }
 
-/* Tarjetas individuales de información */
+/* ###### TARJETAS DE INFORMACION INDIVIDUAL ###### */
+
+/* ------ Cada Caja Textual Mostrada ------ */
 .info-card {
   background-color: var(--bg-main);
   border: 1px solid var(--border-interactive);
   padding: 1.5rem;
   border-radius: var(--radius-md);
   transition: var(--transition-standard);
-  /* Suaviza el efecto hover */
+  /* ------ Suaviza El Efecto Hover ------ */
 }
 
+/* ------ Levanta Levemente El Foco ------ */
 .info-card:hover {
-  /* Elevación sutil al pasar el ratón */
+  /* ------ Elevacion Sutil ------ */
   transform: translateY(-4px);
   box-shadow: var(--shadow-main);
   border-color: var(--color-primary-soft);
 }
 
+/* ------ Cabeceras De Seccion De Datos ------ */
 .info-card h3 {
   font-family: var(--font-family-title);
   color: var(--color-primary);
@@ -123,50 +137,58 @@ h2 {
   align-items: center;
 }
 
-/* Estilos de lista */
+/* ###### LISTAS Y CELDAS ###### */
+
+/* ------ Quita Puntos Nativos ------ */
 .info-card ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+/* ------ Organiza Como Fila Flexible ------ */
 .info-card li {
   margin-bottom: 0.8rem;
   color: var(--text-muted);
   font-family: var(--font-family-body);
   display: flex;
-  /* Flexbox para alinear el strong y el valor */
+  /* ------ Flexbox Para Alinear Titular Y Dato ------ */
   flex-wrap: wrap;
-  /* En móviles pequeños permite que el valor baje de línea */
+  /* ------ Permite Salto Inferior En Responsividad ------ */
 }
 
+/* ------ Tonalidad Acentuada Para El Indicador Fijo ------ */
 .info-card strong {
   color: var(--text-main);
   min-width: 140px;
-  /* Asegura que todos los textos de la izquierda empiecen igual */
+  /* ------ Asegura Ancho Inicial Uniforme ------ */
   font-weight: 600;
 }
 
+/* ------ Estructura No Italica Para Address ------ */
 .info-card .address {
   display: inline;
   font-style: normal;
 }
 
-/* Botones y Acciones */
+/* ###### BOTONES Y ACCIONES FINALES ###### */
+
+/* ------ Separacion Horinzontal Inferior ------ */
 .actions {
   display: flex;
   flex-wrap: wrap;
-  /* Para que en móvil se pongan uno encima de otro si no caben */
+  /* ------ Permite Apilar Naturalmente ------ */
   gap: 1rem;
   margin-top: 1rem;
 }
 
+/* ------ Dimension Estandard Mantenida ------ */
 .btn-primary,
 .btn-outline {
   flex: 1;
-  /* Hacen que ambos botones midan lo mismo */
+  /* ------ Hacen Que Ambos Midan Lo Mismo ------ */
   min-width: 200px;
-  /* Evita que se encojan demasiado */
+  /* ------ Evita Que Se Encojan Excesivamente ------ */
   padding: 14px;
   border-radius: var(--radius-sm);
   font-weight: 700;
@@ -176,27 +198,32 @@ h2 {
   text-transform: uppercase;
   font-size: 0.85rem;
   border: 2px solid transparent;
-  /* Reserva el espacio para el borde del hover */
+  /* ------ Reserva Borde Invisible ------ */
 }
 
+/* ------ Fondo Lleno ------ */
 .btn-primary {
   background-color: var(--color-primary);
   color: var(--text-on-primary);
 }
 
+/* ------ Fondo Transparente Perimetral ------ */
 .btn-outline {
   background-color: transparent;
   border: 2px solid var(--color-primary);
   color: var(--color-primary);
 }
 
-/* Efectos Hover Pro */
+/* ###### EFECTOS HOVER PRO ###### */
+
+/* ------ Modificacion Lleno ------ */
 .btn-primary:hover {
   background-color: var(--color-accent);
   transform: scale(1.02);
-  /* Escala sutil para sensación de presión */
+  /* ------ Escala Sutil Transaccional ------ */
 }
 
+/* ------ Modificacion Transparente ------ */
 .btn-outline:hover {
   background-color: var(--color-primary);
   color: var(--text-on-primary);
