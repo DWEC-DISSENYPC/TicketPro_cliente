@@ -148,8 +148,34 @@ export class DetalleCompraComponent implements OnInit {
 
   // ------ Dispara La Capacidad De Capturar O Obtener Recurso Codificado ------
   descargarQR(ticketId: number): void {
-    // ------ Esta Funcion Podria Implementar La Descarga Del Codigo Qr ------
-    // ------ Por Ahora Solo Mostramos Un Mensaje ------
-    alert('Funcionalidad de descarga QR próximamente disponible.');
+    if (!this.compra) return;
+
+    const ticket = this.compra.tickets.find(t => t.id === ticketId);
+    if (!ticket || !ticket.qrCode) {
+      alert('No se pudo encontrar el código QR.');
+      return;
+    }
+
+    this.eventoService.descargarImagen(ticket.qrCode).subscribe({
+      next: (blob) => {
+        // Crear un enlace temporal para la descarga
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `ticket-${this.compra?.localizador}-${ticketId}.png`;
+        
+        // Simular clic para iniciar descarga
+        document.body.appendChild(link);
+        link.click();
+        
+        // Limpieza
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      },
+      error: (err) => {
+        console.error('Error al descargar el QR:', err);
+        alert('Hubo un problema al descargar el código QR. Por favor, inténtalo de nuevo.');
+      }
+    });
   }
 }

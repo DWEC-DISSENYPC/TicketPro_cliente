@@ -157,7 +157,7 @@ export class MisEntradasComponent implements OnInit {
   // ------ Atribuye Clase Visual Acorde A String Devuelto Servidor ------
   getEstadoClass(estado: string): string {
     const estadoLower = estado.toLowerCase();
-    if (estadoLower === 'usada' || estadoLower === 'confirmada') {
+    if (estadoLower === 'usada' || estadoLower === 'confirmada' || estadoLower === 'pagada') {
       return 'estado-usada';
     } else if (estadoLower === 'pendiente') {
       return 'estado-pendiente';

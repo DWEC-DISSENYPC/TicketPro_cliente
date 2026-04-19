@@ -64,4 +64,9 @@ export class EventoService {
   buscar(termino: string): Observable<EventoDTO[]> {
     return this.http.get<EventoDTO[]>(`${this.eventosUrl}/buscar?termino=${termino}`);
   }
+
+  // Descargar una imagen desde una URL externa como Blob
+  descargarImagen(url: string): Observable<Blob> {
+    return this.http.get(url, { responseType: 'blob' });
+  }
 }
