@@ -59,4 +59,9 @@ export class EventoService {
   obtenerCategorias(): Observable<string[]> {
     return this.http.get<string[]>(`${this.eventosUrl}/categorias`);
   }
+
+  // Buscar eventos por título o ciudad
+  buscar(termino: string): Observable<EventoDTO[]> {
+    return this.http.get<EventoDTO[]>(`${this.eventosUrl}/buscar?termino=${termino}`);
+  }
 }

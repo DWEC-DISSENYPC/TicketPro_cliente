@@ -41,8 +41,11 @@ export class EventosComponent implements OnInit, OnDestroy {
 
   // ------ Control De Filtro Url Constante ------
   categoriaActual: string | null = null;
+  // ------ Termino De Busqueda Actual Propagado Por Url ------
+  searchActual: string | null = null;
   // ------ Suscripcion Recicable A La Fuga De Memoria ------
   private routeSub: Subscription = new Subscription();
+  private querySub: Subscription = new Subscription();
 
   /* ###### CONSTRUCTOR PRINCIPAL ###### */
 
@@ -60,6 +63,14 @@ export class EventosComponent implements OnInit, OnDestroy {
       this.categoriaActual = params['categoria'] || null;
       this.cargarEventos();
     });
+
+    // ------ Escuchar El Parametro De Busqueda ------
+    this.querySub = this.route.queryParams.subscribe((queryParams) => {
+      this.searchActual = queryParams['search'] || null;
+      if (this.searchActual) {
+        this.cargarEventos();
+      }
+    });
   }
 
   /* ###### CICLO POSTERIOR (DESTRUCCION DE OBJETO) ###### */
@@ -67,6 +78,7 @@ export class EventosComponent implements OnInit, OnDestroy {
   // ------ Al Abandonar La Capa Destruye La Escucha Dinamica ------
   ngOnDestroy(): void {
     this.routeSub.unsubscribe();
+    this.querySub.unsubscribe();
   }
 
   /* ###### SOLICITUDES Y ENCLAVE HTTP ###### */
@@ -76,7 +88,21 @@ export class EventosComponent implements OnInit, OnDestroy {
     this.cargando = true;
     this.error = null;
 
-    if (this.categoriaActual) {
+    if (this.searchActual) {
+      // ------ Si Hay Un Termino De Busqueda, Usar El Nuevo Servicio ------
+      this.eventoService.buscar(this.searchActual).subscribe({
+        next: (data) => {
+          this.eventos = data;
+          this.eventosFiltrados = data;
+          this.cargando = false;
+        },
+        error: (err) => {
+          console.error('Error al buscar eventos:', err);
+          this.error = 'No se encontraron resultados para tu búsqueda.';
+          this.cargando = false;
+        },
+      });
+    } else if (this.categoriaActual) {
       // ------ Si Hay Una Categoria Seleccionada Obtener Todos Los Eventos Y Filtrar ------
       this.eventoService.listarTodos().subscribe({
         next: (todosLosEventos) => {

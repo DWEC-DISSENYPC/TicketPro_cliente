@@ -9,7 +9,7 @@
   <!-- ------ Filtro Capa Media Para Brillo De Letra ------ -->
   <div class="hero-overlay">
     
-    <!-- ------ Caja De Textos Presentacional ------ -->
+    <!-- ###### Caja De Textos Presentacional ###### -->
     <div class="hero-content">
       
       <!-- ------ Datos Dinamicos Insertados ------ -->
@@ -19,8 +19,31 @@
       <!-- ###### BOTONES DIRECTOS ###### -->
       <!-- ------ Comandos Visuales Inertes Momentaneos ------ -->
       <div class="hero-actions">
-        <button class="btn-glass" aria-label="Buscar eventos por nombre o categoría">BUSCAR EVENTOS</button>
-        <button class="btn-outline" aria-label="Explorar la cartelera de eventos disponibles">EXPLORAR CARTELERA</button>
+        <button class="btn-glass" (click)="abrirBuscador()" aria-label="Abrir buscador de eventos">BUSCAR EVENTOS</button>
+        <button class="btn-outline" (click)="explorarCartelera()" aria-label="Explorar la cartelera de eventos disponibles">EXPLORAR CARTELERA</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ###### POPUP DE BUSQUEDA PREMIUM ###### -->
+  <div class="search-overlay" *ngIf="mostrarBuscador" (click)="cerrarBuscador()">
+    <div class="search-modal" (click)="$event.stopPropagation()">
+      <div class="search-header">
+        <h2>¿Qué estás buscando?</h2>
+        <button class="btn-close" (click)="cerrarBuscador()" aria-label="Cerrar buscador">&times;</button>
+      </div>
+      <div class="search-body">
+        <div class="search-input-wrapper">
+          <i class="bi bi-search search-icon"></i>
+          <input 
+            type="text" 
+            [(ngModel)]="terminoBusqueda" 
+            (keyup.enter)="ejecutarBusqueda()"
+            placeholder="Busca por nombre o ciudad..." 
+            autofocus
+          />
+        </div>
+        <button class="btn-search-submit" (click)="ejecutarBusqueda()">BUSCAR</button>
       </div>
     </div>
   </div>
