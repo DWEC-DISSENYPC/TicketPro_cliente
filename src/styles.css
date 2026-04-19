@@ -87,6 +87,40 @@
   --font-family-body: 'Roboto', Arial, sans-serif;
 }
 
+/* ###### SOPORTE MODO ALTO CONTRASTE (ACCESIBILIDAD) ###### */
+
+/* ------ Sobreescritura Automatica Si El Sistema Lo Requiere ------ */
+@media (prefers-contrast: more) {
+  :root {
+    /* ------ Colores Base De Alto Contraste ------ */
+    --color-primary: #0000aa;
+    --color-accent: #a52a2a;
+    --text-main: #000000;
+    --text-muted: #000000;
+    --bg-main: #ffffff;
+    --bg-section: #ffffff;
+    --bg-card: #ffffff;
+    --bg-glass: #ffffff;
+    --bg-surface-muted: #ffffff;
+
+    /* ------ Refuerzo De Bordes Para Visibilidad ------ */
+    --border-color: #000000;
+    --border-subtle: #000000;
+    --border-interactive: #000000;
+    --border-input: #000000;
+    --border-glass: #000000;
+
+    /* ------ Eliminacion De Sombras Y Transparencias ------ */
+    --shadow-main: none;
+    --shadow-strong: none;
+    --shadow-card-hover: none;
+    --shadow-button-primary: none;
+    --shadow-button-accent: none;
+    --overlay-gradient: none;
+    --focus-ring: rgba(0, 0, 0, 0.4);
+  }
+}
+
 /* ###### RESETEO CSS BASE ###### */
 
 /* ------ Eliminacion De Interespaciados Defecto ------ */
