@@ -2,7 +2,7 @@
 <!-- ------ Componente Gestor Central Donde Se Maneja El Historial Comercial ------ -->
 <section class="mis-entradas">
   <div class="container">
-    
+
     <!-- ###### CABECERA FIJA SUPERIOR ###### -->
     <!-- ------ Descripcion Sencilla De La Pantalla Actual ------ -->
     <div class="header-section">
@@ -14,11 +14,7 @@
     <!-- ------ Interruptor Rapido Para Separar Vigentes Frente Desuso ------ -->
     <div class="filtros-section">
       <label class="filtro-toggle">
-        <input
-          type="checkbox"
-          [(ngModel)]="mostrarSoloPendientes"
-          (change)="toggleFiltroPendientes()"
-        />
+        <input type="checkbox" [(ngModel)]="mostrarSoloPendientes" (change)="toggleFiltroPendientes()" />
         Mostrar solo entradas pendientes de usar
       </label>
     </div>
@@ -37,14 +33,14 @@
     <!-- ###### GRILLA MAESTRA DE ITEMS ###### -->
     <!-- ------ Despega Si El Listado Es Promiponente Y Existen Entradas ------ -->
     <div *ngIf="!cargando && comprasFiltradas.length > 0" class="compras-grid">
-      
+
       <!-- ------ Replicador Tarjetero Bucle Formateado ------ -->
       <article *ngFor="let compra of comprasFiltradas" class="compra-card">
-        
+
         <!-- ------ Cabezera Tarjeta Muestra Titulo General ------ -->
         <div class="compra-header">
           <h3>{{ compra.tituloEvento }}</h3>
-          
+
           <!-- ------ Condicionante De Clase Mediante Control Switch Angular ------ -->
           <span class="estado-badge" [ngClass]="getEstadoClass(compra.estado)">
             {{ compra.estado }}
@@ -53,13 +49,13 @@
 
         <!-- ------ Desglose Lineal Informativo Del Ticket Central ------ -->
         <div class="compra-detalles">
-          
+
           <!-- ------ Identificador Transaccional Unico ------ -->
           <div class="detalle-item">
             <strong>Localizador:</strong>
-            <span>{{ compra.localizador }}</span>
+            <span>{{ compra.estado.toLowerCase() === 'cancelada' ? '---' : compra.localizador }}</span>
           </div>
-          
+
           <!-- ------ Calendario Formateador Completo Europeo ------ -->
           <div class="detalle-item">
             <strong>Fecha:</strong>
@@ -96,15 +92,16 @@
 
           <!-- ------ Mensaje Bloqueo En Caso Caducidad Promocional Restrictiva ------ -->
           <div class="cancelacion-info" *ngIf="!puedeCancelar(compra)">
-            <small>{{ getMensajeCancelacion(compra) }}</small>
+            <small>
+              <ng-container [ngSwitch]="compra.estado.toLowerCase()">
+                <span *ngSwitchCase="'cancelada'">Esta compra ya ha sido cancelada</span>
+                <span *ngSwitchDefault>{{ getMensajeCancelacion(compra) }}</span>
+              </ng-container>
+            </small>
           </div>
 
           <!-- ------ Boton Solo Activo En Base A Fechas Adecuadas Cancelatorias ------ -->
-          <button
-            *ngIf="puedeCancelar(compra)"
-            class="btn-cancelar"
-            (click)="cancelarCompra(compra)"
-          >
+          <button *ngIf="puedeCancelar(compra)" class="btn-cancelar" (click)="cancelarCompra(compra)">
             Cancelar Compra
           </button>
         </div>
@@ -121,10 +118,10 @@
       <p>
         <!-- ------ Alternancia Literaria Segun Interrupor Frontend De Filtro Arriba ------ -->
         {{ mostrarSoloPendientes
-           ? 'No tienes entradas pendientes de usar.'
-           : 'Aún no has comprado ninguna entrada.' }}
+        ? 'No tienes entradas pendientes de usar.'
+        : 'Aún no has comprado ninguna entrada.' }}
       </p>
-      
+
       <!-- ------ Reorientacion Hacia Pagina Comercial Busqueda ------ -->
       <a routerLink="/eventos" class="btn-explorar">
         Explorar Eventos

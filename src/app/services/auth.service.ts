@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap, Subject } from 'rxjs';
+import { Observable, tap, Subject, BehaviorSubject, of, catchError } from 'rxjs';
 import { LoginCredentials } from '../models/auth.model';
 
 @Injectable({
@@ -26,6 +26,10 @@ export class AuthService {
   private loginSuccessSource = new Subject<string>();
   loginSuccess$ = this.loginSuccessSource.asObservable();
 
+  // ------ Fuente De Verdad Sobre El Estado De Autenticacion ------
+  private loggedInSource = new BehaviorSubject<boolean>(this.hasToken());
+  isLoggedIn$ = this.loggedInSource.asObservable();
+
   constructor(private http: HttpClient) {}
 
   // --- REGISTRO ---
@@ -40,6 +44,7 @@ export class AuthService {
         if (res.token) {
           localStorage.setItem('token', res.token);
           localStorage.setItem('username', credentials.username);
+          this.loggedInSource.next(true); // ------ Notificamos El Cambio De Estado ------
         }
       }),
     );
@@ -57,8 +62,36 @@ export class AuthService {
   }
 
   // --- GESTIÓN DE SESIÓN ---
+  
+  // ------ Comprobacion Rapida Sincrona Sobre El Estado Actual ------
   isLoggedIn(): boolean {
+    return this.loggedInSource.value;
+  }
+
+  // ------ Validacion Simple Del Token En Almacenamiento ------
+  private hasToken(): boolean {
     return !!localStorage.getItem('token');
+  }
+
+  // ------ Validacion Profunda Del Token Contra El Servidor ------
+  checkSession(): void {
+    if (!this.hasToken()) {
+      this.loggedInSource.next(false);
+      return;
+    }
+
+    this.getPerfil().pipe(
+      catchError((error) => {
+        if (error.status === 401 || error.status === 403) {
+          this.logout(); // ------ Si El Servidor Dice Que No Es Valido Limpiamos ------
+        }
+        return of(null);
+      })
+    ).subscribe((perfil) => {
+      if (perfil) {
+        this.loggedInSource.next(true);
+      }
+    });
   }
 
   getUsername(): string | null {
@@ -68,6 +101,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
+    this.loggedInSource.next(false); // ------ Notificamos El Cierre De Sesion ------
   }
 
   notifyLoginSuccess(username: string) {

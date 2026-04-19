@@ -51,6 +51,9 @@ export class NavbarComponent implements OnInit {
 
   // ------ Promesas Adscritas Permanentes De Atencion Ante Variantes Centralizadas ------
   ngOnInit() {
+    // ------ Validamos Si El Token Guardado Sigue Siendo Valido ------
+    this.authService.checkSession();
+
     // ------ Escuchamos Cuando El Servicio Diga Que Alguien Se Ha Logueado ------
     this.authService.loginSuccess$.subscribe((username) => {
       this.launchToast(`¡Bienvenido de nuevo, ${username}!`, 'success');

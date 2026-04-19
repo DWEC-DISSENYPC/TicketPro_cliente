@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { routes } from './app.routes';
 import { jwtInterceptor } from './interceptors/jwt.interceptor';
+import { errorInterceptor } from './interceptors/error.interceptor';
 
 /* ###### CONFIGURADOR MAESTRO ANGULAR VARIABLES FRONT ###### */
 
@@ -15,7 +16,7 @@ export const appConfig: ApplicationConfig = {
     
     // ------ Establece El Cliente Nativo De Consultas Web Y Adhiere Su Middleware ------
     provideHttpClient(
-      withInterceptors([jwtInterceptor])
+      withInterceptors([jwtInterceptor, errorInterceptor])
     )
   ]
 };

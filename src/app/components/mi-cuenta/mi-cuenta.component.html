@@ -1,17 +1,13 @@
 <!-- ###### HERO SUPERIOR PUBLICO ###### -->
 <!-- ------ Cabecera Compartida Externa ------ -->
-<app-hero
-  titulo="MI CUENTA"
-  subtitulo="Mis datos personales y preferencias"
-  imagenFondo="png/hero-principal.png"
-  [altura]="'30vh'"
->
+<app-hero titulo="MI CUENTA" subtitulo="Mis datos personales y preferencias" imagenFondo="png/hero-principal.png"
+  [altura]="'30vh'">
 </app-hero>
 
 <!-- ###### CONTENEDOR GENERAL DE CUENTA ###### -->
 <!-- ------ Centra El Contenido Visual Del Historial Y Perfil ------ -->
 <div class="account-wrapper">
-  
+
   <!-- ------ Caja O Marco Interactivo ------ -->
   <div class="account-container">
     <h2>Mi Cuenta</h2>
@@ -20,17 +16,13 @@
     <!-- ------ Muestra Foto De Perfil Y Rol Concedido ------ -->
     <div class="profile-header">
       @if (usuario.imagenUrl) {
-        
-        <!-- ------ Foto Renderizada Si Exise Guardada ------ -->
-        <img
-          [src]="usuario.imagenUrl"
-          alt="Foto de perfil"
-          class="profile-img"
-        />
+
+      <!-- ------ Foto Renderizada Si Exise Guardada ------ -->
+      <img [src]="usuario.imagenUrl" alt="Foto de perfil" class="profile-img" />
       } @else {
-        
-        <!-- ------ Alternativa Vacia Con Su Inicial Mayuscula ------ -->
-        <div class="profile-placeholder">{{ usuario.nombre?.charAt(0) }}</div>
+
+      <!-- ------ Alternativa Vacia Con Su Inicial Mayuscula ------ -->
+      <div class="profile-placeholder">{{ usuario.nombre?.charAt(0) }}</div>
       }
 
       <!-- ------ Nombre Primario Y Rol Tipo Pill ------ -->
@@ -68,13 +60,13 @@
           <li>
             <strong>Método de pago:</strong>
             {{
-              usuario.metodoPagoPreferido === "TARJETA"
-                ? "Tarjeta de Crédito/Débito"
-                : usuario.metodoPagoPreferido === "PAYPAL"
-                  ? "PayPal"
-                  : usuario.metodoPagoPreferido === "TRANSFERENCIA"
-                    ? "Transferencia Bancaria"
-                    : usuario.metodoPagoPreferido || "No definido"
+            usuario.metodoPagoPreferido === "TARJETA"
+            ? "Tarjeta de Crédito/Débito"
+            : usuario.metodoPagoPreferido === "PAYPAL"
+            ? "PayPal"
+            : usuario.metodoPagoPreferido === "TRANSFERENCIA"
+            ? "Transferencia Bancaria"
+            : usuario.metodoPagoPreferido || "No definido"
             }}
           </li>
 
@@ -82,10 +74,10 @@
           <li>
             <strong>Teléfono principal:</strong>
             @if (usuario.telefonos && usuario.telefonos.length > 0) {
-              {{ usuario.telefonos[0].numero }}
-              <small>({{ usuario.telefonos[0].tipo | lowercase }})</small>
+            {{ usuario.telefonos[0].numero }}
+            <small>({{ usuario.telefonos[0].tipo | lowercase }})</small>
             } @else {
-              No definido
+            No definido
             }
           </li>
 
@@ -101,7 +93,7 @@
               <!-- ------ Numeracion Y Puertas ------ -->
               <span *ngIf="usuario.numero">, {{ usuario.numero }}</span>
               <span *ngIf="usuario.pisoPuerta">, {{ usuario.pisoPuerta }}</span>
-              
+
               <br />
 
               <!-- ------ Emplazamiento Postal Y Ciudadania ------ -->
@@ -127,9 +119,9 @@
     <!-- ------ Botoneria Requerida Inferior ------ -->
     <div class="actions">
       <button class="btn-primary" (click)="irAEditar()">Editar Datos</button>
-      <button class="btn-outline" (click)="abrirModalPassword()">
+      <!-- <button class="btn-outline" (click)="abrirModalPassword()">
         Seguridad y Contraseña
-      </button>
+      </button> -->
     </div>
   </div>
 </div>

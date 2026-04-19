@@ -22,7 +22,7 @@ export class MisEntradasComponent implements OnInit {
   compras: HistorialCompraDTO[] = [];
   // ------ Render Clon Manipulable Mediante Switch En Frontend ------
   comprasFiltradas: HistorialCompraDTO[] = [];
-  
+
   // ------ Activador Del Retorno Boolean Solo Pendientes ------
   mostrarSoloPendientes: boolean = false;
   // ------ Animador Spinner Cargando ------
@@ -35,7 +35,7 @@ export class MisEntradasComponent implements OnInit {
   /* ###### CONSTRUCTOR CENTRAL ###### */
 
   // ------ Solamente Injecta Modulo Comunicador Hacia Rutas Rest Controlador Ticket ------
-  constructor(private eventoService: EventoService) {}
+  constructor(private eventoService: EventoService) { }
 
   /* ###### CICLO VIDA CON CARGADO AUTO ###### */
 
@@ -117,7 +117,8 @@ export class MisEntradasComponent implements OnInit {
   puedeCancelar(compra: HistorialCompraDTO): boolean {
     // ------ Se Puede Cancelar Si Faltan Mas De 5 Dias Para El Evento ------
     const diasRestantes = this.calcularDiasRestantes(compra.fechaSesion);
-    return diasRestantes > 5;
+    const estadoNoCancelado = compra.estado.toLowerCase() !== 'cancelada';
+    return estadoNoCancelado && diasRestantes > 5;
   }
 
   // ------ Envoltorio A Objeto Entero Metodo Helper ------

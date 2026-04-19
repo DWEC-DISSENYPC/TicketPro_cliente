@@ -33,10 +33,8 @@
   text-align: center;
   padding: 3rem;
   border-radius: 20px;
-  /* ------ Efecto Glassmorphism ------ */
+  /* ------ Efecto Glassmorphism Sin Blur ------ */
   background: var(--color-fondo-base);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: var(--color-sombra);
   max-width: 800px;
@@ -52,6 +50,7 @@
   margin-bottom: 1rem;
   text-transform: uppercase;
   letter-spacing: 2px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 /* ------ Bajada O Lema Complementario ------ */
@@ -60,7 +59,9 @@
   font-size: 1.2rem;
   color: var(--text-on-primary);
   margin-bottom: 2rem;
-  opacity: 0.9;
+  opacity: 1;
+  /* Aumentado para mejor visibilidad con el contorno */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 /* ###### GRUPO DE BOTONERIA ###### */
@@ -94,6 +95,7 @@
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 /* ------ Mutacion Sutil Que Eleva Componente ------ */
@@ -113,7 +115,7 @@
 
 /* ------ Punto De Quiebre En Tableta Y Movil ------ */
 @media (max-width: 768px) {
-  
+
   /* ------ Libera El Control Vertical Obligatorio ------ */
   .hero {
     min-height: 60vh;
