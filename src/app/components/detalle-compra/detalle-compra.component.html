@@ -1,7 +1,11 @@
+<app-hero titulo="DETALLE DE COMPRA" subtitulo="Consulta los datos de tu pedido y descarga tus tickets"
+  imagenFondo="png/hero-principal.png" [altura]="'40vh'">
+</app-hero>
+
 <!-- ------ Muestra La Informacion General Si La Compra Se Cargo Correctablemente ------ -->
-<section class="detalle-compra" *ngIf="!cargando && compra" role="main" aria-labelledby="page-title">
+<section class="detalle-compra" *ngIf="!cargando && compra" role="main" aria-labelledby="hero-title">
   <div class="container">
-    
+
     <!-- ###### CABECERA DEL DETALLE ###### -->
     <!-- ------ Boton Para Volver Y Titulo De La Compra ------ -->
     <div class="header-section">
@@ -9,7 +13,6 @@
         <i class="bi bi-arrow-left" aria-hidden="true"></i>
         Volver a Mis Entradas
       </a>
-      <h1 id="page-title">Detalle de Compra</h1>
       <p>Localizador: <strong>{{ compra.localizador }}</strong></p>
     </div>
 

@@ -1,17 +1,13 @@
 <!-- ###### SECCION DE CABECERA COMPARTIDA ###### -->
 <!-- ------ Componente Hero Estandar ------ -->
-<app-hero
-  titulo="ÚNETE A TICKETPRO"
-  subtitulo="Crea tu cuenta para comprar entradas de forma rápida"
-  imagenFondo="png/hero-principal.png"
-  [altura]="'30vh'"
->
+<app-hero titulo="ÚNETE A TICKETPRO" subtitulo="Crea tu cuenta para comprar entradas de forma rápida"
+  imagenFondo="png/hero-principal.png" [altura]="'40vh'">
 </app-hero>
 
 <!-- ###### CONTENEDOR DEL FORMULARIO REGISTRO ###### -->
 <!-- ------ Cubo De Ingreso De Datos Central ------ -->
 <div class="register-wrapper">
-  
+
   <div class="register-container">
     <h2>Registro de Usuario</h2>
 
@@ -20,40 +16,24 @@
 
       <!-- ###### DATOS PERSONALES BASICOS (DOBLE COLUMNA) ###### -->
       <div class="form-row">
-        
+
         <!-- ------ Caja De Nombre Nombre ------ -->
         <div class="form-group">
           <label for="nombre">Nombre</label>
-          <input
-            type="text"
-            id="nombre"
-            name="nombre"
-            [(ngModel)]="user.nombre"
-            placeholder="Tu nombre"
-            required
-            #nombre="ngModel"
-            [class.input-error]="nombre.invalid && nombre.touched"
-            aria-required="true"
-            [attr.aria-invalid]="nombre.invalid && nombre.touched"
-            aria-describedby="nombre-error"
-          />
-          <small id="nombre-error" class="error-text" *ngIf="nombre.invalid && nombre.touched" role="alert">El nombre es obligatorio</small>
+          <input type="text" id="nombre" name="nombre" [(ngModel)]="user.nombre" placeholder="Tu nombre" required
+            #nombre="ngModel" [class.input-error]="nombre.invalid && nombre.touched" aria-required="true"
+            [attr.aria-invalid]="nombre.invalid && nombre.touched" aria-describedby="nombre-error" />
+          <small id="nombre-error" class="error-text" *ngIf="nombre.invalid && nombre.touched" role="alert">El nombre es
+            obligatorio</small>
         </div>
 
         <!-- ------ Caja De Apellidos ------ -->
         <div class="form-group">
           <label for="apellidos">Apellidos</label>
-          <input
-            type="text"
-            id="apellidos"
-            name="apellidos"
-            [(ngModel)]="user.apellidos"
-            placeholder="Tus apellidos"
-            required
-            #apellidos="ngModel"
-            [class.input-error]="apellidos.invalid && apellidos.touched"
-          />
-          <small class="error-text" *ngIf="apellidos.invalid && apellidos.touched">Los apellidos son obligatorios</small>
+          <input type="text" id="apellidos" name="apellidos" [(ngModel)]="user.apellidos" placeholder="Tus apellidos"
+            required #apellidos="ngModel" [class.input-error]="apellidos.invalid && apellidos.touched" />
+          <small class="error-text" *ngIf="apellidos.invalid && apellidos.touched">Los apellidos son
+            obligatorios</small>
         </div>
       </div>
 
@@ -62,33 +42,16 @@
       <!-- ------ Dni Unico De Facturacion ------ -->
       <div class="form-group">
         <label for="dni">DNI / NIE</label>
-        <input
-          type="text"
-          id="dni"
-          name="dni"
-          [(ngModel)]="user.dni"
-          required
-          placeholder="12345678Z"
-          #dni="ngModel"
-          [class.input-error]="dni.invalid && dni.touched"
-        />
+        <input type="text" id="dni" name="dni" [(ngModel)]="user.dni" required placeholder="12345678Z" #dni="ngModel"
+          [class.input-error]="dni.invalid && dni.touched" />
         <small class="error-text" *ngIf="dni.invalid && dni.touched">El DNI es obligatorio para la facturación</small>
       </div>
 
       <!-- ------ Validacion Electronica Por Patrones Front ------ -->
       <div class="form-group">
         <label for="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          [(ngModel)]="user.email"
-          placeholder="ejemplo@correo.com"
-          required
-          email
-          #email="ngModel"
-          [class.input-error]="email.invalid && email.touched"
-        />
+        <input type="email" id="email" name="email" [(ngModel)]="user.email" placeholder="ejemplo@correo.com" required
+          email #email="ngModel" [class.input-error]="email.invalid && email.touched" />
         <small class="error-text" *ngIf="email.errors?.['required'] && email.touched">El email es obligatorio</small>
         <small class="error-text" *ngIf="email.errors?.['email'] && email.touched">Formato de email no válido</small>
       </div>
@@ -98,68 +61,46 @@
       <!-- ------ Identificador Nickname Corto ------ -->
       <div class="form-group">
         <label for="username">Nombre de Usuario</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          [(ngModel)]="user.username"
-          placeholder="usuario123"
-          required
-          minlength="4"
-          #username="ngModel"
-          [class.input-error]="username.invalid && username.touched"
-        />
-        <small class="error-text" *ngIf="username.errors?.['required'] && username.touched">El usuario es obligatorio</small>
-        <small class="error-text" *ngIf="username.errors?.['minlength'] && username.touched">Debe tener al menos 4 caracteres</small>
+        <input type="text" id="username" name="username" [(ngModel)]="user.username" placeholder="usuario123" required
+          minlength="4" #username="ngModel" [class.input-error]="username.invalid && username.touched" />
+        <small class="error-text" *ngIf="username.errors?.['required'] && username.touched">El usuario es
+          obligatorio</small>
+        <small class="error-text" *ngIf="username.errors?.['minlength'] && username.touched">Debe tener al menos 4
+          caracteres</small>
       </div>
 
       <!-- ------ Contraserña Personal Interactiva Toggleable ------ -->
       <div class="form-group">
         <label for="password">Contraseña</label>
         <div class="password-input-wrapper">
-          <input
-            [type]="showPassword ? 'text' : 'password'"
-            id="password"
-            name="password"
-            [(ngModel)]="user.password"
-            placeholder="Mínimo 6 caracteres"
-            required
-            minlength="6"
-            #password="ngModel"
-            [class.input-error]="password.invalid && password.touched"
-          />
-          <button type="button" class="toggle-password" (click)="togglePasswordVisibility()" [attr.aria-label]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'">
+          <input [type]="showPassword ? 'text' : 'password'" id="password" name="password" [(ngModel)]="user.password"
+            placeholder="Mínimo 6 caracteres" required minlength="6" #password="ngModel"
+            [class.input-error]="password.invalid && password.touched" />
+          <button type="button" class="toggle-password" (click)="togglePasswordVisibility()"
+            [attr.aria-label]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'">
             {{ showPassword ? "👁️‍🗨️" : "👁️" }}
           </button>
         </div>
-        <small class="error-text" *ngIf="password.errors?.['required'] && password.touched">La contraseña es obligatoria</small>
+        <small class="error-text" *ngIf="password.errors?.['required'] && password.touched">La contraseña es
+          obligatoria</small>
         <small class="error-text" *ngIf="password.errors?.['minlength'] && password.touched">Mínimo 6 caracteres</small>
       </div>
 
       <!-- ------ Retipeo Evaluado De Constancia ------ -->
       <div class="form-group">
         <label for="confirmPassword">Confirmar Contraseña</label>
-        <input
-          type="password"
-          id="confirmPassword"
-          name="confirmPassword"
-          [(ngModel)]="user.confirmPassword"
-          placeholder="Repite tu contraseña"
-          required
-          #confirmPass="ngModel"
-          [class.input-error]="(confirmPass.invalid || user.password !== user.confirmPassword) && confirmPass.touched"
-        />
-        <small class="error-text" *ngIf="user.password !== user.confirmPassword && confirmPass.touched">Las contraseñas no coinciden</small>
+        <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="user.confirmPassword"
+          placeholder="Repite tu contraseña" required #confirmPass="ngModel"
+          [class.input-error]="(confirmPass.invalid || user.password !== user.confirmPassword) && confirmPass.touched" />
+        <small class="error-text" *ngIf="user.password !== user.confirmPassword && confirmPass.touched">Las contraseñas
+          no coinciden</small>
       </div>
 
       <!-- ###### BOTON DE PROCEDER LOGICO ###### -->
-      
+
       <!-- ------ Depende De Multiples Booleanos Para Volverse Utilitario ------ -->
-      <button
-        type="submit"
-        class="btn-register"
-        [disabled]="!registerForm.form.valid || user.password !== user.confirmPassword || loading"
-      >
+      <button type="submit" class="btn-register"
+        [disabled]="!registerForm.form.valid || user.password !== user.confirmPassword || loading">
         {{ loading ? "Creando cuenta..." : "Crear Cuenta" }}
       </button>
 

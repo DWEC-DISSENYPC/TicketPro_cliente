@@ -1,16 +1,13 @@
 <!-- ###### COMPONENTE HERO CABECERA ###### -->
 <!-- ------ Inserta Atributos De Pantalla Dinamica Visual ------ -->
-<app-hero
-  titulo="MI CUENTA"
-  subtitulo="Accede para gestionar tus entradas y compras"
-  imagenFondo="png/hero-principal.png"
-  [altura]="'30vh'">
+<app-hero titulo="MI CUENTA" subtitulo="Accede para gestionar tus entradas y compras"
+  imagenFondo="png/hero-principal.png" [altura]="'40vh'">
 </app-hero>
 
 <!-- ###### PANTALLA CENTRADA DE REGISTRO FORMULARIO ###### -->
 <!-- ------ Contiene Todo El Interfaz Logico De Operacion Login ------ -->
 <div class="login-wrapper">
-  
+
   <!-- ###### CAJA DE CREDENCIALES ###### -->
   <!-- ------ El Recuadro Blanco Tipico Dedicado Al User ------ -->
   <div class="login-container">
@@ -18,17 +15,12 @@
 
     <!-- ------ Formulario Directo Y Formulario Ng Combinado ------ -->
     <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-      
+
       <!-- ------ Caja Para Entrar El Identificador ------ -->
       <div class="form-group">
         <label for="username">Usuario</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          [(ngModel)]="credentials.username"
-          placeholder="Tu nombre de usuario"
-          required>
+        <input type="text" id="username" name="username" [(ngModel)]="credentials.username"
+          placeholder="Tu nombre de usuario" required>
       </div>
 
       <!-- ------ Caja Para Entrar El Password ------ -->
@@ -37,19 +29,11 @@
 
         <!-- ------ Wrapper Especial Que Une Ojo E Input Sensible ------ -->
         <div class="password-input-wrapper">
-          <input
-            [type]="showPassword ? 'text' : 'password'"
-            id="password"
-            name="password"
-            [(ngModel)]="credentials.password"
-            placeholder="••••••••"
-            required>
+          <input [type]="showPassword ? 'text' : 'password'" id="password" name="password"
+            [(ngModel)]="credentials.password" placeholder="••••••••" required>
 
           <!-- ------ Boton Accionador Toggle Del Atributo Tipado ------ -->
-          <button
-            type="button"
-            class="toggle-password"
-            (click)="togglePasswordVisibility()"
+          <button type="button" class="toggle-password" (click)="togglePasswordVisibility()"
             [attr.aria-label]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'">
             {{ showPassword ? '👁️‍🗨️' : '👁️' }}
           </button>

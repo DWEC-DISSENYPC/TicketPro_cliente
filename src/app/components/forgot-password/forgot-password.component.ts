@@ -3,13 +3,14 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { RouterLink } from '@angular/router';
+import { HeroComponent } from '../hero/hero.component';
 
 /* ###### COMPONENTE DE RECUPERACION DE CLAVE ###### */
 // ------ Expone Pantalla Visual Simple Interconectada Para Envios De Correos ------
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterLink],
+  imports: [FormsModule, CommonModule, RouterLink, HeroComponent],
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.css',
 })

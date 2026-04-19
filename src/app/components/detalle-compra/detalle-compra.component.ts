@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { EventoService } from '../../services/evento.service';
 import { DetalleCompraDTO, MensajeResponseDTO } from '../../models/evento.model';
+import { HeroComponent } from '../hero/hero.component';
 
 /* ###### COMPONENTE DE DETALLE DE COMPRA ###### */
 // ------ Se Encarga De Mostrar Y Gestionar Las Entradas Ya Compradas ------
 @Component({
   selector: 'app-detalle-compra',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, HeroComponent],
   templateUrl: './detalle-compra.component.html',
   styleUrls: ['./detalle-compra.component.css'],
 })

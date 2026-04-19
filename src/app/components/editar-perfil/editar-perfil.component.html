@@ -1,11 +1,7 @@
 <!-- ###### HERO SUPERIOR DE LA PAGINA ###### -->
 <!-- ------ Muestra El Titulo Subtitulo Y Fondo Decorativo ------ -->
-<app-hero
-  titulo="EDITAR PERFIL"
-  subtitulo="Actualiza tu información personal"
-  imagenFondo="png/hero-principal.png"
-  [altura]="'30vh'"
->
+<app-hero titulo="EDITAR PERFIL" subtitulo="Actualiza tu información personal" imagenFondo="png/hero-principal.png"
+  [altura]="'40vh'">
 </app-hero>
 
 <!-- ###### CONTENEDOR GENERAL DE LA PAGINA ###### -->
@@ -14,94 +10,59 @@
   <!-- ###### CONTENEDOR INTERNO ###### -->
   <!-- ------ Limita El Ancho Y Centra El Formulario ------ -->
   <div class="account-container">
-    
+
     <!-- ###### TARJETA DE IMAGEN Y CONTRASEÑA ###### -->
     <!-- ------ Grid De Dos Columnas Para Gestion Visual Y De Acceso ------ -->
-      <div class="image-password-container">
-        <div class="info-card image-card">
-          <h3>Imagen de Perfil</h3>
-          <div class="profile-image-preview">
-            <img
-              *ngIf="imagenPerfilUrl"
-              [src]="imagenPerfilUrl"
-              class="profile-img"
-              (error)="imagenPerfilUrl = ''"
-              alt="Imagen de Perfil"
-            />
-            <div *ngIf="!imagenPerfilUrl" class="profile-placeholder">
-              {{ editForm.get("nombre")?.value?.charAt(0) | uppercase }}
-            </div>
+    <div class="image-password-container">
+      <div class="info-card image-card">
+        <h3>Imagen de Perfil</h3>
+        <div class="profile-image-preview">
+          <img *ngIf="imagenPerfilUrl" [src]="imagenPerfilUrl" class="profile-img" (error)="imagenPerfilUrl = ''"
+            alt="Imagen de Perfil" />
+          <div *ngIf="!imagenPerfilUrl" class="profile-placeholder">
+            {{ editForm.get("nombre")?.value?.charAt(0) | uppercase }}
           </div>
-          <div class="form-group">
-            <label for="imagenPerfil">Cambiar imagen</label>
-            <input
-              id="imagenPerfil"
-              type="file"
-              accept="image/*"
-              (change)="onImagenSeleccionada($event)"
-              class="form-control"
-            />
-          </div>
-          <button
-            type="button"
-            class="btn-text-add"
-            (click)="subirImagen()"
-            [disabled]="!imagenSeleccionada"
-          >
-            Actualizar Foto
-          </button>
         </div>
-
-        <!-- ------ Tarjeta De Reseteo De Password ------ -->
-        <div class="info-card password-card">
-          <h3>Seguridad y Acceso</h3>
-          <p class="card-subtitle">Cambia tu contraseña de acceso aquí.</p>
-          <form (ngSubmit)="actualizarPassword()" #resetForm="ngForm">
-            <div class="form-group">
-              <label for="pass">Contraseña Actual</label>
-              <input
-                type="password"
-                name="passwordActual"
-                [(ngModel)]="passwordActual"
-                class="form-control"
-                required
-                placeholder="Introduce tu contraseña actual"
-              />
-            </div>
-            
-            <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
-
-            <div class="form-group">
-              <label for="confirm">Nueva Contraseña</label>
-              <input
-                type="password"
-                name="passwordNueva"
-                [(ngModel)]="passwordNueva"
-                class="form-control"
-                required
-                placeholder="Minimo 6 caracteres"
-              />
-            </div>
-
-            <button
-              type="submit"
-              [disabled]="!resetForm.valid || loading"
-              class="btn-primary"
-            >
-              {{ loading ? "Actualizando..." : "Cambiar contraseña" }}
-            </button>
-          </form>
+        <div class="form-group">
+          <label for="imagenPerfil">Cambiar imagen</label>
+          <input id="imagenPerfil" type="file" accept="image/*" (change)="onImagenSeleccionada($event)"
+            class="form-control" />
         </div>
+        <button type="button" class="btn-text-add" (click)="subirImagen()" [disabled]="!imagenSeleccionada">
+          Actualizar Foto
+        </button>
       </div>
+
+      <!-- ------ Tarjeta De Reseteo De Password ------ -->
+      <div class="info-card password-card">
+        <h3>Seguridad y Acceso</h3>
+        <p class="card-subtitle">Cambia tu contraseña de acceso aquí.</p>
+        <form (ngSubmit)="actualizarPassword()" #resetForm="ngForm">
+          <div class="form-group">
+            <label for="pass">Contraseña Actual</label>
+            <input type="password" name="passwordActual" [(ngModel)]="passwordActual" class="form-control" required
+              placeholder="Introduce tu contraseña actual" />
+          </div>
+
+          <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+          <div class="form-group">
+            <label for="confirm">Nueva Contraseña</label>
+            <input type="password" name="passwordNueva" [(ngModel)]="passwordNueva" class="form-control" required
+              placeholder="Minimo 6 caracteres" />
+          </div>
+
+          <button type="submit" [disabled]="!resetForm.valid || loading" class="btn-primary">
+            {{ loading ? "Actualizando..." : "Cambiar contraseña" }}
+          </button>
+        </form>
+      </div>
+    </div>
 
     <!-- ###### FORMULARIO PRINCIPAL MULTI COLUMNA ###### -->
     <!-- ------ Usa Reactive Forms Y El Grid De 3 Columnas ------ -->
 
-    <form
-      [formGroup]="editForm"
-      (ngSubmit)="guardarCambios()"
-      class="edit-form-grid"
-    >
+    <form [formGroup]="editForm" (ngSubmit)="guardarCambios()" class="edit-form-grid">
       <!-- ###### TARJETA 1 : DATOS PERSONALES ###### -->
       <!-- ------ Primera Columna Del Formulario Identidad Visual ------ -->
       <div class="info-card">
@@ -111,28 +72,16 @@
         <div class="form-row">
           <div class="form-group">
             <label for="nombre">Nombre *</label>
-            <input
-              id="nombre"
-              type="text"
-              formControlName="nombre"
-              class="form-control"
-              placeholder="Nombre"
-              aria-required="true"
-              [attr.aria-invalid]="campoInvalido('nombre')"
-              [attr.aria-describedby]="campoInvalido('nombre') ? 'nombre-error' : null"
-            />
+            <input id="nombre" type="text" formControlName="nombre" class="form-control" placeholder="Nombre"
+              aria-required="true" [attr.aria-invalid]="campoInvalido('nombre')"
+              [attr.aria-describedby]="campoInvalido('nombre') ? 'nombre-error' : null" />
             <div id="nombre-error" class="error" *ngIf="campoInvalido('nombre')" role="alert">Obligatorio</div>
           </div>
 
           <div class="form-group">
             <label for="apellidos">Apellidos *</label>
-            <input
-              id="apellidos"
-              type="text"
-              formControlName="apellidos"
-              class="form-control"
-              placeholder="Apellidos"
-            />
+            <input id="apellidos" type="text" formControlName="apellidos" class="form-control"
+              placeholder="Apellidos" />
           </div>
         </div>
 
@@ -140,36 +89,19 @@
         <div class="form-row">
           <div class="form-group">
             <label for="email">Email *</label>
-            <input
-              id="email"
-              type="email"
-              formControlName="email"
-              class="form-control"
-              aria-required="true"
-            />
+            <input id="email" type="email" formControlName="email" class="form-control" aria-required="true" />
           </div>
 
           <div class="form-group">
             <label for="dni">DNI *</label>
-            <input
-              id="dni"
-              type="text"
-              formControlName="dni"
-              class="form-control"
-              maxlength="9"
-            />
+            <input id="dni" type="text" formControlName="dni" class="form-control" maxlength="9" />
           </div>
         </div>
 
         <!-- ------ Campo: Fecha De Nacimiento ------ -->
         <div class="form-group">
           <label for="fechaNacimiento">Fecha de nacimiento *</label>
-          <input
-            id="fechaNacimiento"
-            type="date"
-            formControlName="fechaNacimiento"
-            class="form-control"
-          />
+          <input id="fechaNacimiento" type="date" formControlName="fechaNacimiento" class="form-control" />
         </div>
       </div>
 
@@ -181,34 +113,19 @@
         <!-- ------ Calle Y Via ------ -->
         <div class="form-group">
           <label for="calle">Calle *</label>
-          <input
-            id="calle"
-            type="text"
-            formControlName="calle"
-            class="form-control"
-          />
+          <input id="calle" type="text" formControlName="calle" class="form-control" />
         </div>
 
         <!-- ------ Numero Bloque Y Piso O Puerta ------ -->
         <div class="form-row">
           <div class="form-group">
             <label for="numero">Nº *</label>
-            <input
-              id="numero"
-              type="text"
-              formControlName="numero"
-              class="form-control"
-            />
+            <input id="numero" type="text" formControlName="numero" class="form-control" />
           </div>
 
           <div class="form-group">
             <label for="pisoPuerta">Piso/Pta *</label>
-            <input
-              id="pisoPuerta"
-              type="text"
-              formControlName="pisoPuerta"
-              class="form-control"
-            />
+            <input id="pisoPuerta" type="text" formControlName="pisoPuerta" class="form-control" />
           </div>
         </div>
 
@@ -216,23 +133,12 @@
         <div class="form-row">
           <div class="form-group">
             <label for="codigoPostal">CP *</label>
-            <input
-              id="codigoPostal"
-              type="text"
-              formControlName="codigoPostal"
-              class="form-control"
-              maxlength="5"
-            />
+            <input id="codigoPostal" type="text" formControlName="codigoPostal" class="form-control" maxlength="5" />
           </div>
 
           <div class="form-group">
             <label for="ciudad">Ciudad *</label>
-            <input
-              id="ciudad"
-              type="text"
-              formControlName="ciudad"
-              class="form-control"
-            />
+            <input id="ciudad" type="text" formControlName="ciudad" class="form-control" />
           </div>
         </div>
 
@@ -240,22 +146,12 @@
         <div class="form-row">
           <div class="form-group">
             <label for="provincia">Provincia *</label>
-            <input
-              id="provincia"
-              type="text"
-              formControlName="provincia"
-              class="form-control"
-            />
+            <input id="provincia" type="text" formControlName="provincia" class="form-control" />
           </div>
 
           <div class="form-group">
             <label for="pais">País *</label>
-            <input
-              id="pais"
-              type="text"
-              formControlName="pais"
-              class="form-control"
-            />
+            <input id="pais" type="text" formControlName="pais" class="form-control" />
           </div>
         </div>
       </div>
@@ -269,48 +165,26 @@
 
           <!-- ------ Lista Dinamica De Telefonos Form Array ------ -->
           <div formArrayName="telefonos" class="telefonos-container">
-            <div
-              *ngFor="let tel of telefonosFormArray.controls; let i = index"
-              [formGroupName]="i"
-              class="phone-row"
-            >
-              <input
-                type="text"
-                formControlName="numero"
-                class="form-control"
-                placeholder="Número"
-              />
+            <div *ngFor="let tel of telefonosFormArray.controls; let i = index" [formGroupName]="i" class="phone-row">
+              <input type="text" formControlName="numero" class="form-control" placeholder="Número" />
 
-              <select
-                formControlName="tipo"
-                class="form-control"
-                title="Tipo de teléfono"
-                aria-label="Tipo de teléfono"
-              >
+              <select formControlName="tipo" class="form-control" title="Tipo de teléfono"
+                aria-label="Tipo de teléfono">
                 <option value="MOVIL">Móvil</option>
                 <option value="FIJO">Fijo</option>
                 <option value="TRABAJO">Trabajo</option>
               </select>
 
               <!-- ------ Boton Corto Que Elimina El Telefono Array ------ -->
-              <button
-                type="button"
-                class="btn-icon-delete"
-                (click)="eliminarTelefono(i)"
-                *ngIf="telefonosFormArray.length > 1"
-                aria-label="Eliminar este teléfono"
-              >
+              <button type="button" class="btn-icon-delete" (click)="eliminarTelefono(i)"
+                *ngIf="telefonosFormArray.length > 1" aria-label="Eliminar este teléfono">
                 ✕
               </button>
             </div>
           </div>
 
           <!-- ------ Boton Añadir Nuevo Telefono Al Bucle ------ -->
-          <button
-            type="button"
-            class="btn-text-add"
-            (click)="agregarTelefono()"
-          >
+          <button type="button" class="btn-text-add" (click)="agregarTelefono()">
             + Añadir
           </button>
         </div>
@@ -321,11 +195,7 @@
 
           <div class="form-group">
             <label for="metodoPagoPref">Método de Pago *</label>
-            <select
-              id="metodoPagoPref"
-              formControlName="metodoPagoPref"
-              class="form-control"
-            >
+            <select id="metodoPagoPref" formControlName="metodoPagoPref" class="form-control">
               <option value="TARJETA">Tarjeta de Crédito</option>
               <option value="PAYPAL">PayPal</option>
               <option value="TRANSFERENCIA">Transferencia</option>

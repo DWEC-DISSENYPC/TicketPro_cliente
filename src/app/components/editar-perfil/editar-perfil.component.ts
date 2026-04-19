@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   ReactiveFormsModule,
-  FormsModule, // ------ Añadido Para Ng Model ------
+  FormsModule,
   FormBuilder,
   FormGroup,
   FormArray,
@@ -58,7 +58,7 @@ export class EditarPerfilComponent implements OnInit {
   // ------ Alterna Visualizacion Al Escribir Pass ------
   showPassword = false;
   // ------ Almacen De Seguridad Secundaria ------
-  nuevaPass: string = ''; 
+  nuevaPass: string = '';
   // ------ Requisito De Comparacion ------
   confirmarPass: string = '';
   // ------ Hash De Solicitud En Correo ------
@@ -155,7 +155,7 @@ export class EditarPerfilComponent implements OnInit {
       next: (res) => {
         this.imagenPerfilUrl = res.url;
         // ------ Limpiamos Seleccion ------
-        this.imagenSeleccionada = null; 
+        this.imagenSeleccionada = null;
         this.showToastMessage('Imagen actualizada correctamente', 'success');
         this.loading = false;
       },

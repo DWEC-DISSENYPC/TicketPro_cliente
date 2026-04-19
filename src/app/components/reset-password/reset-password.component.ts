@@ -3,13 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { HeroComponent } from '../hero/hero.component';
 
 /* ###### COMPONENTE FINALIZADOR RESETEO CONTRASEÑA ###### */
 // ------ Obtiene Parametros Url Referentes A Email Enviado Y Posibilita Mutacion Opcional ------
 @Component({
   selector: 'app-reset-password',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, HeroComponent],
   templateUrl: './reset-password.component.html',
   styleUrl: './reset-password.component.css',
 })

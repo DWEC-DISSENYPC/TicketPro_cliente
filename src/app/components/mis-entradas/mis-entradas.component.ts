@@ -4,13 +4,14 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { EventoService } from '../../services/evento.service';
 import { HistorialCompraDTO, MensajeResponseDTO } from '../../models/evento.model';
+import { HeroComponent } from '../hero/hero.component';
 
 /* ###### COMPONENTE MIS ENTRADAS HISTORIAL ###### */
 // ------ Representa Formulario Completo Del Listado Comercial Transaccional Con Opceion De Cancelar ------
 @Component({
   selector: 'app-mis-entradas',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, HeroComponent],
   templateUrl: './mis-entradas.component.html',
   styleUrls: ['./mis-entradas.component.css'],
 })
