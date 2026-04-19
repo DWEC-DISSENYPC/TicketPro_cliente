@@ -49,7 +49,7 @@
 
 /* ------ Elemento Agrupador Para Los Actos ------ */
 .evento-card {
-  background: var(--bg-main);
+  background: var(--bg-card);
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--border-color);
@@ -63,7 +63,7 @@
 
 /* ------ Efecto Elevacion Al Foco ------ */
 .evento-card:hover {
-  box-shadow: var(--shadow-strong);
+  box-shadow: var(--shadow-card-hover);
   transform: translateY(-8px);
   border-color: var(--color-primary);
 }
@@ -211,11 +211,7 @@
 .btn-entradas {
   margin-top: auto;
   padding: 12px 20px;
-  background: linear-gradient(
-    135deg,
-    var(--color-primary),
-    rgba(73, 49, 212, 0.8)
-  );
+  background: var(--color-primary);
   color: var(--text-on-primary);
   border: none;
   border-radius: var(--radius-md);
@@ -231,13 +227,9 @@
 
 /* ------ Realza El Gradiente Al Foco ------ */
 .btn-entradas:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(73, 49, 212, 0.9),
-    var(--color-primary)
-  );
+  filter: brightness(1.1);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(73, 49, 212, 0.3);
+  box-shadow: var(--shadow-button-primary);
 }
 
 /* ------ Elimina Transformacion Al Clickear ------ */
@@ -275,7 +267,7 @@
   background: transparent;
   color: var(--color-accent);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(233, 147, 19, 0.3);
+  box-shadow: var(--shadow-button-accent);
 }
 
 /* ------ Desactivado ------ */
@@ -300,7 +292,7 @@
 
 /* ------ Efecto Click Reintento ------ */
 .btn-reintentar:hover {
-  background: rgba(73, 49, 212, 0.8);
+  filter: brightness(0.9);
   transform: translateY(-2px);
 }
 
@@ -329,8 +321,8 @@
 
 /* ------ Modificador Rojizo ------ */
 .eventos-error {
-  background: rgba(211, 47, 47, 0.05);
-  border: 2px solid var(--status-error);
+  background: var(--status-error-bg);
+  border: 1px solid var(--status-error);
 }
 
 /* ------ Letra Color Alerta ------ */

@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   padding: 3rem 1rem;
-  background-color: #f4f7f6;
+  background-color: var(--bg-surface-muted);
   min-height: 60vh;
 }
 
@@ -14,10 +14,10 @@
 
 /* ------ Recuadro En Blanco Del Registro ------ */
 .register-container {
-  background: #ffffff;
+  background: var(--bg-card);
   padding: 2.5rem;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-strong);
   width: 100%;
   max-width: 500px;
   /* ------ Un Poco Mas Ancho Que El Login Para Doble Fila ------ */
@@ -53,7 +53,7 @@ label {
   display: block;
   margin-bottom: 0.4rem;
   font-weight: 600;
-  color: #444;
+  color: var(--text-muted);
   font-size: 0.85rem;
 }
 
@@ -61,8 +61,8 @@ label {
 input {
   width: 100%;
   padding: 10px 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-sm);
   font-size: 0.95rem;
   box-sizing: border-box;
 }
@@ -71,7 +71,7 @@ input {
 input:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(255, 127, 0, 0.1);
+  box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
 /* ###### INTERFAZ PARA EL BOTON OJO ###### */
@@ -110,17 +110,18 @@ input:focus {
 
 /* ------ Condicion Inhabilitadora Visual Por Defecto ------ */
 .btn-register:disabled {
-  background-color: #ccc;
+  background-color: var(--bg-disabled);
+  color: var(--text-disabled);
 }
 
 /* ###### VALIDACION DE ERRORES FRONTEND ###### */
 
 /* ------ Alerta De Operacion Fallida Http ------ */
 .error-msg {
-  color: #d32f2f;
-  background: #ffebee;
+  color: var(--status-error-text);
+  background: var(--status-error-bg);
   padding: 10px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   margin-top: 1rem;
   text-align: center;
   font-size: 0.85rem;
@@ -128,13 +129,13 @@ input:focus {
 
 /* ------ Contorno Rojizo Para Inputs Invalidos ------ */
 .input-error {
-  border-color: #d32f2f !important;
-  background-color: #fff8f8;
+  border-color: var(--status-error) !important;
+  background-color: var(--status-error-bg);
 }
 
 /* ------ Texto Informativo Menor Bajo Input Erroneo ------ */
 .error-text {
-  color: #d32f2f;
+  color: var(--status-error);
   font-size: 0.75rem;
   margin-top: 4px;
   display: block;

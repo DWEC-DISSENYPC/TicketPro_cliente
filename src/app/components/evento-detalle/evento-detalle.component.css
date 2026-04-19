@@ -31,7 +31,7 @@
 
 /* ------ Texto En Blanco Superpuesto ------ */
 .detalle-hero-content {
-  color: #ffffff;
+  color: var(--text-on-primary);
   max-width: 860px;
 }
 
@@ -40,7 +40,7 @@
   display: inline-block;
   margin-bottom: 1rem;
   padding: 0.5rem 1rem;
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--bg-glass);
   border-radius: 999px;
   font-weight: 600;
 }
@@ -55,9 +55,9 @@
 
 /* ------ Estilo Particular Individual ------ */
 .detalle-meta-item {
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--bg-glass);
   padding: 0.75rem 1rem;
-  border-radius: 14px;
+  border-radius: var(--radius-md);
 }
 
 /* ###### CUERPO DEL DETALLE Y REJILLAS ###### */
@@ -93,9 +93,9 @@
   width: 100%;
   max-width: 280px;
   padding: 0.8rem 1rem;
-  border-radius: 18px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  background: #ffffff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
   max-width: 150px;
 }
 
@@ -110,10 +110,10 @@
 
 /* ------ Cartel De Cada Sesion Disponible ------ */
 .sesion-card {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--bg-card);
   padding: 1.5rem;
-  border-radius: 28px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-strong);
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -135,7 +135,7 @@
 
 /* ------ Notificacion De Llenado O Tope Maximo Alcanzado ------ */
 .mensaje-ajuste {
-  color: #c62828;
+  color: var(--status-error);
   font-weight: 700;
   font-size: 0.95rem;
 }
@@ -149,8 +149,8 @@
   padding: 0.95rem 1.4rem;
   border-radius: 999px;
   border: none;
-  background: var(--color-primary, #6c3bff);
-  color: #ffffff;
+  background: var(--color-primary);
+  color: var(--text-on-primary);
   font-weight: 700;
   cursor: pointer;
   text-decoration: none;
@@ -164,13 +164,13 @@
 
 /* ------ Confirmacion Global Con Color Verde ------ */
 .detalle-exito {
-  color: #1a7f37;
+  color: var(--status-success);
   font-weight: 700;
 }
 
 /* ------ Bloqueos Con Rojo ------ */
 .detalle-error {
-  color: #c62828;
+  color: var(--status-error);
   font-weight: 700;
 }
 

@@ -138,7 +138,7 @@
 /* ------ Aviso Invalido O Vacio Literal ------ */
 .error,
 .error-message {
-  color: var(--status-error, #dc3545);
+  color: var(--status-error);
   font-size: 0.75rem;
   margin-top: 0.4rem;
   font-weight: 500;
@@ -147,7 +147,7 @@
 
 /* ------ Feedback Visual En El Input Usando Clases Nativas Angular ------ */
 input.ng-invalid.ng-touched {
-  border-color: var(--status-error, #dc3545);
+  border-color: var(--status-error);
 }
 
 /* ------ Aparicion Fluida ------ */
@@ -175,9 +175,9 @@ input.ng-invalid.ng-touched {
 
 /* ------ Boton De Opcion Para Eliminar Registro Telefonico ------ */
 .btn-icon-delete {
-  background: #ff4d4d22;
-  color: #ff4d4d;
-  border: 1px solid #ff4d4d;
+  background: var(--status-error-bg);
+  color: var(--status-error-text);
+  border: 1px solid var(--status-error);
   border-radius: 50%;
   min-width: 28px;
   height: 28px;
@@ -185,13 +185,13 @@ input.ng-invalid.ng-touched {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s;
+  transition: var(--transition-standard);
 }
 
 /* ------ Comportamiento Hover Al Borrar Telefono ------ */
 .btn-icon-delete:hover {
-  background: #ff4d4d;
-  color: white;
+  background: var(--status-error);
+  color: var(--text-on-primary);
 }
 
 /* ------ Boton Transparente Para Añadir Bloque ------ */
@@ -235,7 +235,7 @@ input.ng-invalid.ng-touched {
   border-radius: 50px;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-main);
 }
 
 /* ------ Boton Secundario Usado Para Descartar O Cancelar ------ */

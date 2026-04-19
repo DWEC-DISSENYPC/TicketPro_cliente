@@ -3,7 +3,7 @@
 /* ------ Envoltura De Pagina Base ------ */
 .mis-entradas {
   min-height: 100vh;
-  background: var(--color-background, #f8f9fa);
+  background: var(--bg-section);
   padding: 2rem 0;
 }
 
@@ -24,14 +24,14 @@
 
 /* ------ Texto En Negrita Destacado Superior ------ */
 .header-section h1 {
-  color: var(--color-primary, #6c3bff);
+  color: var(--color-primary);
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
 }
 
 /* ------ Descripcion Complementaria Al Titulo ------ */
 .header-section p {
-  color: var(--color-text-secondary, #6c757d);
+  color: var(--text-muted);
   font-size: 1.1rem;
 }
 
@@ -51,9 +51,9 @@
   font-weight: 600;
   cursor: pointer;
   padding: 0.75rem 1.25rem;
-  background: #ffffff;
+  background: var(--bg-card);
   border-radius: 999px;
-  box-shadow: var(--shadow-main, 0 4px 12px rgba(0, 0, 0, 0.08));
+  box-shadow: var(--shadow-main);
 }
 
 /* ------ Caja Checkbox Ampliada ------ */
@@ -70,7 +70,7 @@
   text-align: center;
   padding: 3rem;
   font-size: 1.1rem;
-  color: var(--color-text-secondary, #6c757d);
+  color: var(--text-muted);
 }
 
 /* ------ Alertas Contextuales Globales ------ */
@@ -84,16 +84,16 @@
 
 /* ------ Notificacion Critica O Negativa ------ */
 .mensaje-error {
-  background: #fee;
-  color: #c62828;
-  border: 1px solid #fcc;
+  background: var(--status-error-bg);
+  color: var(--status-error-text);
+  border: 1px solid var(--status-error);
 }
 
 /* ------ Notificacion Valida O Segura ------ */
 .mensaje-exito {
-  background: #efe;
-  color: #1a7f37;
-  border: 1px solid #cfc;
+  background: var(--status-success-bg);
+  color: var(--status-success-text);
+  border: 1px solid var(--status-success);
 }
 
 /* ###### GRID DE COMPRAS ###### */
@@ -109,10 +109,10 @@
 
 /* ------ Elemento Agrupador Para Las Entradas ------ */
 .compra-card {
-  background: #ffffff;
-  border-radius: 20px;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
   padding: 1.75rem;
-  box-shadow: var(--shadow-main, 0 4px 12px rgba(0, 0, 0, 0.08));
+  box-shadow: var(--shadow-main);
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -149,26 +149,26 @@
 /* ------ Usada Con Color Verde Fuerte ------ */
 .estado-usada,
 .estado-confirmada {
-  background: #d4edda;
-  color: #155724;
+  background: var(--status-success-bg);
+  color: var(--status-success-text);
 }
 
 /* ------ Pendiente Con Color Amarillo Triste ------ */
 .estado-pendiente {
-  background: #fff3cd;
-  color: #856404;
+  background: var(--status-warning-bg);
+  color: var(--status-warning-text);
 }
 
 /* ------ Cancelada Con Color Rojo Sangre ------ */
 .estado-cancelada {
-  background: #f8d7da;
-  color: #721c24;
+  background: var(--status-error-bg);
+  color: var(--status-error-text);
 }
 
 /* ------ Estado Indefinido En Gris ------ */
 .estado-otro {
-  background: #e2e3e5;
-  color: #383d41;
+  background: var(--status-info-bg);
+  color: var(--status-info-text);
 }
 
 /* ###### LISTA DE PARAMETROS COMPRA ###### */
@@ -185,7 +185,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 0;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 /* ------ Saca La Linea Del Ultimo Item ------ */
@@ -195,12 +195,12 @@
 
 /* ------ Destacador De La Clave Textual ------ */
 .detalle-item strong {
-  color: var(--color-text-primary, #212529);
+  color: var(--text-main);
 }
 
 /* ------ Señal De Alarma Fecha Proxima ------ */
 .dias-urgente {
-  color: #c62828;
+  color: var(--status-error);
   font-weight: 700;
 }
 
@@ -231,8 +231,8 @@
 
 /* ------ Estilo Call To Action Primario ------ */
 .btn-detalle {
-  background: var(--color-primary, #6c3bff);
-  color: #ffffff;
+  background: var(--color-primary);
+  color: var(--text-on-primary);
   flex: 1;
 }
 
@@ -244,21 +244,21 @@
 
 /* ------ Estilo Secundario Destructivo ------ */
 .btn-cancelar {
-  background: #dc3545;
-  color: #ffffff;
+  background: var(--status-error);
+  color: var(--text-on-primary);
   flex: 1;
 }
 
 /* ------ Oscurecimiento Del Restar ------ */
 .btn-cancelar:hover {
-  background: #c82333;
+  filter: brightness(0.9);
   transform: translateY(-1px);
 }
 
 /* ------ Boton Central Descubrir Alternativo ------ */
 .btn-explorar {
-  background: var(--color-primary, #6c3bff);
-  color: #ffffff;
+  background: var(--color-primary);
+  color: var(--text-on-primary);
   margin-top: 1.5rem;
 }
 
@@ -278,7 +278,7 @@
 
 /* ------ Letra Disminuida Complemento ------ */
 .cancelacion-info small {
-  color: var(--color-text-secondary, #6c757d);
+  color: var(--text-muted);
   font-size: 0.85rem;
 }
 
@@ -288,27 +288,27 @@
 .empty-state {
   text-align: center;
   padding: 4rem 2rem;
-  background: #ffffff;
-  border-radius: 20px;
-  box-shadow: var(--shadow-main, 0 4px 12px rgba(0, 0, 0, 0.08));
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-main);
 }
 
 /* ------ Iconograma Enorme Tristeza ------ */
 .empty-icon {
   font-size: 4rem;
-  color: var(--color-text-secondary, #6c757d);
+  color: var(--text-muted);
   margin-bottom: 1.5rem;
 }
 
 /* ------ Tipografia Triste Central ------ */
 .empty-state h3 {
-  color: var(--color-primary, #6c3bff);
+  color: var(--color-primary);
   margin-bottom: 0.75rem;
 }
 
 /* ------ Complemento Triste Centrado ------ */
 .empty-state p {
-  color: var(--color-text-secondary, #6c757d);
+  color: var(--text-muted);
   margin-bottom: 2rem;
 }
 

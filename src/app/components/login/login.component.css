@@ -15,10 +15,10 @@
 
 /* ------ Recuadro Frontal De Formulario ------ */
 .login-container {
-  background: var(--bg-main);
+  background: var(--bg-card);
   padding: 2.5rem;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px var(--color-sombra);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-strong);
   width: 100%;
   max-width: 400px;
 }
@@ -59,10 +59,10 @@ label {
 input {
   width: 100%;
   padding: 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-sm);
   font-size: 1rem;
-  transition: all 0.3s ease;
+  transition: var(--transition-standard);
   box-sizing: border-box;
   /* ------ Importante Para Que El Padding No Rompa El Ancho ------ */
 }
@@ -71,7 +71,7 @@ input {
 input:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px var(--color-sombra);
+  box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
 /* ###### BOTON PRIMARIO DE INGRESO ###### */
@@ -107,14 +107,14 @@ input:focus {
 
 /* ------ Caja Excepcional Sobre Parametros Invalidos ------ */
 .error-msg {
-  background-color: var(--bg-main);
-  color: var(--color-error);
+  background-color: var(--status-error-bg);
+  color: var(--status-error-text);
   padding: 10px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   margin-top: 1.5rem;
   text-align: center;
   font-size: 0.85rem;
-  border: 1px solid #ffcdd2;
+  border: 1px solid var(--status-error);
 }
 
 /* ###### SECCION PIE (FOOTER) ###### */

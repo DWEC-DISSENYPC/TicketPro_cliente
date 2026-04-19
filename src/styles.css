@@ -11,8 +11,14 @@
   /* ------ Superficies Y Fondos (Surfaces) ------ */
   --bg-main: #ffffff;
   --bg-section: #f8f9fa;
+  --bg-card: #ffffff;
   --bg-glass: rgba(255, 255, 255, 0.1);
   --border-color: rgba(0, 0, 0, 0.1);
+  --border-glass: rgba(255, 255, 255, 0.2);
+  --focus-ring: rgba(73, 49, 212, 0.25);
+  
+  --overlay-dark: rgba(0, 0, 0, 0.6);
+  --overlay-gradient: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.75));
 
   /* ------ Colores De Texto ------ */
   --text-main: #212121;
@@ -23,9 +29,21 @@
   /* ------ Texto Sobre Fondos Oscuros ------ */
 
   /* ------ Estados (Status) ------ */
-  --status-success: #140c88;
+  --status-success: #1a7f37;
+  --status-success-bg: #d4edda;
+  --status-success-text: #155724;
+  
   --status-error: #d32f2f;
+  --status-error-bg: #f8d7da;
+  --status-error-text: #721c24;
+  
   --status-warning: #ffa43c;
+  --status-warning-bg: #fff3cd;
+  --status-warning-text: #856404;
+
+  --status-info: #4931d4;
+  --status-info-bg: #e2e3e5;
+  --status-info-text: #383d41;
 
   --bg-surface-muted: #f4f7f6;
   /* ------ Fondo Gris Suave Para La Pagina ------ */
@@ -38,9 +56,11 @@
 
   --transition-standard: all 0.3s ease;
   /* ------ Transicion Suave Reutilizable ------ */
-  --radius-lg: 15px;
+  --radius-xl: 28px;
+  /* ------ Mega Radio Para Tarjetas Modernas ------ */
+  --radius-lg: 20px;
   /* ------ Radio De Esquinas Grande ------ */
-  --radius-md: 10px;
+  --radius-md: 12px;
   /* ------ Radio De Esquinas Medio ------ */
   --radius-sm: 8px;
   /* ------ Radio De Esquinas Pequeño ------ */
@@ -53,8 +73,12 @@
   --text-disabled: #6c757d;
 
   /* ------ Sombras Y Efectos ------ */
-  --shadow-main: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-strong: 0 8px 16px rgba(0, 0, 0, 0.2);
+  --shadow-main: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-strong: 0 24px 60px rgba(0, 0, 0, 0.08);
+  --shadow-overlay: 0 8px 16px rgba(0, 0, 0, 0.2);
+  --shadow-card-hover: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --shadow-button-primary: 0 4px 12px rgba(73, 49, 212, 0.3);
+  --shadow-button-accent: 0 4px 12px rgba(233, 147, 19, 0.3);
 
   /* ------ Tipografia ------ */
   --font-family-title: 'Montserrat', sans-serif;
