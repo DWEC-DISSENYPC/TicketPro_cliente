@@ -85,7 +85,7 @@ h2 {
 /* ------ Pill Decorativa ------ */
 .badge {
   background-color: var(--color-accent);
-  color: var(--text-on-primary);
+  color: var(--text-on-accent);
   padding: 4px 14px;
   border-radius: 20px;
   font-size: 0.75rem;
@@ -219,6 +219,7 @@ h2 {
 /* ------ Modificacion Lleno ------ */
 .btn-primary:hover {
   background-color: var(--color-accent);
+  color: var(--text-on-accent);
   transform: scale(1.02);
   /* ------ Escala Sutil Transaccional ------ */
 }

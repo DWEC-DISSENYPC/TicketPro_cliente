@@ -7,8 +7,8 @@
     <!-- ------ Lado Izquierdo Con Enlace Principal Al Inicio ------ -->
     <div class="footer-brand">
       <div class="nav-logo">
-        <a routerLink="/">
-          <img src="svg/logo_ticketpro_cabecera.svg" alt="TicketPro Logo" class="logo-img">
+        <a routerLink="/" aria-label="TicketPro - Ir a la página de inicio">
+          <img src="svg/logo_ticketpro_cabecera.svg" alt="" class="logo-img" aria-hidden="true">
         </a>
       </div>
       <p>La forma más fácil de encontrar y comprar entradas para tus eventos favoritos.</p>
@@ -19,19 +19,19 @@
     <div class="footer-links">
       
       <!-- ------ Atajos Principales ------ -->
-      <div>
+      <nav aria-label="Navegación del pie - Secciones">
         <h4>Secciones</h4>
         <a routerLink="/eventos">Inicio</a>
         <a routerLink="/eventos">Eventos</a>
         <a routerLink="/perfil">Mi Cuenta</a>
-      </div>
+      </nav>
 
       <!-- ------ Modulos Externos De Autorizacion Y Auxilio ------ -->
-      <div>
+      <nav aria-label="Navegación del pie - Ayuda">
         <h4>Ayuda</h4>
         <a routerLink="/forgot-password">Recuperar contraseña</a>
         <a routerLink="/register">Crear cuenta</a>
-      </div>
+      </nav>
     </div>
   </div>
 

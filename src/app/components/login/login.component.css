@@ -94,6 +94,7 @@ input:focus {
 /* ------ Animacion Sutil Y Cambio De Tono ------ */
 .btn-login:hover:not(:disabled) {
   background-color: var(--color-accent);
+  color: var(--text-on-accent);
   transform: translateY(-2px);
 }
 

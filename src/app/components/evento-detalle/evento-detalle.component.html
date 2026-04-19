@@ -31,6 +31,7 @@
         id="ciudadSeleccionada"
         [(ngModel)]="ciudadSeleccionada"
         (change)="filtrarSesiones()"
+        aria-label="Filtrar por ciudad"
       >
         <!-- ------ Lista Renderizada Del Recurso Activo ------ -->
         <option *ngFor="let ciudad of ciudades" [value]="ciudad">{{ ciudad }}</option>
@@ -77,7 +78,7 @@
           />
 
           <!-- ------ Warning Limitador Para No Exceder Stock ------ -->
-          <div *ngIf="cantidadAjustada[sesion.id]" class="mensaje-ajuste">
+          <div *ngIf="cantidadAjustada[sesion.id]" class="mensaje-ajuste" role="status" aria-live="polite">
             Se ha ajustado la cantidad al máximo disponible.
           </div>
 
@@ -86,6 +87,7 @@
             class="btn-comprar"
             [disabled]="entradasDisponibles(sesion) === 0 || cantidadNoValida(sesion)"
             (click)="comprarSesion(sesion)"
+            [attr.aria-label]="'Comprar ' + (cantidadSeleccionada[sesion.id] || 0) + ' entradas para la sesión del ' + (sesion.fechaHora | date:'dd/MM/yyyy')"
           >
             Comprar
           </button>

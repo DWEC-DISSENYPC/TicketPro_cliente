@@ -129,7 +129,7 @@
 /* ------ Contador Del Carrito Flotante Rojo O Naranja ------ */
 .badge {
   background-color: var(--color-accent);
-  color: var(--text-on-primary);
+  color: var(--text-on-accent);
   font-size: 0.95rem;
   padding: 2px 7px;
   border-radius: var(--radius-sm);
@@ -186,6 +186,7 @@
 /* ------ Sombrea Fondo Al Acercar Mouse ------ */
 .dropdown-content a:hover {
   background-color: var(--color-accent);
+  color: var(--text-on-accent);
 }
 
 /* ------ Revelador Activo Mediante Hovers ------ */

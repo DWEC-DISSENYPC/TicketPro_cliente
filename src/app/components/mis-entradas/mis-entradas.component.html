@@ -1,12 +1,11 @@
-<!-- ###### SECCION GLOBAL DE MIS ENTRADAS ######## -->
 <!-- ------ Componente Gestor Central Donde Se Maneja El Historial Comercial ------ -->
-<section class="mis-entradas">
+<section class="mis-entradas" role="main" aria-labelledby="entradas-title">
   <div class="container">
 
     <!-- ###### CABECERA FIJA SUPERIOR ###### -->
     <!-- ------ Descripcion Sencilla De La Pantalla Actual ------ -->
     <div class="header-section">
-      <h1>Mis Entradas</h1>
+      <h1 id="entradas-title">Mis Entradas</h1>
       <p>Gestiona tus compras y entradas</p>
     </div>
 
@@ -14,7 +13,7 @@
     <!-- ------ Interruptor Rapido Para Separar Vigentes Frente Desuso ------ -->
     <div class="filtros-section">
       <label class="filtro-toggle">
-        <input type="checkbox" [(ngModel)]="mostrarSoloPendientes" (change)="toggleFiltroPendientes()" />
+        <input type="checkbox" [(ngModel)]="mostrarSoloPendientes" (change)="toggleFiltroPendientes()" role="switch" [attr.aria-checked]="mostrarSoloPendientes" />
         Mostrar solo entradas pendientes de usar
       </label>
     </div>
@@ -32,14 +31,14 @@
 
     <!-- ###### GRILLA MAESTRA DE ITEMS ###### -->
     <!-- ------ Despega Si El Listado Es Promiponente Y Existen Entradas ------ -->
-    <div *ngIf="!cargando && comprasFiltradas.length > 0" class="compras-grid">
+    <div *ngIf="!cargando && comprasFiltradas.length > 0" class="compras-grid" role="list">
 
       <!-- ------ Replicador Tarjetero Bucle Formateado ------ -->
-      <article *ngFor="let compra of comprasFiltradas" class="compra-card">
+      <article *ngFor="let compra of comprasFiltradas" class="compra-card" role="listitem" [attr.aria-labelledby]="'compra-' + compra.id">
 
         <!-- ------ Cabezera Tarjeta Muestra Titulo General ------ -->
         <div class="compra-header">
-          <h3>{{ compra.tituloEvento }}</h3>
+          <h3 [id]="'compra-' + compra.id">{{ compra.tituloEvento }}</h3>
 
           <!-- ------ Condicionante De Clase Mediante Control Switch Angular ------ -->
           <span class="estado-badge" [ngClass]="getEstadoClass(compra.estado)">
@@ -86,7 +85,7 @@
         <!-- ###### INTERFAZ ACCIONAL POR ENTRADA ###### -->
         <!-- ------ Zona Concreta Donde Alterar Y Examinar Una Individualidad ------ -->
         <div class="compra-acciones">
-          <a [routerLink]="['/detalle-compra', compra.id]" class="btn-detalle">
+          <a [routerLink]="['/detalle-compra', compra.id]" class="btn-detalle" [attr.aria-label]="'Ver detalle de la compra para ' + compra.tituloEvento">
             Ver Detalle
           </a>
 
@@ -101,7 +100,7 @@
           </div>
 
           <!-- ------ Boton Solo Activo En Base A Fechas Adecuadas Cancelatorias ------ -->
-          <button *ngIf="puedeCancelar(compra)" class="btn-cancelar" (click)="cancelarCompra(compra)">
+          <button *ngIf="puedeCancelar(compra)" class="btn-cancelar" (click)="cancelarCompra(compra)" [attr.aria-label]="'Cancelar compra para ' + compra.tituloEvento">
             Cancelar Compra
           </button>
         </div>

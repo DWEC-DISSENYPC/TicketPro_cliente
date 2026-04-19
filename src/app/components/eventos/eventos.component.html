@@ -9,12 +9,12 @@
 
 <!-- ###### SECCION GLOBAL DE EVENTOS ####### -->
 <!-- ------ Agrupa Directamente Formatos Aleatorios O Por Categoria ------ -->
-<section class="eventos-container">
+<section class="eventos-container" role="main" aria-labelledby="section-title">
   
   <!-- ###### ENCABEZADO DE LA SECCION ###### -->
   <!-- ------ Titulacion Variable Tras Navegar ###### -->
   <div class="eventos-header">
-    <h2 class="eventos-titulo">
+    <h2 class="eventos-titulo" id="section-title">
       {{ categoriaActual ? categoriaActual : 'Eventos Destacados' }}
     </h2>
     <p class="eventos-subtitulo">
@@ -37,8 +37,8 @@
 
   <!-- ###### MATRIZ Y GRID GENERADO POR ARRAY ###### -->
   <!-- ------ Carga Modulos Tarjeta Reiteradamente ------ -->
-  <div *ngIf="!cargando && !error && eventosFiltrados.length > 0" class="eventos-grid">
-    <div *ngFor="let evento of eventosFiltrados" class="evento-card">
+  <div *ngIf="!cargando && !error && eventosFiltrados.length > 0" class="eventos-grid" role="list">
+    <div *ngFor="let evento of eventosFiltrados" class="evento-card" role="listitem">
       
       <!-- ------ Contenedor Superior De La Tarjeta De Imagen ------ -->
       <div class="evento-imagen-wrapper">
@@ -69,7 +69,7 @@
         </div>
 
         <!-- ------ Desviador A Pagina Individual ------ -->
-        <a [routerLink]="['/evento', evento.id]" class="btn-entradas">Ver Detalles</a>
+        <a [routerLink]="['/evento', evento.id]" class="btn-entradas" [attr.aria-label]="'Ver detalles de ' + evento.titulo">Ver Detalles</a>
       </div>
     </div>
   </div>

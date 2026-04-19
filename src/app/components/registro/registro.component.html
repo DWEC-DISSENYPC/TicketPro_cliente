@@ -33,8 +33,11 @@
             required
             #nombre="ngModel"
             [class.input-error]="nombre.invalid && nombre.touched"
+            aria-required="true"
+            [attr.aria-invalid]="nombre.invalid && nombre.touched"
+            aria-describedby="nombre-error"
           />
-          <small class="error-text" *ngIf="nombre.invalid && nombre.touched">El nombre es obligatorio</small>
+          <small id="nombre-error" class="error-text" *ngIf="nombre.invalid && nombre.touched" role="alert">El nombre es obligatorio</small>
         </div>
 
         <!-- ------ Caja De Apellidos ------ -->
@@ -125,7 +128,7 @@
             #password="ngModel"
             [class.input-error]="password.invalid && password.touched"
           />
-          <button type="button" class="toggle-password" (click)="togglePasswordVisibility()">
+          <button type="button" class="toggle-password" (click)="togglePasswordVisibility()" [attr.aria-label]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'">
             {{ showPassword ? "👁️‍🗨️" : "👁️" }}
           </button>
         </div>

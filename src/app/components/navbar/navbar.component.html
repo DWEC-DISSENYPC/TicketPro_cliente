@@ -11,16 +11,16 @@
       </button>
 
       <div class="nav-logo">
-        <a routerLink="/">
-          <img src="svg/logo_ticketpro_cabecera.svg" alt="TicketPro Logo" class="logo-img">
+        <a routerLink="/" aria-label="TicketPro - Página de inicio">
+          <img src="svg/logo_ticketpro_cabecera.svg" alt="" class="logo-img" aria-hidden="true">
         </a>
       </div>
     </div>
 
     <!-- ###### ZONA CENTRAL DE ENLACES ROUTER ###### -->
     <!-- ------ Bucle Lista Para Las Diferentes Opciones Tematicas ------ -->
-    <ul class="nav-links" [class.mobile-show]="isMenuOpen">
-      <li><a routerLink="/eventos" routerLinkActive="active" (click)="isMenuOpen = false">Inicio</a></li>
+    <ul class="nav-links" [class.mobile-show]="isMenuOpen" aria-label="Enlaces de navegación principal">
+      <li><a routerLink="/eventos" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" aria-current="page" (click)="isMenuOpen = false">Inicio</a></li>
 
       <!-- ------ Categorias Dinamicas Obtenidas Del Endpoint Backend ------ -->
       <li *ngFor="let categoria of categorias">
@@ -44,22 +44,22 @@
     <div class="nav-actions">
       
       <!-- ------ Atajo Condicionado Al Carrito Si Tiene Sesion ------ -->
-      <a *ngIf="authService.isLoggedIn()" routerLink="/carrito" class="nav-icon-btn cart-btn">
-        <i class="bi bi-cart3"></i>
+      <a *ngIf="authService.isLoggedIn()" routerLink="/carrito" class="nav-icon-btn cart-btn" aria-label="Carrito de compras, 0 artículos">
+        <i class="bi bi-cart3" aria-hidden="true"></i>
         <!-- ------ Indicador Con Las Cifras Agendadas No Transactables ------ -->
         <span class="badge">0</span>
       </a>
 
       <!-- ------ Contenedor Relativo Del Menu Oculto Personal ------ -->
       <div class="user-dropdown">
-        <button class="nav-icon-btn user-btn">
-          <i class="bi bi-person-circle"></i>
+        <button class="nav-icon-btn user-btn" aria-haspopup="true" [attr.aria-expanded]="isMenuOpen" aria-label="Menú de usuario">
+          <i class="bi bi-person-circle" aria-hidden="true"></i>
           
           <!-- ------ Interpola El Getter Nombre Si Se Cumple Autentificacion ------ -->
           <span class="username-text" *ngIf="authService.isLoggedIn()">
             {{ authService.getUsername() }}
           </span>
-          <i class="bi bi-chevron-down arrow"></i>
+          <i class="bi bi-chevron-down arrow" aria-hidden="true"></i>
         </button>
 
         <!-- ------ Card Desplegable Segun Log Geo ------ -->

@@ -27,6 +27,8 @@
   /* ------ Para Textos Secundarios ------ */
   --text-on-primary: #ffffff;
   /* ------ Texto Sobre Fondos Oscuros ------ */
+  --text-on-accent: var(--text-main);
+  /* ------ Texto Oscuro Sobre El Naranja De Marca ------ */
 
   /* ------ Estados (Status) ------ */
   --status-success: #1a7f37;

@@ -1,16 +1,15 @@
-<!-- ###### SECCION DE DETALLE DE COMPRA ###### -->
-<!-- ------ Muestra La Informacion General Si La Compra Se Cargo Correctamente ------ -->
-<section class="detalle-compra" *ngIf="!cargando && compra">
+<!-- ------ Muestra La Informacion General Si La Compra Se Cargo Correctablemente ------ -->
+<section class="detalle-compra" *ngIf="!cargando && compra" role="main" aria-labelledby="page-title">
   <div class="container">
     
     <!-- ###### CABECERA DEL DETALLE ###### -->
     <!-- ------ Boton Para Volver Y Titulo De La Compra ------ -->
     <div class="header-section">
-      <a routerLink="/mis-compras" class="btn-volver">
-        <i class="bi bi-arrow-left"></i>
+      <a routerLink="/mis-compras" class="btn-volver" aria-label="Volver a la lista de mis entradas">
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
         Volver a Mis Entradas
       </a>
-      <h1>Detalle de Compra</h1>
+      <h1 id="page-title">Detalle de Compra</h1>
       <p>Localizador: <strong>{{ compra.localizador }}</strong></p>
     </div>
 
@@ -96,8 +95,8 @@
 
           <!-- ------ Permitir La Impresion ------ -->
           <div class="ticket-acciones" *ngIf="!ticket.usado">
-            <button class="btn-descargar" (click)="descargarQR(ticket.id)">
-              <i class="bi bi-download"></i>
+            <button class="btn-descargar" (click)="descargarQR(ticket.id)" [attr.aria-label]="'Descargar código QR del ticket ' + ticket.id">
+              <i class="bi bi-download" aria-hidden="true"></i>
               Descargar QR
             </button>
           </div>
