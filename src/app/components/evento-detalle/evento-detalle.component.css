@@ -31,7 +31,7 @@
 
 /* ------ Texto En Blanco Superpuesto ------ */
 .detalle-hero-content {
-  color: var(--text-on-primary);
+  color: var(--text-sobre-primario);
   max-width: 860px;
 }
 
@@ -40,7 +40,7 @@
   display: inline-block;
   margin-bottom: 1rem;
   padding: 0.5rem 1rem;
-  background: var(--bg-glass);
+  background: var(--bg-cristal);
   border-radius: 999px;
   font-weight: 600;
 }
@@ -55,7 +55,7 @@
 
 /* ------ Estilo Particular Individual ------ */
 .detalle-meta-item {
-  background: var(--bg-glass);
+  background: var(--bg-cristal);
   padding: 0.75rem 1rem;
   border-radius: var(--radius-md);
 }
@@ -113,7 +113,7 @@
   background: var(--bg-card);
   padding: 1.5rem;
   border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-strong);
+  box-shadow: var(--sombra-fuerte);
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -135,7 +135,7 @@
 
 /* ------ Notificacion De Llenado O Tope Maximo Alcanzado ------ */
 .mensaje-ajuste {
-  color: var(--status-error);
+  color: var(--estado-error);
   font-weight: 700;
   font-size: 0.95rem;
 }
@@ -149,8 +149,8 @@
   padding: 0.95rem 1.4rem;
   border-radius: 999px;
   border: none;
-  background: var(--color-primary);
-  color: var(--text-on-primary);
+  background: var(--color-primario);
+  color: var(--text-sobre-primario);
   font-weight: 700;
   cursor: pointer;
   text-decoration: none;
@@ -164,13 +164,13 @@
 
 /* ------ Confirmacion Global Con Color Verde ------ */
 .detalle-exito {
-  color: var(--status-success);
+  color: var(--estado-exito);
   font-weight: 700;
 }
 
 /* ------ Bloqueos Con Rojo ------ */
 .detalle-error {
-  color: var(--status-error);
+  color: var(--estado-error);
   font-weight: 700;
 }
 

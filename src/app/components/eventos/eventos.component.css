@@ -21,7 +21,7 @@
   font-family: var(--font-family-title);
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-primario);
   margin-bottom: 10px;
   letter-spacing: -0.5px;
   text-transform: capitalize;
@@ -31,7 +31,7 @@
 .eventos-subtitulo {
   font-family: var(--font-family-body);
   font-size: 1.1rem;
-  color: var(--text-muted);
+  color: var(--text-atenuado);
   font-weight: 400;
 }
 
@@ -53,8 +53,8 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--border-color);
-  box-shadow: var(--shadow-main);
-  transition: var(--transition-standard);
+  box-shadow: var(--sombra-principal);
+  transition: var(--transicion-estandar);
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -63,9 +63,9 @@
 
 /* ------ Efecto Elevacion Al Foco ------ */
 .evento-card:hover {
-  box-shadow: var(--shadow-card-hover);
+  box-shadow: var(--sombra-tarjeta-hover);
   transform: translateY(-8px);
-  border-color: var(--color-primary);
+  border-color: var(--color-primario);
 }
 
 /* ###### IMAGEN DE EVENTO ###### */
@@ -75,9 +75,9 @@
   position: relative;
   width: 100%;
   /* ------ Relacion 3:2 ------ */
-  padding-bottom: 66.67%; 
+  padding-bottom: 66.67%;
   overflow: hidden;
-  background: var(--bg-section);
+  background: var(--bg-seccion);
 }
 
 /* ------ Fotografia Ajustada Al Marco ------ */
@@ -101,8 +101,8 @@
   position: absolute;
   top: 12px;
   left: 12px;
-  background: var(--color-accent);
-  color: var(--text-on-accent);
+  background: var(--color-resaltado);
+  color: var(--text-sobre-resaltado);
   padding: 6px 14px;
   border-radius: var(--radius-sm);
   font-size: 0.85rem;
@@ -123,25 +123,25 @@
   font-weight: 600;
   text-transform: capitalize;
   font-family: var(--font-family-body);
-  background-color: var(--bg-surface-muted);
+  background-color: var(--bg-superficie-atenuada);
 }
 
 /* ------ Con Stock Verde ------ */
 .estado-disponible {
-  background: var(--status-success);
-  color: var(--text-on-primary);
+  background: var(--estado-exito);
+  color: var(--text-sobre-primario);
 }
 
 /* ------ Sin Stock Rojo ------ */
 .estado-agotado {
-  background: var(--status-error);
-  color: var(--text-on-primary);
+  background: var(--estado-error);
+  color: var(--text-sobre-primario);
 }
 
 /* ------ Cercano En Tiempo ------ */
 .estado-proximo {
-  background: var(--status-warning);
-  color: var(--text-main);
+  background: var(--estado-aviso);
+  color: var(--text-principal);
 }
 
 /* ###### CONTENIDO DEL EVENTO ###### */
@@ -160,7 +160,7 @@
   font-family: var(--font-family-title);
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--text-main);
+  color: var(--text-principal);
   line-height: 1.4;
   margin: 0;
 }
@@ -169,7 +169,7 @@
 .evento-descripcion {
   font-family: var(--font-family-body);
   font-size: 0.95rem;
-  color: var(--text-muted);
+  color: var(--text-atenuado);
   line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -187,14 +187,14 @@
   gap: 8px;
   margin-top: 8px;
   padding-top: 12px;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--border-sutil);
 }
 
 /* ------ Muestra Del Tiempo Previsto ------ */
 .evento-duracion {
   font-family: var(--font-family-body);
   font-size: 0.9rem;
-  color: var(--text-muted);
+  color: var(--text-atenuado);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -211,15 +211,15 @@
 .btn-entradas {
   margin-top: auto;
   padding: 12px 20px;
-  background: var(--color-primary);
-  color: var(--text-on-primary);
+  background: var(--color-primario);
+  color: var(--text-sobre-primario);
   border: none;
   border-radius: var(--radius-md);
   font-family: var(--font-family-title);
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: var(--transition-standard);
+  transition: var(--transicion-estandar);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   text-decoration: none;
@@ -229,7 +229,7 @@
 .btn-entradas:hover {
   filter: brightness(1.1);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-button-primary);
+  box-shadow: var(--sombra-button-primario);
 }
 
 /* ------ Elimina Transformacion Al Clickear ------ */
@@ -249,15 +249,15 @@
 /* ------ Refresco Constante De Sugerencias ------ */
 .btn-recargar {
   padding: 14px 40px;
-  background: var(--color-accent);
-  color: var(--text-on-accent);
-  border: 2px solid var(--color-accent);
+  background: var(--color-resaltado);
+  color: var(--text-sobre-resaltado);
+  border: 2px solid var(--color-resaltado);
   border-radius: var(--radius-md);
   font-family: var(--font-family-title);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: var(--transition-standard);
+  transition: var(--transicion-estandar);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -265,9 +265,9 @@
 /* ------ Hover Vaciando El Relleno ------ */
 .btn-recargar:hover:not(:disabled) {
   background: transparent;
-  color: var(--color-accent);
+  color: var(--color-resaltado);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-button-accent);
+  box-shadow: var(--sombra-button-resaltado);
 }
 
 /* ------ Desactivado ------ */
@@ -279,14 +279,14 @@
 /* ------ Boton Reparador Simple ------ */
 .btn-reintentar {
   padding: 10px 20px;
-  background: var(--color-primary);
-  color: var(--text-on-primary);
+  background: var(--color-primario);
+  color: var(--text-sobre-primario);
   border: none;
   border-radius: var(--radius-md);
   font-family: var(--font-family-body);
   font-size: 0.9rem;
   cursor: pointer;
-  transition: var(--transition-standard);
+  transition: var(--transicion-estandar);
   margin-top: 12px;
 }
 
@@ -304,7 +304,7 @@
 .eventos-vacio {
   text-align: center;
   padding: 60px 20px;
-  background: var(--bg-section);
+  background: var(--bg-seccion);
   border-radius: var(--radius-lg);
   margin: 40px 0;
 }
@@ -315,19 +315,19 @@
 .eventos-vacio p {
   font-family: var(--font-family-body);
   font-size: 1.1rem;
-  color: var(--text-muted);
+  color: var(--text-atenuado);
   margin: 0;
 }
 
 /* ------ Modificador Rojizo ------ */
 .eventos-error {
-  background: var(--status-error-bg);
-  border: 1px solid var(--status-error);
+  background: var(--estado-error-bg);
+  border: 1px solid var(--estado-error);
 }
 
 /* ------ Letra Color Alerta ------ */
 .eventos-error p {
-  color: var(--status-error);
+  color: var(--estado-error);
   font-weight: 500;
 }
 

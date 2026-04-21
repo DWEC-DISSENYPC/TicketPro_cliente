@@ -1,62 +1,62 @@
 /* ###### VARIABLES GLOBALES ###### */
 
 :root {
-  
+
   /* ------ Colores De Marca (Brand) ------ */
-  --color-primary: #4931d4;
-  --color-primary-soft: rgba(73, 49, 212, 0.1);
-  --color-accent: #e99313;
-  --color-accent-hover: #d08210;
+  --color-primario: #4931d4;
+  --color-primario-suave: rgba(73, 49, 212, 0.1);
+  --color-resaltado: #e99313;
+  --color-resaltado-hover: #d08210;
 
   /* ------ Superficies Y Fondos (Surfaces) ------ */
   --bg-main: #ffffff;
-  --bg-section: #f8f9fa;
+  --bg-seccion: #f8f9fa;
   --bg-card: #ffffff;
-  --bg-glass: rgba(255, 255, 255, 0.1);
+  --bg-cristal: rgba(255, 255, 255, 0.1);
   --border-color: rgba(0, 0, 0, 0.1);
-  --border-glass: rgba(255, 255, 255, 0.2);
+  --border-cristal: rgba(255, 255, 255, 0.2);
   --focus-ring: rgba(73, 49, 212, 0.25);
-  
-  --overlay-dark: rgba(0, 0, 0, 0.6);
-  --overlay-gradient: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.75));
+
+  --capa-oscura: rgba(0, 0, 0, 0.6);
+  --capa-degradado: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.75));
 
   /* ------ Colores De Texto ------ */
-  --text-main: #212121;
+  --text-principal: #212121;
   /* ------ Casi Negro Mejor Para La Vista ------ */
-  --text-muted: #666666;
+  --text-atenuado: #666666;
   /* ------ Para Textos Secundarios ------ */
-  --text-on-primary: #ffffff;
+  --text-sobre-primario: #ffffff;
   /* ------ Texto Sobre Fondos Oscuros ------ */
-  --text-on-accent: var(--text-main);
+  --text-sobre-resaltado: var(--text-principal);
   /* ------ Texto Oscuro Sobre El Naranja De Marca ------ */
 
   /* ------ Estados (Status) ------ */
-  --status-success: #1a7f37;
-  --status-success-bg: #d4edda;
-  --status-success-text: #155724;
-  
-  --status-error: #d32f2f;
-  --status-error-bg: #f8d7da;
-  --status-error-text: #721c24;
-  
-  --status-warning: #ffa43c;
-  --status-warning-bg: #fff3cd;
-  --status-warning-text: #856404;
+  --estado-exito: #1a7f37;
+  --estado-exito-bg: #d4edda;
+  --estado-exito-text: #155724;
 
-  --status-info: #4931d4;
-  --status-info-bg: #e2e3e5;
-  --status-info-text: #383d41;
+  --estado-error: #d32f2f;
+  --estado-error-bg: #f8d7da;
+  --estado-error-text: #721c24;
 
-  --bg-surface-muted: #f4f7f6;
+  --estado-aviso: #ffa43c;
+  --estado-aviso-bg: #fff3cd;
+  --estado-aviso-text: #856404;
+
+  --estado-info: #4931d4;
+  --estado-info-bg: #e2e3e5;
+  --estado-info-text: #383d41;
+
+  --bg-superficie-atenuada: #f4f7f6;
   /* ------ Fondo Gris Suave Para La Pagina ------ */
-  --border-subtle: #eeeeee;
+  --border-sutil: #eeeeee;
   /* ------ Gris Muy Claro Para Lineas Divisorias ------ */
-  --border-interactive: #e0e0e0;
+  --border-interactivo: #e0e0e0;
   /* ------ Gris Para Bordes De Tarjetas ------ */
 
   --border-input: #dddddd;
 
-  --transition-standard: all 0.3s ease;
+  --transicion-estandar: all 0.3s ease;
   /* ------ Transicion Suave Reutilizable ------ */
   --radius-xl: 28px;
   /* ------ Mega Radio Para Tarjetas Modernas ------ */
@@ -68,19 +68,19 @@
   /* ------ Radio De Esquinas Pequeño ------ */
 
   --input-bg: #ffffff;
-  --input-border: var(--border-interactive);
-  --input-focus-shadow: rgba(73, 49, 212, 0.15);
+  --input-border: var(--border-interactivo);
+  --input-foco-sombra: rgba(73, 49, 212, 0.15);
   /* ------ Basado En Tu Color Primary ------ */
-  --bg-disabled: #e9ecef;
+  --bg-desactivado: #e9ecef;
   --text-disabled: #6c757d;
 
   /* ------ Sombras Y Efectos ------ */
-  --shadow-main: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --shadow-strong: 0 24px 60px rgba(0, 0, 0, 0.08);
-  --shadow-overlay: 0 8px 16px rgba(0, 0, 0, 0.2);
-  --shadow-card-hover: 0 10px 30px rgba(0, 0, 0, 0.1);
-  --shadow-button-primary: 0 4px 12px rgba(73, 49, 212, 0.3);
-  --shadow-button-accent: 0 4px 12px rgba(233, 147, 19, 0.3);
+  --sombra-principal: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --sombra-fuerte: 0 24px 60px rgba(0, 0, 0, 0.08);
+  --sombra-capa: 0 8px 16px rgba(0, 0, 0, 0.2);
+  --sombra-tarjeta-hover: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --sombra-button-primario: 0 4px 12px rgba(73, 49, 212, 0.3);
+  --sombra-button-resaltado: 0 4px 12px rgba(233, 147, 19, 0.3);
 
   /* ------ Tipografia ------ */
   --font-family-title: 'Montserrat', sans-serif;
@@ -93,30 +93,30 @@
 @media (prefers-contrast: more) {
   :root {
     /* ------ Colores Base De Alto Contraste ------ */
-    --color-primary: #0000aa;
-    --color-accent: #a52a2a;
-    --text-main: #000000;
-    --text-muted: #000000;
+    --color-primario: #0000aa;
+    --color-resaltado: #a52a2a;
+    --text-principal: #000000;
+    --text-atenuado: #000000;
     --bg-main: #ffffff;
-    --bg-section: #ffffff;
+    --bg-seccion: #ffffff;
     --bg-card: #ffffff;
-    --bg-glass: #ffffff;
-    --bg-surface-muted: #ffffff;
+    --bg-cristal: #ffffff;
+    --bg-superficie-atenuada: #ffffff;
 
     /* ------ Refuerzo De Bordes Para Visibilidad ------ */
     --border-color: #000000;
-    --border-subtle: #000000;
-    --border-interactive: #000000;
+    --border-sutil: #000000;
+    --border-interactivo: #000000;
     --border-input: #000000;
-    --border-glass: #000000;
+    --border-cristal: #000000;
 
     /* ------ Eliminacion De Sombras Y Transparencias ------ */
-    --shadow-main: none;
-    --shadow-strong: none;
-    --shadow-card-hover: none;
-    --shadow-button-primary: none;
-    --shadow-button-accent: none;
-    --overlay-gradient: none;
+    --sombra-principal: none;
+    --sombra-fuerte: none;
+    --sombra-tarjeta-hover: none;
+    --sombra-button-primario: none;
+    --sombra-button-resaltado: none;
+    --capa-degradado: none;
     --focus-ring: rgba(0, 0, 0, 0.4);
   }
 }

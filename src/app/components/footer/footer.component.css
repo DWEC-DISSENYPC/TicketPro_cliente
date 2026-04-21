@@ -2,8 +2,8 @@
 
 /* ------ Bloque Inferior De La Pagina ------ */
 .footer {
-  background: var(--color-primary);
-  color: var(--text-on-primary);
+  background: var(--color-primario);
+  color: var(--text-sobre-primario);
   padding: 30px 0 20px;
   font-family: var(--font-family-body);
 }
@@ -39,7 +39,7 @@
 
 /* ------ Parrafo Que Detalla La Informacion General ------ */
 .footer-brand p {
-  color: var(--text-on-primary);
+  color: var(--text-sobre-primario);
   opacity: 0.82;
   font-size: 0.95rem;
   line-height: 1.7;
@@ -66,23 +66,23 @@
   font-family: var(--font-family-title);
   font-size: 1rem;
   margin-bottom: 14px;
-  color: var(--text-on-primary);
+  color: var(--text-sobre-primario);
 }
 
 /* ------ Opcion Linkeable Y Suave ------ */
 .footer-links a {
   display: block;
-  color: var(--text-on-primary);
+  color: var(--text-sobre-primario);
   opacity: 0.85;
   text-decoration: none;
   margin-bottom: 10px;
   font-size: 0.95rem;
-  transition: var(--transition-standard);
+  transition: var(--transicion-estandar);
 }
 
 /* ------ Hover Contrastante ------ */
 .footer-links a:hover {
-  color: var(--color-accent);
+  color: var(--color-resaltado);
 }
 
 /* ###### CINTA INFERIOR DE COPYRIGHT ###### */
@@ -91,9 +91,9 @@
 .footer-bottom {
   margin-top: 24px;
   padding-top: 18px;
-  border-top: 1px solid var(--border-glass);
+  border-top: 1px solid var(--border-cristal);
   text-align: center;
-  color: var(--text-on-primary);
+  color: var(--text-sobre-primario);
   opacity: 0.9;
   font-size: 0.9rem;
 }
@@ -102,7 +102,7 @@
 
 /* ------ Adaptable Para Telefonos Y Pantallas Mas Pequeñas ------ */
 @media (max-width: 768px) {
-  
+
   /* ------ Pierde Flexbox Desarmandose En Block ------ */
   .footer-inner {
     flex-direction: column;

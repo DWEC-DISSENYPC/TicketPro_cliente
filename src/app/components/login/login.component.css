@@ -18,7 +18,7 @@
   background: var(--bg-card);
   padding: 2.5rem;
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-strong);
+  box-shadow: var(--sombra-fuerte);
   width: 100%;
   max-width: 400px;
 }
@@ -26,7 +26,7 @@
 /* ------ Cabecera Dentro De La Caja ------ */
 h2 {
   text-align: center;
-  color: var(--text-main);
+  color: var(--text-principal);
   font-family: var(--font-family-title);
   margin-bottom: 2rem;
   font-weight: 700;
@@ -51,7 +51,7 @@ label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 600;
-  color: var(--text-muted);
+  color: var(--text-atenuado);
   font-size: 0.9rem;
 }
 
@@ -62,7 +62,7 @@ input {
   border: 1px solid var(--border-input);
   border-radius: var(--radius-sm);
   font-size: 1rem;
-  transition: var(--transition-standard);
+  transition: var(--transicion-estandar);
   box-sizing: border-box;
   /* ------ Importante Para Que El Padding No Rompa El Ancho ------ */
 }
@@ -70,7 +70,7 @@ input {
 /* ------ Remarca Borde Al Seleccionar Texto ------ */
 input:focus {
   outline: none;
-  border-color: var(--color-primary);
+  border-color: var(--color-primario);
   box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
@@ -80,8 +80,8 @@ input:focus {
 .btn-login {
   width: 100%;
   padding: 14px;
-  background-color: var(--color-primary);
-  color: var(--text-on-primary);
+  background-color: var(--color-primario);
+  color: var(--text-sobre-primario);
   border: none;
   border-radius: 8px;
   font-weight: bold;
@@ -93,8 +93,8 @@ input:focus {
 
 /* ------ Animacion Sutil Y Cambio De Tono ------ */
 .btn-login:hover:not(:disabled) {
-  background-color: var(--color-accent);
-  color: var(--text-on-accent);
+  background-color: var(--color-resaltado);
+  color: var(--text-sobre-resaltado);
   transform: translateY(-2px);
 }
 
@@ -108,14 +108,14 @@ input:focus {
 
 /* ------ Caja Excepcional Sobre Parametros Invalidos ------ */
 .error-msg {
-  background-color: var(--status-error-bg);
-  color: var(--status-error-text);
+  background-color: var(--estado-error-bg);
+  color: var(--estado-error-text);
   padding: 10px;
   border-radius: var(--radius-sm);
   margin-top: 1.5rem;
   text-align: center;
   font-size: 0.85rem;
-  border: 1px solid var(--status-error);
+  border: 1px solid var(--estado-error);
 }
 
 /* ###### SECCION PIE (FOOTER) ###### */
@@ -125,12 +125,12 @@ input:focus {
   margin-top: 2rem;
   text-align: center;
   font-size: 0.85rem;
-  color:var(--text-muted);
+  color: var(--text-atenuado);
 }
 
 /* ------ Texto Referenciado De Link ------ */
 .login-footer a {
-  color: var(--color-primary);
+  color: var(--color-primario);
   text-decoration: none;
   font-weight: 600;
   font-family: var(--fuente-cuerpo);
@@ -179,5 +179,5 @@ input:focus {
 
 /* ------ Color Primario Al Acercar Mouse ------ */
 .toggle-password:hover {
-  color: var(--color-primary);
+  color: var(--color-primario);
 }

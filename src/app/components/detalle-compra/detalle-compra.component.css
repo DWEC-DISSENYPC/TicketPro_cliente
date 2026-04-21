@@ -3,7 +3,7 @@
 /* ------ Seccion Principal De La Pantalla ------ */
 .detalle-compra {
   min-height: 100vh;
-  background: var(--bg-section);
+  background: var(--bg-seccion);
   padding: 2rem 0;
 }
 
@@ -27,7 +27,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--color-primary);
+  color: var(--color-primario);
   text-decoration: none;
   font-weight: 600;
   margin-bottom: 1rem;
@@ -36,20 +36,20 @@
 
 /* ------ Hover En El Enlace De Volver ------ */
 .btn-volver:hover {
-  color: var(--color-primary);
+  color: var(--color-primario);
   filter: brightness(0.9);
 }
 
 /* ------ Titulo Principal ------ */
 .header-section h1 {
-  color: var(--color-primary);
+  color: var(--color-primario);
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
 }
 
 /* ------ Subtitulo Con Localizador ------ */
 .header-section p {
-  color: var(--text-muted);
+  color: var(--text-atenuado);
   font-size: 1.1rem;
 }
 
@@ -65,12 +65,12 @@
   background: var(--bg-card);
   border-radius: var(--radius-lg);
   padding: 2rem;
-  box-shadow: var(--shadow-main);
+  box-shadow: var(--sombra-principal);
 }
 
 /* ------ Titulo Interior Tarjeta ------ */
 .info-card h2 {
-  color: var(--color-primary);
+  color: var(--color-primario);
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
 }
@@ -92,13 +92,13 @@
 
 /* ------ Etiqueta Del Dato ------ */
 .info-item strong {
-  color: var(--text-main);
+  color: var(--text-principal);
   font-weight: 600;
 }
 
 /* ------ Texto En Color Rojo Urgente ------ */
 .dias-urgente {
-  color: var(--status-error);
+  color: var(--estado-error);
   font-weight: 700;
 }
 
@@ -119,26 +119,26 @@
 /* ------ Estado Validado ------ */
 .estado-usada,
 .estado-confirmada {
-  background: var(--status-success-bg);
-  color: var(--status-success-text);
+  background: var(--estado-exito-bg);
+  color: var(--estado-exito-text);
 }
 
 /* ------ Estado A La Espera ------ */
 .estado-pendiente {
-  background: var(--status-warning-bg);
-  color: var(--status-warning-text);
+  background: var(--estado-aviso-bg);
+  color: var(--estado-aviso-text);
 }
 
 /* ------ Estado Anulado ------ */
 .estado-cancelada {
-  background: var(--status-error-bg);
-  color: var(--status-error-text);
+  background: var(--estado-error-bg);
+  color: var(--estado-error-text);
 }
 
 /* ------ Estado Por Defecto ------ */
 .estado-otro {
-  background: var(--status-info-bg);
-  color: var(--status-info-text);
+  background: var(--estado-info-bg);
+  color: var(--estado-info-text);
 }
 
 /* ###### BOTONES DE ACCION ###### */
@@ -150,8 +150,8 @@
 
 /* ------ Boton De Peligro Para Cancelar ------ */
 .btn-cancelar {
-  background: var(--status-error);
-  color: var(--text-on-primary);
+  background: var(--estado-error);
+  color: var(--text-sobre-primario);
   border: none;
   padding: 0.875rem 2rem;
   border-radius: 999px;
@@ -173,7 +173,7 @@
 
 /* ------ Texto Pequeño Informativo ------ */
 .cancelacion-info small {
-  color: var(--text-muted);
+  color: var(--text-atenuado);
   font-size: 0.9rem;
   font-style: italic;
 }
@@ -182,7 +182,7 @@
 
 /* ------ Titulo De Tus Tickets ------ */
 .tickets-section h2 {
-  color: var(--color-primary);
+  color: var(--color-primario);
   font-size: 2rem;
   margin-bottom: 1.5rem;
   text-align: center;
@@ -200,7 +200,7 @@
   background: var(--bg-card);
   border-radius: 16px;
   padding: 1.5rem;
-  box-shadow: var(--shadow-main);
+  box-shadow: var(--sombra-principal);
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -216,7 +216,7 @@
 /* ------ Numero De Entrada ------ */
 .ticket-header h3 {
   margin: 0;
-  color: var(--color-primary);
+  color: var(--color-primario);
   font-size: 1.1rem;
 }
 
@@ -231,14 +231,14 @@
 
 /* ------ Ticket Ya Cobrado ------ */
 .ticket-estado.usado {
-  background: var(--status-error-bg);
-  color: var(--status-error-text);
+  background: var(--estado-error-bg);
+  color: var(--estado-error-text);
 }
 
 /* ------ Ticket Sin Usar ------ */
 .ticket-estado.disponible {
-  background: var(--status-success-bg);
-  color: var(--status-success-text);
+  background: var(--estado-exito-bg);
+  color: var(--estado-exito-text);
 }
 
 /* ------ Codigo Alfanumerico Superior ------ */
@@ -250,13 +250,13 @@
 
 /* ------ Cabecera De Tipo Codigo ------ */
 .ticket-codigo strong {
-  color: var(--text-main);
+  color: var(--text-principal);
 }
 
 /* ------ Estilo Monospace Para Resaltar El Texto ------ */
 .codigo-text {
   font-family: 'Courier New', monospace;
-  background: var(--bg-section);
+  background: var(--bg-seccion);
   padding: 0.5rem;
   border-radius: var(--radius-sm);
   font-weight: 600;
@@ -277,9 +277,9 @@
   align-items: center;
   gap: 0.75rem;
   padding: 2rem;
-  background: var(--bg-section);
+  background: var(--bg-seccion);
   border-radius: var(--radius-md);
-  color: var(--text-muted);
+  color: var(--text-atenuado);
 }
 
 /* ------ Logo Grande En Lugar De Qr ------ */
@@ -306,14 +306,14 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--color-primary);
-  color: var(--text-on-primary);
+  background: var(--color-primario);
+  color: var(--text-sobre-primario);
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 999px;
   font-weight: 600;
   cursor: pointer;
-  transition: var(--transition-standard);
+  transition: var(--transicion-estandar);
 }
 
 /* ------ Hover Interactivo ------ */
@@ -335,16 +335,16 @@
 
 /* ------ Confirmacion Exitosa Color Verde ------ */
 .mensaje-exito {
-  background: var(--status-success-bg);
-  color: var(--status-success-text);
-  border: 1px solid var(--status-success);
+  background: var(--estado-exito-bg);
+  color: var(--estado-exito-text);
+  border: 1px solid var(--estado-exito);
 }
 
 /* ------ Fallo Color Rojo ------ */
 .mensaje-error {
-  background: var(--status-error-bg);
-  color: var(--status-error-text);
-  border: 1px solid var(--status-error);
+  background: var(--estado-error-bg);
+  color: var(--estado-error-text);
+  border: 1px solid var(--estado-error);
 }
 
 /* ------ Paneles Centralizados Para Vistas De Fallo O Carga ------ */
@@ -354,14 +354,14 @@
   padding: 4rem 2rem;
   background: var(--bg-card);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-main);
+  box-shadow: var(--sombra-principal);
   margin: 2rem auto;
   max-width: 600px;
 }
 
 /* ------ Texto Informativo Central ------ */
 .loading-section p {
-  color: var(--text-muted);
+  color: var(--text-atenuado);
   font-size: 1.1rem;
 }
 

@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: flex-start;
   /* ------ Alinea Arriba Para Evitar Saltos Si El Contenido Crece ------ */
-  background-color: var(--bg-surface-muted);
+  background-color: var(--bg-superficie-atenuada);
   /* ------ Gris Suave Global ------ */
   padding: 3rem 1rem;
   min-height: 70vh;
@@ -21,7 +21,7 @@
   width: 100%;
   max-width: 900px;
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-strong);
+  box-shadow: var(--sombra-fuerte);
   /* ------ Sombra Pronunciada Para Dar Profundidad ------ */
   display: flex;
   flex-direction: column;
@@ -33,7 +33,7 @@
 /* ------ Titulo Superior De La Tarjeta ------ */
 h2 {
   text-align: center;
-  color: var(--color-primary);
+  color: var(--color-primario);
   font-family: var(--font-family-title);
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -50,7 +50,7 @@ h2 {
   align-items: center;
   gap: 1rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-sutil);
   /* ------ Separacion Visual Limpia ------ */
 }
 
@@ -58,15 +58,15 @@ h2 {
 .profile-placeholder {
   width: 80px;
   height: 80px;
-  background-color: var(--color-primary);
-  color: var(--text-on-primary);
+  background-color: var(--color-primario);
+  color: var(--text-sobre-primario);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 2rem;
   font-weight: bold;
-  box-shadow: var(--shadow-main);
+  box-shadow: var(--sombra-principal);
 }
 
 /* ------ Imagen De Recurso Subido Efectiva ------ */
@@ -76,7 +76,7 @@ h2 {
   border-radius: 50%;
   object-fit: cover;
   /* ------ Asegura Que La Foto No Se Deforme ------ */
-  border: 3px solid var(--color-primary-soft);
+  border: 3px solid var(--color-primario-suave);
   /* ------ Marco Sutil Alrededor ------ */
 }
 
@@ -84,8 +84,8 @@ h2 {
 
 /* ------ Pill Decorativa ------ */
 .badge {
-  background-color: var(--color-accent);
-  color: var(--text-on-accent);
+  background-color: var(--color-resaltado);
+  color: var(--text-sobre-resaltado);
   padding: 4px 14px;
   border-radius: 20px;
   font-size: 0.75rem;
@@ -110,10 +110,10 @@ h2 {
 /* ------ Cada Caja Textual Mostrada ------ */
 .info-card {
   background-color: var(--bg-main);
-  border: 1px solid var(--border-interactive);
+  border: 1px solid var(--border-interactivo);
   padding: 1.5rem;
   border-radius: var(--radius-md);
-  transition: var(--transition-standard);
+  transition: var(--transicion-estandar);
   /* ------ Suaviza El Efecto Hover ------ */
 }
 
@@ -121,17 +121,17 @@ h2 {
 .info-card:hover {
   /* ------ Elevacion Sutil ------ */
   transform: translateY(-4px);
-  box-shadow: var(--shadow-main);
-  border-color: var(--color-primary-soft);
+  box-shadow: var(--sombra-principal);
+  border-color: var(--color-primario-suave);
 }
 
 /* ------ Cabeceras De Seccion De Datos ------ */
 .info-card h3 {
   font-family: var(--font-family-title);
-  color: var(--color-primary);
+  color: var(--color-primario);
   margin-bottom: 1rem;
   font-size: 1.1rem;
-  border-bottom: 2px solid var(--color-primary-soft);
+  border-bottom: 2px solid var(--color-primario-suave);
   padding-bottom: 0.5rem;
   display: flex;
   align-items: center;
@@ -149,7 +149,7 @@ h2 {
 /* ------ Organiza Como Fila Flexible ------ */
 .info-card li {
   margin-bottom: 0.8rem;
-  color: var(--text-muted);
+  color: var(--text-atenuado);
   font-family: var(--font-family-body);
   display: flex;
   /* ------ Flexbox Para Alinear Titular Y Dato ------ */
@@ -159,7 +159,7 @@ h2 {
 
 /* ------ Tonalidad Acentuada Para El Indicador Fijo ------ */
 .info-card strong {
-  color: var(--text-main);
+  color: var(--text-principal);
   min-width: 140px;
   /* ------ Asegura Ancho Inicial Uniforme ------ */
   font-weight: 600;
@@ -193,7 +193,7 @@ h2 {
   border-radius: var(--radius-sm);
   font-weight: 700;
   cursor: pointer;
-  transition: var(--transition-standard);
+  transition: var(--transicion-estandar);
   font-family: var(--font-family-title);
   text-transform: uppercase;
   font-size: 0.85rem;
@@ -203,29 +203,29 @@ h2 {
 
 /* ------ Fondo Lleno ------ */
 .btn-primary {
-  background-color: var(--color-primary);
-  color: var(--text-on-primary);
+  background-color: var(--color-primario);
+  color: var(--text-sobre-primario);
 }
 
 /* ------ Fondo Transparente Perimetral ------ */
 .btn-outline {
   background-color: transparent;
-  border: 2px solid var(--color-primary);
-  color: var(--color-primary);
+  border: 2px solid var(--color-primario);
+  color: var(--color-primario);
 }
 
 /* ###### EFECTOS HOVER PRO ###### */
 
 /* ------ Modificacion Lleno ------ */
 .btn-primary:hover {
-  background-color: var(--color-accent);
-  color: var(--text-on-accent);
+  background-color: var(--color-resaltado);
+  color: var(--text-sobre-resaltado);
   transform: scale(1.02);
   /* ------ Escala Sutil Transaccional ------ */
 }
 
 /* ------ Modificacion Transparente ------ */
 .btn-outline:hover {
-  background-color: var(--color-primary);
-  color: var(--text-on-primary);
+  background-color: var(--color-primario);
+  color: var(--text-sobre-primario);
 }
