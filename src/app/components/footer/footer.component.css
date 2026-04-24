@@ -98,6 +98,17 @@
   font-size: 0.9rem;
 }
 
+.footer-bottom a {
+  color: #ffffff;
+  text-decoration: underline;
+  font-weight: 600;
+  transition: var(--transicion-estandar);
+}
+
+.footer-bottom a:hover {
+  color: var(--color-resaltado);
+}
+
 /* ###### RESPONSIVIDAD Y MEDIA QUERIES ###### */
 
 /* ------ Adaptable Para Telefonos Y Pantallas Mas Pequeñas ------ */
