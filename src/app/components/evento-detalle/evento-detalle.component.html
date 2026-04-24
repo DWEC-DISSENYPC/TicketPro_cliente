@@ -82,14 +82,28 @@
             Se ha ajustado la cantidad al máximo disponible.
           </div>
 
-          <!-- ------ Boton Accion De Compra Directa ------ -->
+          <!-- ------ Botones De Accion Condicionales ------ -->
+          <div class="auth-required-actions" *ngIf="!isLoggedIn">
+            <p class="auth-hint">Identifícate para comprar tus entradas</p>
+            <div class="auth-buttons-group">
+              <a routerLink="/login" class="btn-auth btn-login">
+                <span>Iniciar Sesión</span>
+              </a>
+              <a routerLink="/register" class="btn-auth btn-register">
+                <span>Crear Cuenta</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- ------ Boton Accion De Compra Directa (Solo Logueado) ------ -->
           <button
+            *ngIf="isLoggedIn"
             class="btn-comprar"
             [disabled]="entradasDisponibles(sesion) === 0 || cantidadNoValida(sesion)"
-            (click)="comprarSesion(sesion)"
-            [attr.aria-label]="'Comprar ' + (cantidadSeleccionada[sesion.id] || 0) + ' entradas para la sesión del ' + (sesion.fechaHora | date:'dd/MM/yyyy')"
+            (click)="agregarAlCarrito(sesion)"
+            [attr.aria-label]="'Añadir al carrito ' + (cantidadSeleccionada[sesion.id] || 0) + ' entradas para la sesión del ' + (sesion.fechaHora | date:'dd/MM/yyyy')"
           >
-            Comprar
+            Añadir al Carrito
           </button>
         </div>
       </article>

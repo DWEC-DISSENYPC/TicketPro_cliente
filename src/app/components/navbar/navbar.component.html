@@ -44,10 +44,12 @@
     <div class="nav-actions">
       
       <!-- ------ Atajo Condicionado Al Carrito Si Tiene Sesion ------ -->
-      <a *ngIf="authService.isLoggedIn()" routerLink="/carrito" class="nav-icon-btn cart-btn" aria-label="Carrito de compras, 0 artículos">
+      <a *ngIf="authService.isLoggedIn()" routerLink="/carrito" class="nav-icon-btn cart-btn" [attr.aria-label]="'Carrito de compras, ' + (carritoService.cartItemsCount$ | async) + ' artículos'">
         <i class="bi bi-cart3" aria-hidden="true"></i>
-        <!-- ------ Indicador Con Las Cifras Agendadas No Transactables ------ -->
-        <span class="badge">0</span>
+        <!-- ------ Indicador Con Las Cifras Agendadas Dinamicas ------ -->
+        <span class="badge" *ngIf="(carritoService.cartItemsCount$ | async) !== 0">
+          {{ carritoService.cartItemsCount$ | async }}
+        </span>
       </a>
 
       <!-- ------ Contenedor Relativo Del Menu Oculto Personal ------ -->

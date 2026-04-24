@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { EventoService } from '../../services/evento.service';
+import { CarritoService } from '../../services/carrito.service';
 
 /* ###### COMPONENTE NAVBAR ENRUTADOR SUPREMO ###### */
 // ------ Fija Las Opciones Rapidas De Salto Hacia Diferentes Instancias Del Arbol Visual Component ------
@@ -37,7 +38,8 @@ export class NavbarComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private router: Router,
-    private eventoService: EventoService
+    private eventoService: EventoService,
+    public carritoService: CarritoService
   ) {}
 
   /* ###### LOGICA INTERRUPTOR ###### */

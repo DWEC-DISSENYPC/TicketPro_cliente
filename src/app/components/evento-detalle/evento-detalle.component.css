@@ -77,6 +77,7 @@
 .detalle-error,
 .detalle-volver {
   width: 100%;
+  text-align: center;
 }
 
 /* ------ Estandarizacion De Labels ------ */
@@ -88,22 +89,35 @@
 }
 
 /* ------ Selectores Desplegables E Inputs Textuales ------ */
-.detalle-seleccion select,
-.sesion-control input {
+.detalle-seleccion select {
   width: 100%;
   max-width: 280px;
   padding: 0.8rem 1rem;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-color);
   background: var(--bg-card);
-  max-width: 150px;
+  margin: 0 auto;
+  display: block;
 }
 
-/* ------ Rejilla Base De Tarjetas ------ */
+.sesion-control input {
+  width: 100%;
+  max-width: 150px;
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+}
+
+/* ------ Rejilla Base De Tarjetas (Cambiado a Flex para Centrado) ------ */
 .sesiones-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  justify-content: center;
 }
 
 /* ###### TARJETAS DE SESION INDIVIDUAL ###### */
@@ -117,7 +131,17 @@
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  max-width: 500px;
+  flex: 0 1 320px;
+  /* Base de 320px, no crece, se encoge si es necesario */
+  min-width: 280px;
+  transition: var(--transicion-estandar);
+  border: 1px solid var(--border-color);
+}
+
+.sesion-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sombra-tarjeta-hover);
+  border-color: var(--color-primario-suave);
 }
 
 /* ------ Interlineado Textual ------ */
@@ -156,10 +180,95 @@
   text-decoration: none;
 }
 
+.btn-volver {
+  margin-bottom: 18px;
+}
+
+.btn-volver:hover {
+  background: var(--color-primario-suave);
+  color: var(--text-sobre-primario);
+  transform: translateY(-2px);
+}
+
 /* ------ Apariencia Deshabilitada ------ */
 .btn-comprar:disabled {
   opacity: 0.55;
   cursor: not-allowed;
+}
+
+/* ###### ESTILOS DE AUTENTICACION REQUERIDA ###### */
+
+.auth-required-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--color-primario-suave);
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  animation: fadeIn 0.4s ease-out;
+}
+
+.auth-hint {
+  font-size: 0.9rem;
+  color: var(--text-atenuado);
+  text-align: center;
+  font-weight: 500;
+  margin: 0;
+}
+
+.auth-buttons-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.btn-auth {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: var(--transicion-estandar);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.btn-login {
+  background: var(--color-primario);
+  color: var(--text-sobre-primario);
+  box-shadow: var(--sombra-button-primario);
+}
+
+.btn-login:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 6px 16px rgba(73, 49, 212, 0.4);
+}
+
+.btn-register {
+  background: var(--bg-card);
+  color: var(--color-primario);
+  border: 2px solid var(--color-primario);
+}
+
+.btn-register:hover {
+  background: var(--color-primario-suave);
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ------ Confirmacion Global Con Color Verde ------ */
@@ -190,5 +299,10 @@
 
   .detalle-body {
     padding: 0 1rem;
+  }
+
+  .sesion-card {
+    flex: 1 1 100%;
+    max-width: 450px;
   }
 }

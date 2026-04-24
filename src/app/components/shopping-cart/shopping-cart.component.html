@@ -1,0 +1,53 @@
+<div class="carrito-container">
+  <div class="carrito-header">
+    <h2>Mi Carrito</h2>
+    <p *ngIf="items.length > 0">Tienes {{ totalItems }} artículos en tu selección</p>
+  </div>
+
+  <div *ngIf="loading" class="text-center py-5">
+    <p>Cargando tu carrito...</p>
+  </div>
+
+  <div *ngIf="!loading && items.length > 0">
+    <div class="carrito-items">
+      <div class="item-row" *ngFor="let item of items">
+        <div class="item-img">
+          <img [src]="item.imagenUrl || 'img/placeholder_evento.jpg'" [alt]="item.eventoTitulo">
+        </div>
+        <div class="item-info">
+          <h3>{{ item.eventoTitulo }}</h3>
+          <p>{{ item.fechaHora | date:'EEEE, d MMMM y, HH:mm' }}</p>
+          <p>{{ item.nombreSala }} - {{ item.nombreUbicacion }}</p>
+        </div>
+        <div class="item-price text-center">
+          {{ item.precioBase | currency:'EUR' }} x {{ item.cantidad }}
+        </div>
+        <div class="item-subtotal text-right">
+          {{ item.subtotal | currency:'EUR' }}
+        </div>
+        <div class="item-remove text-right">
+          <button (click)="eliminarItem(item.id)" title="Eliminar del carrito">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="carrito-summary">
+      <div class="total-info">
+        <span class="total-label">Total a pagar: </span>
+        <span class="total-amount">{{ totalPrecio | currency:'EUR' }}</span>
+      </div>
+      <button class="btn-checkout" (click)="checkout()" [disabled]="processing">
+        {{ processing ? 'Procesando...' : 'Finalizar Compra' }}
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && items.length === 0" class="carrito-vacio">
+    <i class="fas fa-shopping-cart"></i>
+    <h3>Tu carrito está vacío</h3>
+    <p>Parece que aún no has añadido ninguna entrada. ¡Explora nuestros eventos y encuentra el tuyo!</p>
+    <a routerLink="/eventos" class="btn-explorar">Ver Eventos</a>
+  </div>
+</div>

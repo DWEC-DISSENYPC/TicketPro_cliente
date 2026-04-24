@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, ActivatedRoute } from '@angular/router';
-import { forkJoin } from 'rxjs';
+import { forkJoin, Subscription } from 'rxjs';
 import { EventoService } from '../../services/evento.service';
+import { AuthService } from '../../services/auth.service';
+import { CarritoService } from '../../services/carrito.service';
 import { EventoDTO, SesionDTO, CompraEntradasDTO } from '../../models/evento.model';
+import { Router } from '@angular/router';
 
 /* ###### COMPONENTE DE EVENTO DETALLADO ###### */
 // ------ Se Encarga De Cargar Y Gestionar La Seleccion Individualizada De Espectaculos ------
@@ -42,13 +45,19 @@ export class EventoDetalleComponent implements OnInit {
   error: string | null = null;
   // ------ Frase De Confirmacion Exitosa Tras Comprar ------
   exitoCompra: string | null = null;
+  // ------ Estado De Autenticacion Del Usuario ------
+  isLoggedIn: boolean = false;
+  private authSubscription: Subscription | null = null;
 
   /* ###### INYECCION DE DEPENDENCIAS ###### */
 
   // ------ Recupera Las Instancias De Rutas Y La Conexion Rest Central ------
   constructor(
     private route: ActivatedRoute,
-    private eventoService: EventoService
+    private eventoService: EventoService,
+    private authService: AuthService,
+    private carritoService: CarritoService,
+    private router: Router
   ) {}
 
   /* ###### INICIO DE CICLO ###### */
@@ -60,6 +69,17 @@ export class EventoDetalleComponent implements OnInit {
       this.cargarEventoDetalle(id);
     } else {
       this.error = 'ID de evento inválido.';
+    }
+
+    // ------ Escucha Activa Del Estado De Sesion ------
+    this.authSubscription = this.authService.isLoggedIn$.subscribe(
+      (loggedIn) => (this.isLoggedIn = loggedIn)
+    );
+  }
+
+  ngOnDestroy(): void {
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
     }
   }
 
@@ -162,53 +182,35 @@ export class EventoDetalleComponent implements OnInit {
     return cantidad < 1 || cantidad > disponible;
   }
 
-  /* ###### PETICION PRINCIPAL DE COMPRA DIRECTA ###### */
+  /* ###### ADICION AL CARRITO ###### */
 
-  // ------ Finaliza Confirmando El Pedido Formal Atraves Del Servicio Interconectado ------
-  comprarSesion(sesion: SesionDTO): void {
+  // ------ Prepara El Item Y Lo Envia Al Almacen Temporal Backend ------
+  agregarAlCarrito(sesion: SesionDTO): void {
     this.error = null;
     this.exitoCompra = null;
 
     const cantidad = this.validarCantidad(sesion);
     const disponible = this.entradasDisponibles(sesion);
+    
     if (cantidad < 1 || cantidad > disponible) {
       this.error = `Selecciona entre 1 y ${disponible} entradas disponibles.`;
       return;
     }
 
-    // ------ Generar Dto Necesario Que Enviarlo Al Endpoint ------
-    const compra: CompraEntradasDTO = {
+    this.carritoService.agregarAlCarrito({
       sesionId: sesion.id,
-      cantidad,
-    };
-
-    this.eventoService.realizarCompra(compra).subscribe({
-      next: (mensaje) => {
-        this.exitoCompra = mensaje || 'Compra realizada con éxito.';
-        // ------ Limpiar La Cantidad Seleccionada Y El Aviso De Ajuste ------
+      cantidad: cantidad
+    }).subscribe({
+      next: () => {
+        this.exitoCompra = '¡Artículo añadido al carrito con éxito!';
+        // ------ Limpiar La Cantidad Seleccionada ------
         delete this.cantidadSeleccionada[sesion.id];
         delete this.cantidadAjustada[sesion.id];
-        // ------ Recargar El Detalle Del Evento Para Actualizar Las Entradas Disponibles ------
-        this.cargarEventoDetalle(this.evento!.id);
       },
-      error: (err: any) => {
-        console.error('Error al realizar compra:', err);
-
-        // ------ Manejo Especifico De Errores Controlados ------
-        if (err.status === 0) {
-          this.error = 'No se pudo conectar con el servidor. Verifica tu conexión a internet.';
-        } else if (err.status === 401) {
-          this.error = 'Debes iniciar sesión para realizar una compra.';
-        } else if (err.status === 403) {
-          this.error = 'No tienes permisos para realizar esta acción.';
-        } else if (err.status === 404) {
-          this.error = 'El servicio de compras no está disponible.';
-        } else if (err.status >= 500) {
-          this.error = 'Error interno del servidor. Intenta de nuevo más tarde.';
-        } else {
-          this.error = err.error?.message || err.message || 'No se pudo completar la compra. Intenta de nuevo más tarde.';
-        }
-      },
+      error: (err) => {
+        console.error('Error al añadir al carrito', err);
+        this.error = 'No se pudo añadir al carrito. Intenta de nuevo.';
+      }
     });
   }
 }

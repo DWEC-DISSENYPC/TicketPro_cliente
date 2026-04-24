@@ -9,6 +9,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { MiCuentaComponent } from './components/mi-cuenta/mi-cuenta.component';
 import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.component';
+import { CarritoComponent } from './components/shopping-cart/shopping-cart.component';
 
 /* ###### ADMINISTRADOR CENTRAL DE RUTAS VIRTUALES ###### */
 
@@ -31,6 +32,7 @@ export const routes: Routes = [
   { path: 'detalle-compra/:id', component: DetalleCompraComponent },
   { path: 'perfil', component: MiCuentaComponent },
   { path: 'editar-perfil', component: EditarPerfilComponent },
+  { path: 'carrito', component: CarritoComponent },
 
   // ------ Redireccionamientos Globales Y Fallbacks ------
   { path: '', redirectTo: '/eventos', pathMatch: 'full' },

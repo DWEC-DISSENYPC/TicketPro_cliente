@@ -146,6 +146,18 @@ body {
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
+  font-family: var(--font-family-body);
+  color: var(--text-principal);
+  background-color: var(--bg-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-title);
+  font-weight: 700;
+  color: var(--text-principal);
+  letter-spacing: -0.5px;
 }
 
 /* ------ Asegura Render Correcto A Navbars Estaticos ------ */
