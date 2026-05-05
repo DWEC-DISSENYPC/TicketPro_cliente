@@ -295,25 +295,37 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* ------ Contenedor Para Boton De Entrada ------ */
+/* ------ Contenedor Para Botones De Accion ------ */
 .ticket-acciones {
-  text-align: center;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
   margin-top: auto;
 }
 
 /* ------ Boton De Guardar En Dispositivo ------ */
-.btn-descargar {
+.btn-descargar, .btn-imprimir {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--color-primario);
-  color: var(--text-sobre-primario);
-  border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 999px;
   font-weight: 600;
   cursor: pointer;
   transition: var(--transicion-estandar);
+}
+
+.btn-descargar {
+  background: var(--color-primario);
+  color: var(--text-sobre-primario);
+  border: none;
+}
+
+.btn-imprimir {
+  background: var(--bg-seccion);
+  color: var(--color-primario);
+  border: 2px solid var(--color-primario);
 }
 
 /* ------ Hover Interactivo ------ */
@@ -389,5 +401,102 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
+  }
+}
+
+/* ###### ESTILOS PARA LA INFORMACION DEL EVENTO EN EL TICKET ###### */
+
+.ticket-evento-info {
+  border-bottom: 1px dashed #ddd;
+  padding-bottom: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.ticket-titulo {
+  color: var(--color-primario);
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.ticket-detalle {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+  color: var(--text-principal);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ticket-detalle i {
+  color: var(--color-primario);
+}
+
+/* ###### CONFIGURACION DE IMPRESION ###### */
+
+@media print {
+  /* Ocultar todo lo que no sea el ticket */
+  nav, 
+  footer, 
+  app-hero, 
+  .header-section, 
+  .compra-info, 
+  .tickets-section > h2,
+  .btn-volver,
+  .ticket-acciones,
+  .mensaje-exito,
+  .mensaje-error {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .detalle-compra {
+    padding: 0 !important;
+    background: white !important;
+  }
+
+  .container {
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .tickets-grid {
+    display: block !important;
+  }
+
+  .ticket-card {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    border: 2px solid #333 !important;
+    box-shadow: none !important;
+    margin-bottom: 2rem !important;
+    padding: 2rem !important;
+    background: white !important;
+  }
+
+  .ticket-titulo {
+    color: black !important;
+    font-size: 2rem !important;
+  }
+
+  .ticket-detalle i {
+    display: none !important;
+  }
+
+  .codigo-text {
+    background: #f0f0f0 !important;
+    border: 1px solid #ccc !important;
+    color: black !important;
+  }
+
+  .qr-image {
+    max-width: 200px !important;
+    margin: 0 auto !important;
+    display: block !important;
   }
 }

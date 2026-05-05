@@ -76,6 +76,16 @@
             </span>
           </div>
 
+          <div class="ticket-evento-info">
+            <h4 class="ticket-titulo">{{ ticket.tituloEvento }}</h4>
+            <p class="ticket-detalle">
+              <i class="bi bi-calendar3"></i> {{ ticket.fechaSesion | date: 'dd/MM/yyyy HH:mm' }}
+            </p>
+            <p class="ticket-detalle">
+              <i class="bi bi-geo-alt"></i> {{ ticket.nombreSala }}, {{ ticket.ciudad }}
+            </p>
+          </div>
+
           <div class="ticket-codigo">
             <strong>Código:</strong>
             <span class="codigo-text">{{ ticket.codigo }}</span>
@@ -98,7 +108,11 @@
 
           <!-- ------ Permitir La Impresion ------ -->
           <div class="ticket-acciones" *ngIf="!ticket.usado">
-            <button class="btn-descargar" (click)="descargarQR(ticket.id)" [attr.aria-label]="'Descargar código QR del ticket ' + ticket.id">
+            <button class="btn-imprimir" onclick="window.print()" aria-label="Imprimir ticket">
+              <i class="bi bi-printer" aria-hidden="true"></i>
+              Imprimir
+            </button>
+            <button class="btn-descargar" (click)="descargarTicket(ticket.id)" [attr.aria-label]="'Descargar código QR del ticket ' + ticket.id">
               <i class="bi bi-download" aria-hidden="true"></i>
               Descargar QR
             </button>

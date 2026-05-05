@@ -147,16 +147,16 @@ export class DetalleCompraComponent implements OnInit {
   }
 
   // ------ Dispara La Capacidad De Capturar O Obtener Recurso Codificado ------
-  descargarQR(ticketId: number): void {
+  descargarTicket(ticketId: number): void {
     if (!this.compra) return;
 
     const ticket = this.compra.tickets.find(t => t.id === ticketId);
-    if (!ticket || !ticket.qrCode) {
-      alert('No se pudo encontrar el código QR.');
+    if (!ticket) {
+      alert('No se pudo encontrar el ticket.');
       return;
     }
 
-    this.eventoService.descargarImagen(ticket.qrCode).subscribe({
+    this.eventoService.descargarTicketCompleto(ticketId).subscribe({
       next: (blob) => {
         // Crear un enlace temporal para la descarga
         const url = window.URL.createObjectURL(blob);
@@ -173,8 +173,8 @@ export class DetalleCompraComponent implements OnInit {
         window.URL.revokeObjectURL(url);
       },
       error: (err) => {
-        console.error('Error al descargar el QR:', err);
-        alert('Hubo un problema al descargar el código QR. Por favor, inténtalo de nuevo.');
+        console.error('Error al descargar el ticket:', err);
+        alert('Hubo un problema al descargar el ticket. Por favor, inténtalo de nuevo.');
       }
     });
   }

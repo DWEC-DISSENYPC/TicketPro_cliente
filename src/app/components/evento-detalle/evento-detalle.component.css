@@ -15,7 +15,7 @@
   width: 100%;
   min-height: 420px;
   background-size: cover;
-  background-position: center;
+  background-position: top center;
   position: relative;
   display: flex;
   align-items: flex-end;
@@ -24,40 +24,64 @@
 /* ------ Sombreado Degardado Para Lectura ------ */
 .detalle-hero-overlay {
   width: 100%;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.75));
-  padding: 2rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%);
+  padding: 3rem 2rem;
   box-sizing: border-box;
 }
 
 /* ------ Texto En Blanco Superpuesto ------ */
 .detalle-hero-content {
-  color: var(--text-sobre-primario);
-  max-width: 860px;
+  color: #ffffff;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.detalle-hero-content h1 {
+  color: #ffffff;
+  font-size: 2.5rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.detalle-hero-content p {
+  font-size: 1.1rem;
+  max-width: 700px;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.detalle-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: center;
 }
 
 /* ------ Pastilla Informativa De Tipo De Evento ------ */
 .badge-categoria {
   display: inline-block;
   margin-bottom: 1rem;
-  padding: 0.5rem 1rem;
-  background: var(--bg-cristal);
+  padding: 0.5rem 1.2rem;
+  background: var(--color-primario);
+  color: white;
   border-radius: 999px;
-  font-weight: 600;
-}
-
-/* ------ Fila Subyacente De Etiquetado ------ */
-.detalle-meta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
 }
 
 /* ------ Estilo Particular Individual ------ */
 .detalle-meta-item {
-  background: var(--bg-cristal);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
   padding: 0.75rem 1rem;
   border-radius: var(--radius-md);
+  color: white;
+  font-weight: 600;
 }
 
 /* ###### CUERPO DEL DETALLE Y REJILLAS ###### */

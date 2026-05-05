@@ -69,4 +69,9 @@ export class EventoService {
   descargarImagen(url: string): Observable<Blob> {
     return this.http.get(url, { responseType: 'blob' });
   }
+
+  // Descargar el ticket completo con información y QR
+  descargarTicketCompleto(ticketId: number): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/compras/ticket/${ticketId}/descargar`, { responseType: 'blob' });
+  }
 }

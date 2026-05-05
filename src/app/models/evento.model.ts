@@ -58,6 +58,10 @@ export interface TicketDTO {
   id: number;
   codigo: string;
   qrCode: string;
+  tituloEvento: string;
+  fechaSesion: string;
+  nombreSala: string;
+  ciudad: string;
   usado: boolean;
 }
 
