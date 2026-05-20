@@ -65,7 +65,7 @@
 
     <!-- ###### VISOR DE TICKETS DISPONIBLES ###### -->
     <!-- ------ Lista De Tickets Individuales Ajenos O Vinculados A La Sesion ------ -->
-    <div class="tickets-section">
+    <div class="tickets-section" *ngIf="compra.estado.toLowerCase() !== 'cancelada'">
       <h2>Tus Tickets</h2>
       <div class="tickets-grid">
         <article *ngFor="let ticket of compra.tickets" class="ticket-card">
@@ -118,6 +118,15 @@
             </button>
           </div>
         </article>
+      </div>
+    </div>
+
+    <!-- ###### AVISO DE COMPRA CANCELADA ###### -->
+    <div class="cancelada-notice" *ngIf="compra.estado.toLowerCase() === 'cancelada'">
+      <i class="bi bi-exclamation-triangle"></i>
+      <div class="notice-content">
+        <h3>Compra Cancelada</h3>
+        <p>Esta compra ha sido cancelada y los tickets ya no son válidos para el acceso al evento.</p>
       </div>
     </div>
 

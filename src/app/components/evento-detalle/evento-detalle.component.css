@@ -208,10 +208,11 @@
   margin-bottom: 18px;
 }
 
+.btn-comprar:hover,
 .btn-volver:hover {
-  background: var(--color-primario-suave);
-  color: var(--text-sobre-primario);
+  filter: brightness(1.1);
   transform: translateY(-2px);
+  box-shadow: var(--sombra-button-primario);
 }
 
 /* ------ Apariencia Deshabilitada ------ */

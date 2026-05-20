@@ -16,6 +16,46 @@
   margin-bottom: 0.5rem;
 }
 
+.header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 0 0.5rem;
+}
+
+.header-actions p {
+  margin: 0;
+  color: var(--text-atenuado);
+  font-weight: 500;
+}
+
+.btn-vaciar {
+  background: none;
+  border: 1px solid var(--estado-error);
+  color: var(--estado-error);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transicion-estandar);
+}
+
+.btn-vaciar:hover:not(:disabled) {
+  background: var(--estado-error);
+  color: white;
+  box-shadow: 0 4px 10px rgba(211, 47, 47, 0.2);
+}
+
+.btn-vaciar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(1);
+}
+
 /* ###### TABLA DE ARTICULOS ###### */
 
 .carrito-items {
@@ -71,16 +111,24 @@
 .item-remove button {
   background: none;
   border: none;
-  color: var(--estado-error);
+  color: var(--text-atenuado);
   cursor: pointer;
   padding: 0.5rem;
   border-radius: 50%;
+  font-size: 1.2rem;
   transition: var(--transicion-estandar);
+  opacity: 0.6;
 }
 
-.item-remove button:hover {
-  background: rgba(214, 48, 49, 0.1);
-  transform: scale(1.1);
+.item-remove button:hover:not(:disabled) {
+  color: var(--estado-error);
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+.item-remove button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
 /* ###### RESUMEN Y ACCIONES ###### */
@@ -162,6 +210,21 @@
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--color-primario-suave);
+  border-top: 4px solid var(--color-primario);
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 @media (max-width: 768px) {

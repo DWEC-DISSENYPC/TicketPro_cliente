@@ -217,3 +217,9 @@
     </form>
   </div>
 </div>
+<!-- ###### TOAST NOTIFICADOR FLOTANTE ###### -->
+<!-- ------ Alert Temporizado Que Sobre Vuela Html ------ -->
+<div class='toast-notification' [class.show]='showToast'>
+  <i class='bi' [ngClass]='toastType === "success" ? "bi-check-circle-fill" : "bi-info-circle-fill"'></i>
+  <span>{{ toastMessage }}</span>
+</div>

@@ -153,7 +153,8 @@ export class EditarPerfilComponent implements OnInit {
 
     this.authService.subirImagenPerfil(formData).subscribe({
       next: (res) => {
-        this.imagenPerfilUrl = res.url;
+        // ------ Añadimos Cache Buster Para Forzar Recarga ------
+        this.imagenPerfilUrl = res.url + '?t=' + new Date().getTime();
         // ------ Limpiamos Seleccion ------
         this.imagenSeleccionada = null;
         this.showToastMessage('Imagen actualizada correctamente', 'success');
@@ -225,7 +226,8 @@ export class EditarPerfilComponent implements OnInit {
     this.loading = true;
     this.authService.getPerfil().subscribe({
       next: (user) => {
-        this.imagenPerfilUrl = user.imagenUrl || '';
+        // ------ Añadimos Cache Buster Si Existe Imagen ------
+        this.imagenPerfilUrl = user.imagenUrl ? (user.imagenUrl + '?t=' + new Date().getTime()) : '';
         this.editForm.patchValue(user);
 
         this.telefonosFormArray.clear();

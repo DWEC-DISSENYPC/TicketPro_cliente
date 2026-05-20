@@ -7,7 +7,7 @@ import { CompraEntradasDTO, DetalleCompraDTO, EventoDTO, HistorialCompraDTO, Men
   providedIn: 'root',
 })
 export class EventoService {
-  private apiUrl = 'http://localhost:8080/api';
+  private apiUrl = '/api';
   private eventosUrl = `${this.apiUrl}/eventos`;
 
   constructor(private http: HttpClient) {}

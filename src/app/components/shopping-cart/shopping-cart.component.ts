@@ -48,13 +48,34 @@ export class CarritoComponent implements OnInit {
   }
 
   eliminarItem(id: number): void {
-    this.carritoService.eliminarDelCarrito(id).subscribe({
-      next: () => {
-        this.items = this.items.filter(item => item.id !== id);
-        this.calcularTotales();
-      },
-      error: (err) => console.error('Error al eliminar ítem', err)
-    });
+    if (confirm('¿Estás seguro de que deseas eliminar este evento del carrito?')) {
+      this.carritoService.eliminarDelCarrito(id).subscribe({
+        next: () => {
+          this.items = this.items.filter(item => item.id !== id);
+          this.calcularTotales();
+        },
+        error: (err) => console.error('Error al eliminar ítem', err)
+      });
+    }
+  }
+
+  vaciarCarrito(): void {
+    if (this.items.length === 0) return;
+
+    if (confirm('¿Estás seguro de que deseas vaciar todo el carrito?')) {
+      this.processing = true;
+      this.carritoService.vaciarCarrito().subscribe({
+        next: () => {
+          this.items = [];
+          this.calcularTotales();
+          this.processing = false;
+        },
+        error: (err) => {
+          console.error('Error al vaciar el carrito', err);
+          this.processing = false;
+        }
+      });
+    }
   }
 
   checkout(): void {

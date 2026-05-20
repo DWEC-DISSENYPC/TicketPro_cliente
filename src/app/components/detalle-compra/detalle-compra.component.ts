@@ -94,7 +94,7 @@ export class DetalleCompraComponent implements OnInit {
 
   // ------ Retorna Si Efectivamente Han Pasado Menos De 5 Dias Para Estar En Plazo Ocultable ------
   puedeCancelar(): boolean {
-    if (!this.compra) return false;
+    if (!this.compra || this.compra.estado.toLowerCase() === 'cancelada') return false;
     // ------ Se Puede Cancelar Si Faltan Mas De 5 Dias Para El Evento ------
     const diasRestantes = this.calcularDiasRestantes(this.compra.fechaSesion);
     return diasRestantes > 5;
@@ -148,7 +148,7 @@ export class DetalleCompraComponent implements OnInit {
 
   // ------ Dispara La Capacidad De Capturar O Obtener Recurso Codificado ------
   descargarTicket(ticketId: number): void {
-    if (!this.compra) return;
+    if (!this.compra || this.compra.estado.toLowerCase() === 'cancelada') return;
 
     const ticket = this.compra.tickets.find(t => t.id === ticketId);
     if (!ticket) {

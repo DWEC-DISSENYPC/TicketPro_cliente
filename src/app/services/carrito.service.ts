@@ -7,7 +7,7 @@ import { CarritoItem, CarritoAddRequest } from '../models/carrito.model';
   providedIn: 'root'
 })
 export class CarritoService {
-  private apiUrl = 'http://localhost:8080/api/carrito';
+  private apiUrl = '/api/carrito';
   private cartItemsCount = new BehaviorSubject<number>(0);
   cartItemsCount$ = this.cartItemsCount.asObservable();
 

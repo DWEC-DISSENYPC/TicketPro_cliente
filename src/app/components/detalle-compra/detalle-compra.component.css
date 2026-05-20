@@ -500,3 +500,33 @@
     display: block !important;
   }
 }
+/* ###### AVISO DE COMPRA CANCELADA ###### */
+
+.cancelada-notice {
+  background-color: var(--estado-error-bg);
+  color: var(--estado-error-text);
+  padding: 2rem;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  border: 1px solid var(--estado-error);
+  box-shadow: var(--sombra-principal);
+}
+
+.cancelada-notice i {
+  font-size: 3rem;
+  color: var(--estado-error);
+}
+
+.notice-content h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--estado-error-text);
+}
+
+.notice-content p {
+  margin: 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}

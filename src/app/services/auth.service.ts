@@ -10,7 +10,7 @@ export class AuthService {
   updatePerfil(data: any): Observable<any> {
     const token = localStorage.getItem('token');
 
-    return this.http.put('http://localhost:8080/api/clientes/update', data, {
+    return this.http.put(`${this.usuariosUrl}/update`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
@@ -19,7 +19,8 @@ export class AuthService {
   }
 
   // 1. URL base unificada para evitar errores de conexión y CORS
-  private apiUrl = 'http://localhost:8080/api';
+  // private apiUrl = '/api';
+  private apiUrl = '/api';
   private authUrl = `${this.apiUrl}/auth`;
   private usuariosUrl = `${this.apiUrl}/clientes`;
 
@@ -30,7 +31,7 @@ export class AuthService {
   private loggedInSource = new BehaviorSubject<boolean>(this.hasToken());
   isLoggedIn$ = this.loggedInSource.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // --- REGISTRO ---
   register(userData: any): Observable<any> {
@@ -62,7 +63,7 @@ export class AuthService {
   }
 
   // --- GESTIÓN DE SESIÓN ---
-  
+
   // ------ Comprobacion Rapida Sincrona Sobre El Estado Actual ------
   isLoggedIn(): boolean {
     return this.loggedInSource.value;
@@ -132,7 +133,7 @@ export class AuthService {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-         responseType: 'text' as 'json'
+        responseType: 'text' as 'json'
       },
     );
   }
@@ -142,7 +143,7 @@ export class AuthService {
     console.log('Token al subir imagen:', token); // ¿Es null? ¿Está expirado?
 
     return this.http.post<any>(
-      'http://localhost:8080/api/clientes/imagen',
+      `${this.usuariosUrl}/imagen`,
       formData,
       {
         headers: {
